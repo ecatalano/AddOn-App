@@ -15,6 +15,7 @@
 @property (nonatomic,assign) NSInteger level;
 @property (nonatomic,assign) BOOL endGame;
 @property (nonatomic,assign) BOOL doneLoading;
+@property (nonatomic,assign) BOOL reachableTilesFilled;
 @property (weak, nonatomic) NSTimer *myTimer;
 
 @property int remainingSeconds;

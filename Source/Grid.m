@@ -38,7 +38,7 @@ int lastY = -1;
     location.y = location.y - 140;
     fixedLocation.x = fixedLocation.x - 10;
     fixedLocation.y = [self mirrorY:fixedLocation.y];
-    
+
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
             int fixedJ = [self mirrorTile:j];
@@ -161,6 +161,11 @@ int lastY = -1;
 
 - (void)addTileAtColumn:(NSInteger)column row:(NSInteger)row{
     Tile *tile = (Tile*) [CCBReader load:@"Tile"];
+    int x = column;
+    int y = [self mirrorTile:row];
+    
+    tile.x = x;
+    tile.y = y;
     _gridArray[column][row] = tile;
     _fixedArray [column][row] = tile;
     tile.scale = 0.f;
@@ -191,6 +196,11 @@ int lastY = -1;
         }
     }
     [self spawnStartTiles];
+    
+    if(self.reachableTilesFilled==false){
+        [self fillReachableTiles];
+        self.reachableTilesFilled = true;
+    }
 
     
     // listen for dragging
@@ -199,6 +209,8 @@ int lastY = -1;
     [panRecognizer setMinimumNumberOfTouches:1];
     [panRecognizer setMaximumNumberOfTouches:1];
     [[[CCDirector sharedDirector] view] addGestureRecognizer:panRecognizer];
+    //Tile *tile = _fixedArray[0][[self mirrorTile:0]];
+    //NSLog(@"Tile 0,0 value: %d" , tile.value);
 }
 
 - (void)setupBackground {
@@ -234,7 +246,7 @@ int lastY = -1;
         y += _columnHeight + _tileMarginVertical;
     }
     self.doneLoading = true;
-    
+
 }
 -(void) removeGrid{
     for(int i = 0; i < GRID_SIZE; i++){
@@ -243,7 +255,6 @@ int lastY = -1;
         }
     }
 }
-
 
 - (NSTimer *)createTimer {
     return [NSTimer scheduledTimerWithTimeInterval:1.0
@@ -278,6 +289,7 @@ int lastY = -1;
 - (void)gameOver{
     self.endGame = true;
     self.doneLoading = false;
+    self.reachableTilesFilled = false;
     
     [self stopTimer];
     
@@ -296,5 +308,23 @@ int lastY = -1;
     [gameOverPopover setLevel:self.level score:self.score bestscore:bestScore bestlevel:bestLevel];
     [self addChild:gameOverPopover];
 }
+
+-(void) fillReachableTiles{
+    for(int i = 0; i < GRID_SIZE; i++){
+        for(int j = 0; j < GRID_SIZE; j++){
+            //might need to switch to
+            Tile *tile = _gridArray[i][j];
+            
+            [tile addReachableTilesAtX:tile.x Y:tile.y Value:tile.value];
+            //shift right-up
+            [tile addReachableTilesAtX:tile.x+1 Y:tile.y-1 Value:tile.value];
+            [tile addReachableTilesAtX:tile.x+2 Y:tile.y-2 Value:tile.value];
+            //shift down-left
+            [tile addReachableTilesAtX:tile.x-1 Y:tile.y+1 Value:tile.value];
+            [tile addReachableTilesAtX:tile.x-2 Y:tile.y+2 Value:tile.value];
+        }
+    }
+}
+
 
 @end
