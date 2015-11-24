@@ -18,7 +18,7 @@
     NSMutableArray *_gridArray;
     NSMutableArray *_fixedArray;
     NSNull *_noTile;
-    int _largestPath;
+    int _greatestPath;
 }
 
 static const NSInteger GRID_SIZE = 5;
@@ -180,6 +180,7 @@ int lastY = -1;
 
 - (void)didLoadFromCCB {
     _myTimer = [self createTimer];
+    _greatestPath = 0;
     [self setupBackground];
     self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     self.score = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
@@ -201,7 +202,24 @@ int lastY = -1;
         [self fillReachableTiles];
         self.reachableTilesFilled = true;
     }
+    
+    [self setPointers];
+    
+    
+    for(int i = 0; i < GRID_SIZE; i++){
+        for(int j = 0; j < GRID_SIZE; j++){
+            Tile *tile = _gridArray[i][[self mirrorTile:j]];
+            int temp = [self findGreatestPathAtTile:tile];
+            //NSLog(@"Greatest Path: %d at tile: %d,%d", temp,tile.x,tile.y );
 
+            
+
+            if(temp > _greatestPath){
+                _greatestPath = temp;
+                //NSLog(@"Greatest Path: %d at tile: %d,%d", _greatestPath,tile.x,tile.y );
+            }
+        }
+    }
     
     // listen for dragging
     UIPanGestureRecognizer *panRecognizer= [[UIPanGestureRecognizer alloc] initWithTarget: self
@@ -211,6 +229,7 @@ int lastY = -1;
     [[[CCDirector sharedDirector] view] addGestureRecognizer:panRecognizer];
     //Tile *tile = _fixedArray[0][[self mirrorTile:0]];
     //NSLog(@"Tile 0,0 value: %d" , tile.value);
+
 }
 
 - (void)setupBackground {
@@ -246,7 +265,6 @@ int lastY = -1;
         y += _columnHeight + _tileMarginVertical;
     }
     self.doneLoading = true;
-
 }
 -(void) removeGrid{
     for(int i = 0; i < GRID_SIZE; i++){
@@ -312,7 +330,6 @@ int lastY = -1;
 -(void) fillReachableTiles{
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
-            //might need to switch to
             Tile *tile = _gridArray[i][j];
             
             [tile addReachableTilesAtX:tile.x Y:tile.y Value:tile.value];
@@ -324,6 +341,772 @@ int lastY = -1;
             [tile addReachableTilesAtX:tile.x-2 Y:tile.y+2 Value:tile.value];
         }
     }
+    /*
+    Tile *testTile = _fixedArray[1][[self mirrorTile:1]];
+    NSLog(@"Reachable Tiles at 1,1:");
+    for(int i = 0; i < [testTile.reachableTiles count]; i++){
+        Tile *reachedTile = testTile.reachableTiles[i];
+        NSLog(@"%d,%d,%d",reachedTile.x,reachedTile.y,reachedTile.value);
+    }
+     */
+    
+}
+-(int) findGreatestPathAtTile:(Tile *)tile{
+    int greatest = 0;
+    //get coordinates that this tile can reach
+    NSMutableArray *coordinates = [tile reachableTiles];
+    
+    //add appropriate value and pointers to each coordinate (otherwise all coordinates in ArrayList have the same value and null pointers)
+    for(int i = 0; i < [coordinates count]; i++){
+        Tile *tempTile = coordinates[i];
+        Tile *tempTwo = _gridArray[tempTile.y][tempTile.x];
+        tempTile.value = tempTwo.value;
+        tempTile.left = tempTwo.left;
+        tempTile.right = tempTwo.right;
+        tempTile.top = tempTwo.top;
+        tempTile.bottom = tempTwo.bottom;
+    }
+    
+    //try all paths between each coordinates, return the greatest path
+    for(int i = 0; i < [coordinates count]; i++){
+        int pathVal = [self greatestPathBetweenTileOne:tile TileTwo:coordinates[i]];
+        if(pathVal > greatest){
+            greatest = pathVal;
+        }
+    }
+    return greatest;
+}
+
+//find greatest path between 2 coordinates
+-(int) greatestPathBetweenTileOne: (Tile *)t1 TileTwo:(Tile *) t2{
+    
+    //c2 can't reference any pointers
+    int ret = 0;
+    int p1 = 0;
+    int p2 = 0;
+    int p3 = 0;
+    int p4 = 0;
+    int p5 = 0;
+    int p6 = 0;
+    
+    //test different starting conditions to determine patterns
+    if((abs(t2.x-t1.x) == 2) && (abs(t2.y-t1.y) == 2) ){
+        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+        p3 = [self pattern2YAtTile:t1 TileTwo:t2];
+        p4 = [self pattern2XAtTile:t1 TileTwo:t2];
+        p5 = [self patternExceptionOneAtTile:t1 TileTwo:t2];
+    }else if((abs(t2.x-t1.x) > 1) && (abs(t2.y-t1.y) == 1)){
+        //changed >= to >
+        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+        p3 = [self pattern2YAtTile:t1 TileTwo:t2];
+        p4 = [self pattern2YAtTile:t2 TileTwo:t1];
+    }else if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) > 1)){
+        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+        p3 = [self pattern2XAtTile:t1 TileTwo:t2];
+        p4 = [self pattern2XAtTile:t2 TileTwo:t1];
+    }else if((abs(t2.x-t1.x) == 0) && (abs(t2.y-t1.y) == 2)){
+        p1 = [self pattern3XLeftAtTile:t1 TileTwo:t2];
+        p2 = [self pattern3XRightAtTile:t1 TileTwo:t2];
+        p3 = [self pattern4XLeftAtTile:t1 TileTwo:t2];
+        p4 = [self pattern4XRightAtTile:t1 TileTwo:t2];
+        p5 = [self pattern4XLeftAtTile:t2 TileTwo:t1];
+        p6 = [self pattern4XRightAtTile:t2 TileTwo:t1];
+    }else if((abs(t2.y-t1.y) == 0) && (abs(t2.x-t1.x) == 2)){
+        p1 = [self pattern3YTopAtTile:t1 TileTwo:t2];
+        p2 = [self pattern3YBottomAtTile:t1 TileTwo:t2];
+        p3 = [self pattern4XTopAtTile:t1 TileTwo:t2];
+        p4 = [self pattern4XBottomAtTile:t1 TileTwo:t2];
+        p5 = [self pattern4XTopAtTile:t2 TileTwo:t1];
+        p6 = [self pattern4XBottomAtTile:t2 TileTwo:t1];
+    }else if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) == 1)){
+        p1 = [self pattern5AAtTile:t1 TileTwo:t2];
+        self.p5A = false;
+        p2 = [self pattern5BAtTile:t1 TileTwo:t2];
+        self.p5B = false;
+        p3 = [self pattern5AAtTile:t2 TileTwo:t1];
+        self.p5A = false;
+        p4 = [self pattern5BAtTile:t2 TileTwo:t1];
+        self.p5B = false;
+    }else{
+        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+
+    }
+    
+    NSMutableArray *arr = [[NSMutableArray alloc]init];
+    [arr addObject:[NSNumber numberWithInt:p1]];
+    [arr addObject:[NSNumber numberWithInt:p2]];
+    [arr addObject:[NSNumber numberWithInt:p3]];
+    [arr addObject:[NSNumber numberWithInt:p4]];
+    [arr addObject:[NSNumber numberWithInt:p5]];
+    [arr addObject:[NSNumber numberWithInt:p6]];
+    
+    for(int i = 0; i < [arr count];i++){
+        int temp = [[arr objectAtIndex:i] integerValue];
+        if(temp > ret){
+            ret = temp;
+        }
+    }
+    NSLog(@"Paths between %d,%d and %d,%d are %d %d %d %d %d %d",t1.x,t1.y,t2.x,t2.y,p1,p2,p3,p4,p5,p6);
+    
+    return ret;
+}
+-(int) pattern5BAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+        
+        //moves left twice
+        if((t1.x > 1)&&(t1.x - t2.x == 1) && !(_p5B)){
+            _p5B = true;
+            return t1.value + t1.left.value + [self pattern5BAtTile:t1.left.left TileTwo:t2];
+        }
+        //moves right twice
+        if((t1.x < 3)&&(t1.x - t2.x == -1) && !(_p5B)){
+            _p5B = true;
+            return t1.value + t1.right.value + [self pattern5BAtTile:t1.right.right TileTwo:t2];
+        }
+    
+        //align y
+        if((t2.y - t1.y > 0) && (abs(t2.x - t1.x) == 1)){
+            return t1.value + [self pattern5BAtTile:t1.bottom TileTwo:t2];
+        }
+        if((t2.y - t1.y < 0) && (abs(t2.x - t1.x) == 1)){
+            return t1.value + [self pattern5BAtTile:t1.top TileTwo:t2];
+        }
+        //connect
+        if((t1.y == t2.y) && (t2.x - t1.x == 1)){
+            return t1.value + [self pattern5BAtTile:t1.right TileTwo:t2];
+        }
+        if((t1.y == t2.y) && (t2.x - t1.x == -1)){
+            return t1.value + [self pattern5BAtTile:t1.left TileTwo:t2];
+        }
+    }
+    //NSLog(@"PATTERN 5B NO PATH EXISTS");
+    return 0;
+}
+
+-(int)pattern5AAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //moves up twice
+        if((t1.y > 1)&&(t1.y - t2.y == 1) && !(_p5A)){
+            _p5A = true;
+            return t1.value + t1.top.value + [self pattern5AAtTile:t1.top.top TileTwo:t2];
+        }
+        //moves down twice
+        if((t1.y < 3)&&(t1.y - t2.y == -1) && !(_p5A)){
+            _p5A = true;
+            return t1.value + t1.bottom.value + [self pattern5AAtTile:t1.bottom.bottom TileTwo:t2];
+        }
+    
+        //align x
+        if((t2.x - t1.x > 0) && (abs(t2.y - t1.y) == 1)){
+            return t1.value + [self pattern5AAtTile:t1.right TileTwo:t2];
+        }
+        if((t2.x - t1.x < 0) && (abs(t2.y - t1.y) == 1)){
+            return t1.value + [self pattern5AAtTile:t1.left TileTwo:t2];
+        }
+        //connect
+        if((t1.x == t2.x) && (t2.y - t1.y == 1)){
+            return t1.value + [self pattern5AAtTile:t1.bottom TileTwo:t2];
+        }
+        if((t1.x == t2.x) && (t2.y - t1.y == -1)){
+            return t1.value + [self pattern5AAtTile:t1.top TileTwo:t2];
+        }
+    }
+    //NSLog(@"PATTERN 5A NO PATH EXISTS");
+    return 0;
+}
+
+-(int)pattern4XBottomAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+        //move 1
+        if((t1.y < 4) && (t1.y == t2.y) && (abs(t2.x-t1.x) == 2)){
+            return t1.value + [self pattern4XBottomAtTile:t1.bottom TileTwo:t2];
+        }
+        
+        //move 2
+        if((t1.x-t2.x == 2)&&(t1.y - t2.y > 0) ){
+            return t1.value + [self pattern4XBottomAtTile:t1.left TileTwo:t2];
+        }
+        if((t1.x-t2.x == -2)&&(t1.y - t2.y > 0) ){
+            return t1.value + [self pattern4XBottomAtTile:t1.right TileTwo:t2];
+        }
+    
+        //move 3
+        if((abs(t2.y-t1.y) == 1)&&(abs(t2.x-t1.x) == 1)){
+            return t1.value + [self pattern4XBottomAtTile:t1.top TileTwo:t2];
+        }
+    
+        //move 4
+        if((t1.y == t2.y)&&(t1.x-t2.x == 1)){
+            return t1.value + [self pattern4XBottomAtTile:t1.left TileTwo:t2];
+        }
+        if((t1.y == t2.y)&&(t1.x-t2.x == -1)){
+            return t1.value + [self pattern4XBottomAtTile:t1.right TileTwo:t2];
+        }
+    }
+    //NSLog(@"NO BOTTOM PATH EXISTS 4X");
+    return 0;
+}
+
+-(int)pattern4XTopAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //move 1
+        if((t1.y > 0) && (t1.y == t2.y) && (abs(t2.x-t1.x) == 2)){
+            return t1.value + [self pattern4XTopAtTile:t1.top TileTwo:t2];
+        }
+        //move 2
+        if((t1.x-t2.x == 2)&&(t1.y - t2.y < 0) ){
+            return t1.value + [self pattern4XTopAtTile:t1.left TileTwo:t2];
+        }
+        if((t1.x-t2.x == -2)&&(t1.y - t2.y < 0) ){
+            return t1.value + [self pattern4XTopAtTile:t1.right TileTwo:t2];
+        }
+    
+        //move 3
+        if((abs(t2.y-t1.y) == 1)&&(abs(t2.x-t1.x) == 1)){
+            return t1.value + [self pattern4XTopAtTile:t1.bottom TileTwo:t2];
+        }
+    
+        //move 4
+        if((t1.y == t2.y)&&(t1.x-t2.x == 1)){
+            return t1.value + [self pattern4XTopAtTile:t1.left TileTwo:t2];
+        }
+        if((t1.y == t2.y)&&(t1.x-t2.x == -1)){
+            return t1.value + [self pattern4XTopAtTile:t1.right TileTwo:t2];
+        }
+    }
+    
+    //NSLog(@"NO TOP PATH EXISTS 4X");
+    return 0;
+}
+
+-(int)pattern4XRightAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+        
+        //move 1
+        if((t1.x < 4) && (t1.x == t2.x) && (abs(t2.y-t1.y) == 2)){
+            return t1.value + [self pattern4XRightAtTile:t1.right TileTwo:t2];
+        }
+    
+        //move 2
+        if((t1.y-t2.y == 2)&&(t1.x - t2.x > 0) ){
+            return t1.value + [self pattern4XRightAtTile:t1.top TileTwo:t2];
+        }
+        if((t1.y-t2.y == -2)&&(t1.x - t2.x > 0) ){
+            return t1.value + [self pattern4XRightAtTile:t1.bottom TileTwo:t2];
+        }
+    
+        //move 3
+        if((abs(t2.y-t1.y) == 1)&&(abs(t2.x-t1.x) == 1)){
+            return t1.value + [self pattern4XRightAtTile:t1.left TileTwo:t2];
+        }
+    
+        //move 4
+        if((t1.x == t2.x)&&(t1.y-t2.y == 1)){
+            return t1.value + [self pattern4XRightAtTile:t1.top TileTwo:t2];
+        }
+        if((t1.x == t2.x)&&(t1.y-t2.y == -1)){
+            return t1.value + [self pattern4XRightAtTile:t1.bottom TileTwo:t2];
+        }
+    }
+    //NSLog(@"NO RIGHT PATH EXISTS 4X");
+    return 0;
+}
+
+-(int)pattern4XLeftAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+        
+        //move 1
+        if((t1.x > 0) && (t1.x == t2.x) && (abs(t2.y-t1.y) == 2)){
+            return t1.value + [self pattern4XLeftAtTile:t1.left TileTwo:t2];
+        }
+    
+        //move 2
+        if((t1.y-t2.y == 2)&&(t1.x - t2.x < 0) ){
+            return t1.value + [self pattern4XLeftAtTile:t1.top TileTwo:t2];
+        }
+        if((t1.y-t2.y == -2)&&(t1.x - t2.x < 0) ){
+            return t1.value + [self pattern4XLeftAtTile:t1.bottom TileTwo:t2];
+        }
+    
+        //move 3
+        if((abs(t2.y-t1.y) == 1)&&(abs(t2.x-t1.x) == 1)){
+            return t1.value + [self pattern4XLeftAtTile:t1.right TileTwo:t2];
+        }
+    
+        //move 4
+        if((t1.x == t2.x)&&(t1.y-t2.y == 1)){
+            return t1.value + [self pattern4XLeftAtTile:t1.top TileTwo:t2];
+        }
+        if((t1.x == t2.x)&&(t1.y-t2.y == -1)){
+            return t1.value + [self pattern4XLeftAtTile:t1.bottom TileTwo:t2];
+        }
+    }
+    //NSLog(@"NO LEFT PATH EXISTS 4X");
+    
+    return 0;
+}
+
+//y is aligned
+
+-(int)pattern3YBottomAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+				
+        //disalign y (top)
+        if((t1.y < 4) && (t1.y == t2.y) && (abs(t2.x-t1.x) == 2)){
+            return t1.value + [self pattern3YBottomAtTile:t1.bottom TileTwo:t2];
+        }
+    
+        //align x
+        if((abs(t1.y-t2.y) == 1) && (t1.x- t2.x > 0)){
+            return t1.value + [self pattern3YBottomAtTile:t1.left TileTwo:t2];
+        }
+        if((abs(t1.y-t2.y) == 1) && (t1.x- t2.x < 0)){
+            return t1.value + [self pattern3YBottomAtTile:t1.right TileTwo:t2];
+        }
+				
+        //align y
+        if((t1.x == t2.x) && (t2.y-t1.y == -1)){
+            return t1.value + [self pattern3YBottomAtTile:t1.top TileTwo:t2];
+        }
+    }
+				
+    //NSLog(@"NO BOTTOM PATH EXISTS 3Y");
+    
+    return 0;
+}
+//y is aligned
+-(int)pattern3YTopAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //disalign y (top)
+        if((t1.y > 0) && (t1.y == t2.y) && (abs(t2.x-t1.x) == 2)){
+            return t1.value + [self pattern3YTopAtTile:t1.top TileTwo:t2];
+        }
+    
+        //align x
+        if((abs(t1.y-t2.y) == 1) && (t1.x- t2.x > 0)){
+            return t1.value + [self pattern3YTopAtTile:t1.left TileTwo:t2];
+        }
+        if((abs(t1.y-t2.y) == 1) && (t1.x- t2.x < 0)){
+            return t1.value + [self pattern3YTopAtTile:t1.right TileTwo:t2];
+        }
+    
+        //align y
+        if((t1.x == t2.x) && (t2.y-t1.y == 1)){
+            return t1.value + [self pattern3YTopAtTile:t1.bottom TileTwo:t2];
+        }
+    }
+    //NSLog(@"NO TOP PATH EXISTS 3Y");
+    
+    return 0;
+}
+
+//x is aligned
+
+-(int)pattern3XLeftAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //disalign x (left)
+        if((t1.x > 0) && (t1.x == t2.x) && (abs(t2.y-t1.y) == 2)){
+            return t1.value + [self pattern3XLeftAtTile:t1.left TileTwo:t2];
+        }
+    //align y
+        if((abs(t1.x-t2.x) == 1) && (t1.y- t2.y > 0)){
+            return t1.value + [self pattern3XLeftAtTile:t1.top TileTwo:t2];
+        }
+        if((abs(t1.x-t2.x) == 1) && (t1.y- t2.y < 0)){
+            return t1.value + [self pattern3XLeftAtTile:t1.bottom TileTwo:t2];
+        }
+    
+        //align x
+        if((t1.y == t2.y) && (t2.x-t1.x == 1)){
+            return t1.value + [self pattern3XLeftAtTile:t1.right TileTwo:t2];
+        }
+    }
+    
+    //NSLog(@"NO LEFT PATH EXISTS 3X");
+    
+    return 0;
+}
+//x is aligned
+-(int)pattern3XRightAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //disalign x (right)
+        if((t1.x < 4) && (t1.x == t2.x) && (abs(t2.y-t1.y) == 2)){
+            return t1.value + [self pattern3XRightAtTile:t1.right TileTwo:t2];
+        }
+        //align y
+        if((abs(t1.x-t2.x) == 1) && (t1.y- t2.y > 0)){
+            return t1.value + [self pattern3XRightAtTile:t1.top TileTwo:t2];
+        }
+        if((abs(t1.x-t2.x) == 1) && (t1.y- t2.y < 0)){
+            return t1.value + [self pattern3XRightAtTile:t1.bottom TileTwo:t2];
+        }
+    
+        //align x
+        if((t1.y == t2.y) && (t2.x-t1.x == -1)){
+            return t1.value + [self  pattern3XRightAtTile:t1.left TileTwo:t2];
+        }
+    }
+    //NSLog(@"NO RIGHT PATH EXISTS 3X");
+    
+    return 0;
+}
+
+
+
+//alternate between x and y alignment
+-(int)pattern2YAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    //base case
+    if(t1.x == t2.x && t1.y == t2.y){
+        return t2.value;
+    }
+    
+    //if x or y is aligned then finish path directly
+    if(t1.x == t2.x || t1.y == t2.y){
+        return [self finishDirectIfAlignedAtTile:t1 TileTwo:t2];
+    }
+    
+    //move in x direction first
+    if(t2.x - t1.x >= 1 ){
+        return t1.value + [self pattern2XAtTile:t1.right TileTwo:t2];
+    }
+    if(t2.x - t1.x <= -1 ){
+        return t1.value + [self pattern2XAtTile:t1.left TileTwo:t2];
+    }
+    
+    NSLog(@"SOMETHING WENT WRONG (pattern2Y)");
+    
+    return 0;
+}
+
+//alternate between x and y alignment
+-(int)pattern2XAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //if x or y is aligned then finish path directly
+        if(t1.x == t2.x || t1.y == t2.y){
+            return [self finishDirectIfAlignedAtTile:t1 TileTwo:t2];
+        }
+    
+        //move in y direction first
+        if(t2.y - t1.y >= 1){
+            return t1.value + [self pattern2YAtTile:t1.bottom TileTwo:t2];
+        }
+        if(t2.y - t1.y <= -1){
+            return t1.value + [self pattern2YAtTile:t1.top TileTwo:t2];
+        }
+    }
+    NSLog(@"SOMETHING WENT WRONG (pattern2X)");
+    
+    return 0;
+}
+
+
+
+
+//align x, then align y
+-(int)pattern1XAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //c1 changes, c2 is fixed
+    
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+				
+        //move in horizontal direction of c2
+        if(t1.x < t2.x){
+            return t1.value + [self pattern1XAtTile:t1.right TileTwo:t2];
+        }
+        if(t1.x > t2.x){
+            return t1.value + [self pattern1XAtTile:t1.left TileTwo:t2];
+        }
+        //move in vertical direction of c2
+        if(t1.y < t2.y){
+            return t1.value + [self pattern1XAtTile:t1.bottom TileTwo:t2];
+        }
+        if(t1.y > t2.y){
+            return t1.value + [self pattern1XAtTile:t1.top TileTwo:t2];
+        }
+    }
+    NSLog(@"SOMETHING WENT WRONG 1X");
+    
+    return 0;
+}
+
+//align y, then align x
+-(int)pattern1YAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+        //base case
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        //move in vertical direction of c2
+        if(t1.y < t2.y){
+            return t1.value + [self pattern1YAtTile:t1.bottom TileTwo:t2];
+        }
+        if(t1.y > t2.y){
+            return t1.value + [self pattern1YAtTile:t1.top TileTwo:t2];
+        }
+    
+        //move in horizontal direction of c2
+        if(t1.x < t2.x){
+            return t1.value + [self pattern1YAtTile:t1.right TileTwo:t2];
+        }
+        if(t1.x > t2.x){
+            return t1.value + [self pattern1YAtTile:t1.left TileTwo:t2];
+        }
+    }
+    
+    NSLog(@"SOMETHING WENT WRONG 1Y");
+    
+    return 0;
+}
+
+-(int)patternExceptionOneAtTile:(Tile *)t1 TileTwo: (Tile *) t2{
+    if(t1!=nil && t2!=nil){
+
+        if(t1.x == t2.x && t1.y == t2.y){
+            return t2.value;
+        }
+    
+        if( (t2.y - t1.y == 2) && (abs(t1.x - t2.x) == 2) ){
+            return t1.value + [self patternExceptionOneAtTile:t1.bottom TileTwo:t2];
+        }
+        if((t1.y - t2.y == 2) && (abs(t1.x - t2.x) == 2)){
+            return t1.value + [self patternExceptionOneAtTile:t1.top TileTwo:t2];
+        }
+        if((t2.x - t1.x > 0) && (abs(t1.y-t2.y) == 1)){
+            return t1.value + [self patternExceptionOneAtTile:t1.right TileTwo:t2];
+        }
+        if((t2.x - t1.x < 0) && (abs(t1.y-t2.y) == 1)){
+            return t1.value + [self patternExceptionOneAtTile:t1.left TileTwo:t2];
+        }
+        if((t2.y - t1.y == 1)&&(t1.x == t2.x)){
+            return t1.value + [self patternExceptionOneAtTile:t1.bottom TileTwo:t2];
+        }
+        if((t2.y - t1.y == -1)&&(t1.x == t2.x)){
+            return t1.value + [self patternExceptionOneAtTile:t1.top TileTwo:t2];
+        }
+    }
+    NSLog(@"SOMETHING WENT WRONG IN PATTERN_2_SINGLE");
+    
+    return 0;
+}
+
+-(int) finishDirectIfAlignedAtTile:(Tile *)t1 TileTwo:(Tile *) t2{
+    
+    //base case
+    if(t1.x == t2.x && t1.y == t2.y){
+        return t2.value;
+    }
+				
+    if(t1.y == t2.y && t2.x < t1.x){
+        return t1.value+ [self pattern1XAtTile:t1.left TileTwo:t2];
+    }
+    if(t1.y == t2.y && t2.x > t1.x){
+        return t1.value+ [self pattern1XAtTile:t1.right TileTwo:t2];
+    }
+    if(t1.x == t2.x && t2.y > t1.y){
+        return t1.value+ [self pattern1YAtTile:t1.bottom TileTwo:t2];
+    }
+    if(t1.x == t2.x && t2.y < t1.y){
+        return t1.value+ [self pattern1YAtTile:t1.top TileTwo:t2];
+    }
+    
+    NSLog(@"SOMETHING WENT WRONG IN FINISH_ALIGN");
+    
+    return 0;
+}
+
+-(void)setPointers{
+    Tile *zerozero = _gridArray[0][0];
+    zerozero.right = _gridArray[0][1];
+    zerozero.bottom = _gridArray[1][0];
+    
+    Tile *zeroone = _gridArray[0][1];
+    zeroone.right = _gridArray[0][2];
+    zeroone.bottom = _gridArray[1][1];
+    zeroone.left = _gridArray[0][0];
+	
+    Tile *zerotwo = _gridArray[0][2];
+    zerotwo.right = _gridArray[0][3];
+    zerotwo.bottom = _gridArray[1][2];
+    zerotwo.left = _gridArray[0][1];
+	
+    Tile *zerothree = _gridArray[0][3];
+    zerothree.right = _gridArray[0][4];
+    zerothree.bottom = _gridArray[1][3];
+    zerothree.left = _gridArray[0][2];
+    
+    Tile *zerofour = _gridArray[0][4];
+    zerofour.bottom = _gridArray[1][4];
+    zerofour.left = _gridArray[0][3];
+				
+    //row 2
+    Tile *onezero = _gridArray[0][2];
+    onezero.right = _gridArray[1][1];
+    onezero.bottom = _gridArray[2][0];
+    onezero.top = _gridArray[0][0];
+    
+    Tile *oneone = _gridArray[0][2];
+    oneone.right = _gridArray[1][2];
+    oneone.left = _gridArray[1][0];
+    oneone.bottom = _gridArray[2][1];
+    oneone.top = _gridArray[0][1];
+    
+    Tile *onetwo = _gridArray[0][2];
+    onetwo.right = _gridArray[1][3];
+    onetwo.left = _gridArray[1][1];
+    onetwo.bottom = _gridArray[2][2];
+    onetwo.top = _gridArray[0][2];
+    
+    Tile *onethree = _gridArray[0][2];
+    onethree.right = _gridArray[1][4];
+    onethree.left = _gridArray[1][2];
+    onethree.bottom = _gridArray[2][3];
+    onethree.top = _gridArray[0][3];
+    
+    Tile *onefour = _gridArray[0][2];
+    onefour.left = _gridArray[1][3];
+    onefour.bottom = _gridArray[2][4];
+    onefour.top = _gridArray[0][4];
+				
+    //row 3
+    Tile *twozero = _gridArray[0][2];
+    twozero.right = _gridArray[2][1];
+    twozero.bottom = _gridArray[3][0];
+    twozero.top = _gridArray[1][0];
+    
+    Tile *twoone = _gridArray[0][2];
+    twoone.right = _gridArray[2][2];
+    twoone.left = _gridArray[2][0];
+    twoone.bottom = _gridArray[3][1];
+    twoone.top = _gridArray[1][1];
+			
+    Tile *twotwo = _gridArray[0][2];
+    twotwo.right = _gridArray[2][3];
+    twotwo.left = _gridArray[2][1];
+    twotwo.bottom = _gridArray[3][2];
+    twotwo.top = _gridArray[1][2];
+	
+    Tile *twothree = _gridArray[0][2];
+    twothree.right = _gridArray[2][4];
+    twothree.left = _gridArray[2][2];
+    twothree.bottom = _gridArray[3][3];
+    twothree.top = _gridArray[1][3];
+	
+    Tile *twofour = _gridArray[0][2];
+    twofour.left = _gridArray[2][3];
+    twofour.bottom = _gridArray[3][4];
+    twofour.top = _gridArray[1][4];
+				
+    //row 4
+    Tile *threezero = _gridArray[0][2];
+    threezero.right = _gridArray[3][1];
+    threezero.bottom = _gridArray[4][0];
+    threezero.top = _gridArray[2][0];
+    
+    Tile *threeone = _gridArray[0][2];
+    threeone.right = _gridArray[3][2];
+    threeone.left = _gridArray[3][0];
+    threeone.bottom = _gridArray[4][1];
+    threeone.top = _gridArray[2][1];
+    
+    Tile *threetwo = _gridArray[0][2];
+    threetwo.right = _gridArray[3][3];
+    threetwo.left = _gridArray[3][1];
+    threetwo.bottom = _gridArray[4][2];
+    threetwo.top = _gridArray[2][2];
+    
+    Tile *threethree = _gridArray[0][2];
+    threethree.right = _gridArray[3][4];
+    threethree.left = _gridArray[3][2];
+    threethree.bottom = _gridArray[4][3];
+    threethree.top = _gridArray[2][3];
+    
+    Tile *threefour = _gridArray[0][2];
+    threefour.left = _gridArray[3][3];
+    threefour.bottom = _gridArray[4][4];
+    threefour.top = _gridArray[2][4];
+				
+    //row 5
+    Tile *fourzero = _gridArray[0][2];
+    fourzero.right = _gridArray[4][1];
+    fourzero.top = _gridArray[3][0];
+    
+    Tile *fourone = _gridArray[0][2];
+    fourone.right = _gridArray[4][2];
+    fourone.top = _gridArray[3][1];
+    fourone.left = _gridArray[4][0];
+    
+    Tile *fourtwo = _gridArray[0][2];
+    fourtwo.right = _gridArray[4][3];
+    fourtwo.top = _gridArray[3][2];
+    fourtwo.left = _gridArray[4][1];
+    
+    Tile *fourthree = _gridArray[0][2];
+    fourthree.right = _gridArray[4][4];
+    fourthree.top = _gridArray[3][3];
+    fourthree.left = _gridArray[4][2];
+    
+    Tile *fourfour = _gridArray[0][2];
+    fourfour.top = _gridArray[3][4];
+    fourfour.left = _gridArray[4][3];
 }
 
 

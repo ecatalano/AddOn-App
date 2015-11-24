@@ -26,7 +26,7 @@
 - (void)updateValueDisplay;
 - (void)selectTile;
 - (void)deselectTile;
-- (void) addReachableTilesAtX:(int) x Y:(int) y Value:(int) value;
+- (void)addReachableTilesAtX:(int)x Y:(int)y Value:(int)value;
 
 
 @end
