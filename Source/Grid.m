@@ -55,6 +55,7 @@ int lastY = -1;
                             lastX = i;
                             lastY = fixedJ;
                             totalValue+=newTile.value;
+                            self.currentValue +=newTile.value;
                         }
                         //Start a new "snake" starting with a "Last Tile" at the first tile (i,fixedJ).
                         if(lastX == -1 && lastY == -1){
@@ -63,6 +64,7 @@ int lastY = -1;
                             [newTile selectTile];
                             selectedTileSize++;
                             totalValue+=newTile.value;
+                            self.currentValue+=newTile.value;
 
                         }
                     }
@@ -78,20 +80,7 @@ int lastY = -1;
     {
         [self removeAll];
         selectedTileSize = 0;
-        /*
-        if(totalValue > 0){
-         
-            if(self.doneLoading == true && totalValue < _greatestPath){
-                self.score += totalValue;
-                [self gameOver];
-            }
-         
-            
-            if(self.endGame!=true){
-                self.score += totalValue;
-            }
-        }
-        */
+        self.currentValue = 0;
         if(totalValue > 0){
             if(self.endGame!=true){
                 if(self.doneLoading == true && totalValue == _greatestPath){
@@ -230,18 +219,13 @@ int lastY = -1;
             
         }
     }
-    NSLog(@"GreatestPath: %d",_greatestPath);
-
+    [[NSUserDefaults standardUserDefaults] setInteger:_greatestPath forKey:@"greatestpath"];
     
-    // listen for dragging
     UIPanGestureRecognizer *panRecognizer= [[UIPanGestureRecognizer alloc] initWithTarget: self
                                                                                   action: @selector(onPan:)];
     [panRecognizer setMinimumNumberOfTouches:1];
     [panRecognizer setMaximumNumberOfTouches:1];
     [[[CCDirector sharedDirector] view] addGestureRecognizer:panRecognizer];
-    //Tile *tile = _fixedArray[0][[self mirrorTile:0]];
-    //NSLog(@"Tile 0,0 value: %d" , tile.value);
-
 }
 
 - (void)setupBackground {
@@ -353,15 +337,6 @@ int lastY = -1;
             [tile addReachableTilesAtX:tile.x-2 Y:tile.y+2 Value:tile.value];
         }
     }
-    /*
-    Tile *testTile = _fixedArray[1][[self mirrorTile:1]];
-    NSLog(@"Reachable Tiles at 1,1:");
-    for(int i = 0; i < [testTile.reachableTiles count]; i++){
-        Tile *reachedTile = testTile.reachableTiles[i];
-        NSLog(@"%d,%d,%d",reachedTile.x,reachedTile.y,reachedTile.value);
-    }
-     */
-    
 }
 -(int) findGreatestPathAtTile:(Tile *)tile{
     int greatest = 0;

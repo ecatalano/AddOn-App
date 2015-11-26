@@ -10,19 +10,25 @@
     CCLabelTTF *_leveltLabel;
     CCLabelTTF *_timeLabel;
     CCLabelTTF *_timetLabel;
+    CCLabelTTF *_currentValueLabel;
+    CCLabelTTF *_greatesttValueLabel;
+    CCLabelTTF *_greatestValueLabel;
 }
 
 - (void)didLoadFromCCB {
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     NSInteger currentScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
+    NSInteger greatestPath = [[NSUserDefaults standardUserDefaults] integerForKey:@"greatestpath"];
 
     _levelLabel.string = [NSString stringWithFormat:@"%d", (int)currentLevel];
     _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)currentScore];
+    _greatestValueLabel.string = [NSString stringWithFormat:@"%d", (int)greatestPath];
 
     [_grid addObserver:self forKeyPath:@"time" options:0 context:NULL];
     [_grid addObserver:self forKeyPath:@"endGame" options:0 context:NULL];
+    [_grid addObserver:self forKeyPath:@"currentValue" options:0 context:NULL];
 
-
+    
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -48,11 +54,21 @@
         _scoretLabel.opacity = 0;
         _levelLabel.opacity = 0;
         _leveltLabel.opacity = 0;
+        _greatesttValueLabel.opacity = 0;
+        _greatestValueLabel.opacity = 0;
+        _currentValueLabel.opacity = 0;
     }
+    if ([keyPath isEqualToString:@"currentValue"]) {
+        _currentValueLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.currentValue];
+
+    }
+
 }
 - (void)dealloc {
     [_grid removeObserver:self forKeyPath:@"time"];
     [_grid removeObserver:self forKeyPath:@"endGame"];
+    [_grid removeObserver:self forKeyPath:@"currentValue"];
+
 }
 
 @end
