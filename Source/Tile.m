@@ -15,7 +15,7 @@
 }
 
 - (id)init {
-    NSInteger maxVal = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"] + 4;
+    NSInteger maxVal = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"] + 1;
     self = [super init];
     if (self) {
         self.value = (arc4random()%(maxVal)+1);
