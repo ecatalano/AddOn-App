@@ -180,6 +180,7 @@ int lastY = -1;
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     if(currentLevel == 0){
         [self stopTimer];
+        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"currentlevel"];
         CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
         [[CCDirector sharedDirector] replaceScene:mainScene];
