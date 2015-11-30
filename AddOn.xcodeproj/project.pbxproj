@@ -433,7 +433,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = Apportable;
+				ORGANIZATIONNAME = "Elliot Catalano";
 				TargetAttributes = {
 					B77F1B2D17B978D7009739AE = {
 						DevelopmentTeam = 33HQQBF3P9;

@@ -309,10 +309,10 @@ int lastY = -1;
     self.level++;
     
     if(self.level > 8){
-        self.time = 20;
+        self.time = 21;
     }
     else{
-        self.time = 15;
+        self.time = 16;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
