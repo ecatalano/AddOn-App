@@ -16,11 +16,13 @@
 }
 
 - (void)didLoadFromCCB {
+    NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     NSInteger currentScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
     NSInteger greatestPath = [[NSUserDefaults standardUserDefaults] integerForKey:@"greatestpath"];
 
     _levelLabel.string = [NSString stringWithFormat:@"%d", (int)currentLevel];
+    _timeLabel.string = [NSString stringWithFormat:@"%d", (int)currentTime];
     _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)currentScore];
     _greatestValueLabel.string = [NSString stringWithFormat:@"%d", (int)greatestPath];
 

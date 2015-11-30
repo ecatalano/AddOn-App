@@ -185,12 +185,13 @@ int lastY = -1;
         [[CCDirector sharedDirector] replaceScene:mainScene];
     }
     
+    self.time = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
+    self.score = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
+
     _myTimer = [self createTimer];
     
     _greatestPath = 0;
     [self setupBackground];
-    self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
-    self.score = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
 
     _noTile = [NSNull null];
     _gridArray = [NSMutableArray array];
@@ -239,7 +240,7 @@ int lastY = -1;
 }
 
 - (void)setupBackground {
-    self.time = TIME_LIMIT;
+    self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
 
     // load one tile to read the dimensions
     CCNode *tile = [CCBReader load:@"Tile"];
@@ -306,6 +307,13 @@ int lastY = -1;
     [self stopTimer];
     self.level++;
     
+    if(self.level > 8){
+        self.time = 20;
+    }
+    else{
+        self.time = 15;
+    }
+    [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"currentscore"];
     
@@ -322,7 +330,8 @@ int lastY = -1;
     
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"currentscore"];
-
+    [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+    
     
     NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
     NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
