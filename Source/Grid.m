@@ -176,6 +176,13 @@ int lastY = -1;
 }
 
 - (void)didLoadFromCCB {
+    
+    NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
+    if(currentLevel == 0){
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"currentlevel"];
+        CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
+        [[CCDirector sharedDirector] replaceScene:mainScene];
+    }
     _myTimer = [self createTimer];
     _greatestPath = 0;
     [self setupBackground];
