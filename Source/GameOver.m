@@ -29,27 +29,23 @@
     NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
     NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
     
-    _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-    _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-    
-    _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-    _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-    
-
+    if(score <= bestscore){
+        _highscoreLabel.opacity = 0.0;
+    }
     if(score > bestscore){
-        _highscoreLabel.string = @"New Highscore!";
-        
         bestScore = score;
         bestLevel = level;
         
         [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore"];
         [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-        _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-
     }
+    
+    _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
+    _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+    
+    _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
+    _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
 
 }
 

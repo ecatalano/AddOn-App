@@ -179,11 +179,14 @@ int lastY = -1;
     
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     if(currentLevel == 0){
+        [self stopTimer];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"currentlevel"];
         CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
         [[CCDirector sharedDirector] replaceScene:mainScene];
     }
+    
     _myTimer = [self createTimer];
+    
     _greatestPath = 0;
     [self setupBackground];
     self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
@@ -290,13 +293,17 @@ int lastY = -1;
         self.time--;
     }
     else{
-        [self gameOver];
+        if(self.endGame!=true){
+            [self gameOver];
+        }
     }
 }
 -(void)stopTimer{
     [_myTimer invalidate];
+    _myTimer = nil;
 }
 -(void)nextLevel{
+    [self stopTimer];
     self.level++;
     
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
@@ -308,11 +315,10 @@ int lastY = -1;
 }
 
 - (void)gameOver{
+    [self stopTimer];
     self.endGame = true;
     self.doneLoading = false;
     self.reachableTilesFilled = false;
-    
-    [self stopTimer];
     
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"currentscore"];
