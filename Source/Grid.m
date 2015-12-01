@@ -188,8 +188,6 @@ int lastY = -1;
     
     self.time = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     self.score = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
-
-    _myTimer = [self createTimer];
     
     _greatestPath = 0;
     [self setupBackground];
@@ -211,6 +209,9 @@ int lastY = -1;
         [self fillReachableTiles];
         self.reachableTilesFilled = true;
     }
+    
+    _myTimer = [self createTimer];
+
     
     [self setPointers];
     
@@ -309,10 +310,10 @@ int lastY = -1;
     self.level++;
     
     if(self.level > 8){
-        self.time = 21;
+        self.time = 20;
     }
     else{
-        self.time = 16;
+        self.time = 15;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
