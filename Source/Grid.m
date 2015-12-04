@@ -348,8 +348,6 @@ int lastY = -1;
 
     [self stopTimer];
     self.level++;
-
-    [audio playEffect:@"win.caf"];
     
     if(self.level > 8){
         self.time = TIME_LIMIT + 5;
@@ -361,6 +359,7 @@ int lastY = -1;
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"currentscore"];
     
+    [audio playEffect:@"win.caf"];
 
     CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainScene];
