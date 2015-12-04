@@ -1,6 +1,6 @@
 //
 //  Tile.m
-//  2048Tutorial
+//  AddOn
 //
 //  Created by Elliot Catalano on 10/17/15.
 //  Copyright © 2015 Elliot Catalano. All rights reserved.

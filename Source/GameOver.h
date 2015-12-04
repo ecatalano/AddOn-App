@@ -1,6 +1,6 @@
 //
 //  GameOver.h
-//  2048Tutorial
+//  AddOn
 //
 //  Created by Elliot Catalano on 11/7/15.
 //  Copyright © 2015 Apportable. All rights reserved.
