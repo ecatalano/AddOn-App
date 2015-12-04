@@ -328,10 +328,10 @@ int lastY = -1;
     
     if(self.time > 1){
         self.time--;
+        [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
         if(self.time <=3){
             OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
             [audio playEffect:@"tick.caf"];
-            
         }
     }
     else{
