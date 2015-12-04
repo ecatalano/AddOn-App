@@ -41,7 +41,6 @@
     self.isSelected = true;
     _backgroundNode.color = [CCColor magentaColor];
     _backgroundNode.opacity = .3;
-    
 }
 -(void) deselectTile{
     self.isSelected = false;

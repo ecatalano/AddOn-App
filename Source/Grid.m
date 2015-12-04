@@ -67,32 +67,31 @@ int lastY = -1;
 
             
             if(CGRectContainsPoint([tile boundingBox], location)){
-                    if(newTile.isSelected==false && selectedTileSize < LINE_SIZE){
-                        //if the next tile is adjacent to last tile, continue the "snake"
-                        if([self isAdjacentx:lastX y:lastY x2:i y2:fixedJ]){
-                            [newTile selectTile];
-                            selectedTileSize++;
-                            [self playSound];
-                            lastX = i;
-                            lastY = fixedJ;
-                            totalValue+=newTile.value;
-                            self.currentValue +=newTile.value;
-                        }
-                        //Start a new "snake" starting with a "Last Tile" at the first tile (i,fixedJ).
-                        if(lastX == -1 && lastY == -1){
-                            lastX = i;
-                            lastY = fixedJ;
-                            [newTile selectTile];
-                            selectedTileSize++;
-                            [self playSound];
-                            totalValue+=newTile.value;
-                            self.currentValue+=newTile.value;
-
-                        }
+                if(newTile.isSelected==false && selectedTileSize < LINE_SIZE){
+                    //if the next tile is adjacent to last tile, continue the "snake"
+                    if([self isAdjacentx:lastX y:lastY x2:i y2:fixedJ]){
+                        [newTile selectTile];
+                        selectedTileSize++;
+                        [self playSound];
+                        lastX = i;
+                        lastY = fixedJ;
+                        totalValue+=newTile.value;
+                        self.currentValue +=newTile.value;
+                    }
+                    //Start a new "snake" starting with a "Last Tile" at the first tile (i,fixedJ).
+                    if(lastX == -1 && lastY == -1){
+                        lastX = i;
+                        lastY = fixedJ;
+                        [newTile selectTile];
+                        selectedTileSize++;
+                        [self playSound];
+                        totalValue+=newTile.value;
+                        self.currentValue+=newTile.value;
                     }
                 }
             }
         }
+    }
     // "eats" the translation if you've handled the
     // UI changes, otherwise the translation will keep accumulating
     // across multiple calls to this method
@@ -391,6 +390,10 @@ int lastY = -1;
     [gameOverPopover setLevel:self.level score:self.score bestscore:bestScore bestlevel:bestLevel];
     [self addChild:gameOverPopover];
 }
+
+/////////////////////
+//Recursive methods//
+/////////////////////
 
 -(void) fillReachableTiles{
     for(int i = 0; i < GRID_SIZE; i++){
