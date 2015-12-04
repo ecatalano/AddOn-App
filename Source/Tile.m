@@ -12,7 +12,9 @@
     CCLabelTTF *_valueLabel;
     CCNodeColor *_backgroundNode;
     BOOL _isSelected;
+    
 }
+
 
 - (id)init {
     NSInteger maxVal = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"] + 1;

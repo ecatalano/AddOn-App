@@ -13,8 +13,14 @@
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		8B199F6C1BD2110C00F77164 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F6B1BD2110C00F77164 /* Tile.m */; };
 		8B58F2AE1BD338A500E409D9 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F681BD210F000F77164 /* Grid.m */; };
-		8B5A111D1C11184F0030F9C0 /* AudioSamplePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A111A1C11184F0030F9C0 /* AudioSamplePlayer.m */; };
-		8B5A111E1C11184F0030F9C0 /* SimpleMetronome-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A111B1C11184F0030F9C0 /* SimpleMetronome-Info.plist */; };
+		8B5A112B1C111B520030F9C0 /* five.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11241C111B520030F9C0 /* five.caf */; };
+		8B5A112C1C111B520030F9C0 /* four.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11251C111B520030F9C0 /* four.caf */; };
+		8B5A112D1C111B520030F9C0 /* loss.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11261C111B520030F9C0 /* loss.caf */; };
+		8B5A112E1C111B520030F9C0 /* one.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11271C111B520030F9C0 /* one.caf */; };
+		8B5A112F1C111B520030F9C0 /* three.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11281C111B520030F9C0 /* three.caf */; };
+		8B5A11301C111B520030F9C0 /* two.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11291C111B520030F9C0 /* two.caf */; };
+		8B5A11311C111B520030F9C0 /* win.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A112A1C111B520030F9C0 /* win.caf */; };
+		8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5A11331C1124690030F9C0 /* SpriteKit.framework */; };
 		8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B69BDBD1BEE8844008FD183 /* GameOver.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -104,10 +110,14 @@
 		8B199F681BD210F000F77164 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grid.m; path = Source/Grid.m; sourceTree = "<group>"; };
 		8B199F6A1BD2110C00F77164 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = Source/Tile.h; sourceTree = "<group>"; };
 		8B199F6B1BD2110C00F77164 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = Source/Tile.m; sourceTree = "<group>"; };
-		8B5A11191C11184F0030F9C0 /* AudioSamplePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioSamplePlayer.h; path = Source/AudioSamplePlayer.h; sourceTree = "<group>"; };
-		8B5A111A1C11184F0030F9C0 /* AudioSamplePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioSamplePlayer.m; path = Source/AudioSamplePlayer.m; sourceTree = "<group>"; };
-		8B5A111B1C11184F0030F9C0 /* SimpleMetronome-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SimpleMetronome-Info.plist"; path = "Source/SimpleMetronome-Info.plist"; sourceTree = "<group>"; };
-		8B5A111C1C11184F0030F9C0 /* SimpleMetronome-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SimpleMetronome-Prefix.pch"; path = "Source/SimpleMetronome-Prefix.pch"; sourceTree = "<group>"; };
+		8B5A11241C111B520030F9C0 /* five.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = five.caf; path = Source/five.caf; sourceTree = SOURCE_ROOT; };
+		8B5A11251C111B520030F9C0 /* four.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = four.caf; path = Source/four.caf; sourceTree = SOURCE_ROOT; };
+		8B5A11261C111B520030F9C0 /* loss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = loss.caf; path = Source/loss.caf; sourceTree = SOURCE_ROOT; };
+		8B5A11271C111B520030F9C0 /* one.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = one.caf; path = Source/one.caf; sourceTree = SOURCE_ROOT; };
+		8B5A11281C111B520030F9C0 /* three.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = three.caf; path = Source/three.caf; sourceTree = SOURCE_ROOT; };
+		8B5A11291C111B520030F9C0 /* two.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = two.caf; path = Source/two.caf; sourceTree = SOURCE_ROOT; };
+		8B5A112A1C111B520030F9C0 /* win.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = win.caf; path = Source/win.caf; sourceTree = SOURCE_ROOT; };
+		8B5A11331C1124690030F9C0 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		8B69BDBC1BEE8844008FD183 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOver.h; path = Source/GameOver.h; sourceTree = "<group>"; };
 		8B69BDBD1BEE8844008FD183 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOver.m; path = Source/GameOver.m; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -157,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -289,6 +300,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8B5A11321C111B620030F9C0 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8B5A11241C111B520030F9C0 /* five.caf */,
+				8B5A11251C111B520030F9C0 /* four.caf */,
+				8B5A11261C111B520030F9C0 /* loss.caf */,
+				8B5A11271C111B520030F9C0 /* one.caf */,
+				8B5A11281C111B520030F9C0 /* three.caf */,
+				8B5A11291C111B520030F9C0 /* two.caf */,
+				8B5A112A1C111B520030F9C0 /* win.caf */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		9222E2B918734FF800A246C7 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,8 +327,6 @@
 			children = (
 				B7378992180767190076A88C /* MainScene.h */,
 				B7378993180767190076A88C /* MainScene.m */,
-				8B5A11191C11184F0030F9C0 /* AudioSamplePlayer.h */,
-				8B5A111A1C11184F0030F9C0 /* AudioSamplePlayer.m */,
 				8B199F671BD210F000F77164 /* Grid.h */,
 				8B199F681BD210F000F77164 /* Grid.m */,
 				8B199F6A1BD2110C00F77164 /* Tile.h */,
@@ -362,6 +385,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B5A11331C1124690030F9C0 /* SpriteKit.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
 				BC5399D51A44DCC90063F482 /* GLActivityKit.framework */,
@@ -390,6 +414,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B5A11321C111B620030F9C0 /* Sounds */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
 				B73789911807667A0076A88C /* Icons */,
@@ -403,8 +428,6 @@
 		B77F1CCF17B978D8009739AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8B5A111B1C11184F0030F9C0 /* SimpleMetronome-Info.plist */,
-				8B5A111C1C11184F0030F9C0 /* SimpleMetronome-Prefix.pch */,
 				7A40365D19DDF896007B6E8F /* Platforms */,
 				7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */,
 				7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */,
@@ -515,20 +538,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5A112C1C111B520030F9C0 /* four.caf in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
+				8B5A112E1C111B520030F9C0 /* one.caf in Resources */,
+				8B5A112B1C111B520030F9C0 /* five.caf in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
+				8B5A11301C111B520030F9C0 /* two.caf in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				8B5A112D1C111B520030F9C0 /* loss.caf in Resources */,
+				8B5A112F1C111B520030F9C0 /* three.caf in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
-				8B5A111E1C11184F0030F9C0 /* SimpleMetronome-Info.plist in Resources */,
+				8B5A11311C111B520030F9C0 /* win.caf in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
@@ -578,7 +607,6 @@
 				8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
-				8B5A111D1C11184F0030F9C0 /* AudioSamplePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

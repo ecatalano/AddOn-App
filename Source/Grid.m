@@ -31,6 +31,7 @@ int totalValue = 0;
 int lastX = -1;
 int lastY = -1;
 
+
 - (void)onPan:(UIPanGestureRecognizer *) pan {
     CGPoint location = [pan locationInView:[pan view]];
     CGPoint fixedLocation = location;
@@ -176,6 +177,15 @@ int lastY = -1;
 }
 
 - (void)didLoadFromCCB {
+    
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"one"];
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"two"];
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"three"];
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"four"];
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"five"];
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"win"];
+    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"loss"];
+
     
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     if(currentLevel == 0){
