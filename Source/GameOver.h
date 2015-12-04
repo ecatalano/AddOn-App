@@ -14,5 +14,4 @@
              score:(NSInteger)score bestscore:(NSInteger)score
          bestlevel:(NSInteger)level;
 
-
 @end

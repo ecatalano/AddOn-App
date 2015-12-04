@@ -23,5 +23,4 @@
 
 @property int remainingSeconds;
 
-
 @end

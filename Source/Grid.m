@@ -211,8 +211,8 @@ int lastY = -1;
     [audio preloadEffect:@"loss.caf"];
     [audio preloadEffect:@"tick.caf"];
 
-    
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
+    
     if(currentLevel == 0){
         [self stopTimer];
         [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
@@ -249,8 +249,6 @@ int lastY = -1;
 
     
     [self setPointers];
-    
-    
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){

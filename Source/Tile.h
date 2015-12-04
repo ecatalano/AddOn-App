@@ -19,7 +19,6 @@
 @property (nonatomic) Tile* right;
 @property (nonatomic, strong) NSMutableArray *reachableTiles;
 
-
 @property (nonatomic) CGSize pointSize;
 @property (nonatomic) BOOL isSelected;
 

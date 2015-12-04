@@ -27,6 +27,7 @@
 
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
+#import "Grid.h"
 
 
 @implementation AppController
@@ -65,7 +66,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-
+    
 }
 
 @end

@@ -39,11 +39,11 @@
 {
     if ([keyPath isEqualToString:@"time"]) {
         _timeLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.time];
-        if(_grid.time <=5){
+        if(_grid.time <= 3){
             _timeLabel.color = [CCColor yellowColor];
-            if (_grid.time < 3){
+            if (_grid.time <= 2){
                 _timeLabel.color = [CCColor orangeColor];
-                if(_grid.time <=1) {
+                if(_grid.time <= 1) {
                     _timeLabel.color = [CCColor redColor];
                 }
             }
