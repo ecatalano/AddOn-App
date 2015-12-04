@@ -21,6 +21,7 @@
 		8B5A11301C111B520030F9C0 /* two.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11291C111B520030F9C0 /* two.caf */; };
 		8B5A11311C111B520030F9C0 /* win.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A112A1C111B520030F9C0 /* win.caf */; };
 		8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5A11331C1124690030F9C0 /* SpriteKit.framework */; };
+		8B6900E11C113EB7004A2FCE /* tick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B6900E01C113EB7004A2FCE /* tick.caf */; };
 		8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B69BDBD1BEE8844008FD183 /* GameOver.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -118,6 +119,7 @@
 		8B5A11291C111B520030F9C0 /* two.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = two.caf; path = Source/two.caf; sourceTree = SOURCE_ROOT; };
 		8B5A112A1C111B520030F9C0 /* win.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = win.caf; path = Source/win.caf; sourceTree = SOURCE_ROOT; };
 		8B5A11331C1124690030F9C0 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		8B6900E01C113EB7004A2FCE /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tick.caf; path = ../tick.caf; sourceTree = "<group>"; };
 		8B69BDBC1BEE8844008FD183 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOver.h; path = Source/GameOver.h; sourceTree = "<group>"; };
 		8B69BDBD1BEE8844008FD183 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOver.m; path = Source/GameOver.m; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		8B5A11321C111B620030F9C0 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				8B6900E01C113EB7004A2FCE /* tick.caf */,
 				8B5A11241C111B520030F9C0 /* five.caf */,
 				8B5A11251C111B520030F9C0 /* four.caf */,
 				8B5A11261C111B520030F9C0 /* loss.caf */,
@@ -557,6 +560,7 @@
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
+				8B6900E11C113EB7004A2FCE /* tick.caf in Resources */,
 				8B5A11311C111B520030F9C0 /* win.caf in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,

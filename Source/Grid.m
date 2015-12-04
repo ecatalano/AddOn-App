@@ -209,6 +209,7 @@ int lastY = -1;
     [audio preloadEffect:@"five.caf"];
     [audio preloadEffect:@"win.caf"];
     [audio preloadEffect:@"loss.caf"];
+    [audio preloadEffect:@"tick.caf"];
 
     
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
@@ -329,6 +330,11 @@ int lastY = -1;
     
     if(self.time > 0){
         self.time--;
+        if(self.time <=3){
+            OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+            [audio playEffect:@"tick.caf"];
+            
+        }
     }
     else{
         if(self.endGame!=true){
