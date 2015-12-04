@@ -31,6 +31,25 @@ int totalValue = 0;
 int lastX = -1;
 int lastY = -1;
 
+-(void)playSound{
+    OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+    if(selectedTileSize == 1){
+        [audio playEffect:@"one.caf"];
+    }
+    if(selectedTileSize == 2){
+        [audio playEffect:@"two.caf"];
+    }
+    if(selectedTileSize == 3){
+        [audio playEffect:@"three.caf"];
+    }
+    if(selectedTileSize == 4){
+        [audio playEffect:@"four.caf"];
+    }
+    if(selectedTileSize == 5){
+        [audio playEffect:@"five.caf"];
+    }
+}
+
 
 - (void)onPan:(UIPanGestureRecognizer *) pan {
     CGPoint location = [pan locationInView:[pan view]];
@@ -53,6 +72,7 @@ int lastY = -1;
                         if([self isAdjacentx:lastX y:lastY x2:i y2:fixedJ]){
                             [newTile selectTile];
                             selectedTileSize++;
+                            [self playSound];
                             lastX = i;
                             lastY = fixedJ;
                             totalValue+=newTile.value;
@@ -64,6 +84,7 @@ int lastY = -1;
                             lastY = fixedJ;
                             [newTile selectTile];
                             selectedTileSize++;
+                            [self playSound];
                             totalValue+=newTile.value;
                             self.currentValue+=newTile.value;
 
@@ -177,14 +198,17 @@ int lastY = -1;
 }
 
 - (void)didLoadFromCCB {
-    
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"one"];
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"two"];
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"three"];
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"four"];
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"five"];
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"win"];
-    [[AudioSamplePlayer sharedInstance] preloadAudioSample:@"loss"];
+
+    // access audio object
+    OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+    // play background sound
+    [audio preloadEffect:@"one.caf"];
+    [audio preloadEffect:@"two.caf"];
+    [audio preloadEffect:@"three.caf"];
+    [audio preloadEffect:@"four.caf"];
+    [audio preloadEffect:@"five.caf"];
+    [audio preloadEffect:@"win.caf"];
+    [audio preloadEffect:@"loss.caf"];
 
     
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
@@ -302,12 +326,16 @@ int lastY = -1;
 }
 
 - (void)timerTicked:(NSTimer *)timer {
+    
     if(self.time > 0){
         self.time--;
     }
     else{
         if(self.endGame!=true){
+            OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
             [self gameOver];
+            [audio playEffect:@"loss.caf"];
+            
         }
     }
 }
@@ -316,8 +344,12 @@ int lastY = -1;
     _myTimer = nil;
 }
 -(void)nextLevel{
+    OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+
     [self stopTimer];
     self.level++;
+
+    [audio playEffect:@"win.caf"];
     
     if(self.level > 8){
         self.time = TIME_LIMIT + 5;
