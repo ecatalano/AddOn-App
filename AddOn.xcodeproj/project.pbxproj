@@ -23,6 +23,12 @@
 		8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5A11331C1124690030F9C0 /* SpriteKit.framework */; };
 		8B6900E11C113EB7004A2FCE /* tick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B6900E01C113EB7004A2FCE /* tick.caf */; };
 		8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B69BDBD1BEE8844008FD183 /* GameOver.m */; };
+		8BB34CB91C11EBDD00C443B7 /* instruction 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB51C11EBDD00C443B7 /* instruction 1.png */; };
+		8BB34CBA1C11EBDD00C443B7 /* instruction 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB61C11EBDD00C443B7 /* instruction 2.png */; };
+		8BB34CBB1C11EBDD00C443B7 /* instruction 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB71C11EBDD00C443B7 /* instruction 3.png */; };
+		8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB81C11EBDD00C443B7 /* instruction 4.png */; };
+		8BB34CC71C11EEDF00C443B7 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB34CC51C11EEDF00C443B7 /* InstructionViewController.m */; };
+		8BB34CC81C11EEDF00C443B7 /* InstructionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CC61C11EEDF00C443B7 /* InstructionViewController.xib */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
 		B71F5913188484E7003F4D28 /* iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5909188484E7003F4D28 /* iPad.png */; };
@@ -122,6 +128,13 @@
 		8B6900E01C113EB7004A2FCE /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tick.caf; path = ../tick.caf; sourceTree = "<group>"; };
 		8B69BDBC1BEE8844008FD183 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOver.h; path = Source/GameOver.h; sourceTree = "<group>"; };
 		8B69BDBD1BEE8844008FD183 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOver.m; path = Source/GameOver.m; sourceTree = "<group>"; };
+		8BB34CB51C11EBDD00C443B7 /* instruction 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 1.png"; sourceTree = "<group>"; };
+		8BB34CB61C11EBDD00C443B7 /* instruction 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 2.png"; sourceTree = "<group>"; };
+		8BB34CB71C11EBDD00C443B7 /* instruction 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 3.png"; sourceTree = "<group>"; };
+		8BB34CB81C11EBDD00C443B7 /* instruction 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 4.png"; sourceTree = "<group>"; };
+		8BB34CC41C11EEDF00C443B7 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionViewController.h; path = Source/InstructionViewController.h; sourceTree = "<group>"; };
+		8BB34CC51C11EEDF00C443B7 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstructionViewController.m; path = Source/InstructionViewController.m; sourceTree = "<group>"; };
+		8BB34CC61C11EEDF00C443B7 /* InstructionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InstructionViewController.xib; path = Source/InstructionViewController.xib; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
 		B71F5909188484E7003F4D28 /* iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad.png; path = Icons/iPad.png; sourceTree = "<group>"; };
@@ -317,6 +330,18 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		8BB34CB41C11EBDD00C443B7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				8BB34CB51C11EBDD00C443B7 /* instruction 1.png */,
+				8BB34CB61C11EBDD00C443B7 /* instruction 2.png */,
+				8BB34CB71C11EBDD00C443B7 /* instruction 3.png */,
+				8BB34CB81C11EBDD00C443B7 /* instruction 4.png */,
+			);
+			name = Images;
+			path = images;
+			sourceTree = "<group>";
+		};
 		9222E2B918734FF800A246C7 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +361,9 @@
 				8B199F6B1BD2110C00F77164 /* Tile.m */,
 				8B69BDBC1BEE8844008FD183 /* GameOver.h */,
 				8B69BDBD1BEE8844008FD183 /* GameOver.m */,
+				8BB34CC41C11EEDF00C443B7 /* InstructionViewController.h */,
+				8BB34CC51C11EEDF00C443B7 /* InstructionViewController.m */,
+				8BB34CC61C11EEDF00C443B7 /* InstructionViewController.xib */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
@@ -417,6 +445,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BB34CB41C11EBDD00C443B7 /* Images */,
 				8B5A11321C111B620030F9C0 /* Sounds */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
@@ -545,6 +574,7 @@
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
+				8BB34CBB1C11EBDD00C443B7 /* instruction 3.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				8B5A112E1C111B520030F9C0 /* one.caf in Resources */,
 				8B5A112B1C111B520030F9C0 /* five.caf in Resources */,
@@ -561,9 +591,13 @@
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				8B6900E11C113EB7004A2FCE /* tick.caf in Resources */,
+				8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */,
+				8BB34CB91C11EBDD00C443B7 /* instruction 1.png in Resources */,
 				8B5A11311C111B520030F9C0 /* win.caf in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				8BB34CBA1C11EBDD00C443B7 /* instruction 2.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				8BB34CC81C11EEDF00C443B7 /* InstructionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB34CC71C11EEDF00C443B7 /* InstructionViewController.m in Sources */,
 				8B58F2AE1BD338A500E409D9 /* Grid.m in Sources */,
 				8B199F6C1BD2110C00F77164 /* Tile.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
