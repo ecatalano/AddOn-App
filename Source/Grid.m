@@ -33,19 +33,19 @@ int lastY = -1;
 
 -(void)playSound{
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-    if(selectedTileSize == 1){
+    if(selectedTileSize == 1 && !_endGame){
         [audio playEffect:@"one.caf"];
     }
-    if(selectedTileSize == 2){
+    if(selectedTileSize == 2 && !_endGame){
         [audio playEffect:@"two.caf"];
     }
-    if(selectedTileSize == 3){
+    if(selectedTileSize == 3 && !_endGame){
         [audio playEffect:@"three.caf"];
     }
-    if(selectedTileSize == 4){
+    if(selectedTileSize == 4 && !_endGame){
         [audio playEffect:@"four.caf"];
     }
-    if(selectedTileSize == 5){
+    if(selectedTileSize == 5 && !_endGame){
         [audio playEffect:@"five.caf"];
     }
 }
@@ -328,7 +328,7 @@ int lastY = -1;
 
 - (void)timerTicked:(NSTimer *)timer {
     
-    if(self.time > 0){
+    if(self.time > 1){
         self.time--;
         if(self.time <=3){
             OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
