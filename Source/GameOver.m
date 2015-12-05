@@ -15,6 +15,7 @@
     CCLabelTTF *_bestlevelLabel;
     //display "New Highscore!" if there is a highscore.
     CCLabelTTF *_highscoreLabel;
+    CCButton *_infoButton;
 }
 
 - (void)newGame {
@@ -46,7 +47,14 @@
     
     _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
     _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
+}
 
+- (void)infoButtonPressed{    
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
+    
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
+    CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
+    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
 }
 
 
