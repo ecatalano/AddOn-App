@@ -28,6 +28,8 @@
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
 #import "Grid.h"
+#import "MainScene.h"
+
 
 
 @implementation AppController
@@ -55,7 +57,7 @@
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
     
     [self setupCocos2dWithOptions:cocos2dSetup];
-    
+        
     return YES;
 }
 

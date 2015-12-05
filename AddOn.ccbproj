@@ -164,8 +164,6 @@
 		</dict>
 		<key>images/instruction 1.png</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>scaleFrom</key>
 			<integer>4</integer>
 		</dict>
