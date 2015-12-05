@@ -468,7 +468,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>HelveticaNeue-Light</string>
 					</dict>
 					<dict>
 						<key>name</key>

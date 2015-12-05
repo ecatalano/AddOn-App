@@ -84,7 +84,7 @@ bannerPosition theBannerPosition;
         _bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
     }
     
-    NSLog(@"banner pos: %u",theBannerPosition);
+    //NSLog(@"banner pos: %u",theBannerPosition);
     CGRect bannerFrame = _bannerView.frame;
     if (_bannerView.bannerLoaded) {
         contentFrame.size.height -= _bannerView.frame.size.height;
