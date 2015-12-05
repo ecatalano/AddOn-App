@@ -1,13 +1,13 @@
 //
-//  InstructionViewController.h
+//  Instruction.h
 //  AddOn
 //
 //  Created by Elliot Catalano on 12/4/15.
 //  Copyright © 2015 Elliot Catalano. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CCNode.h"
 
-@interface InstructionViewController : UIPageViewController
+@interface Instruction : CCNode
 
 @end

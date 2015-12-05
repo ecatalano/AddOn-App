@@ -1,5 +1,7 @@
 #import "MainScene.h"
+#import "AppDelegate.h"
 #import "Grid.h"
+#import "Instruction.h"
 
 @implementation MainScene{
     Grid *_grid;
@@ -13,13 +15,24 @@
     CCLabelTTF *_currentValueLabel;
     CCLabelTTF *_greatesttValueLabel;
     CCLabelTTF *_greatestValueLabel;
+    CCButton *_infoButton;
 }
-
+- (void)infoButtonPressed{
+    [_grid stopTimer];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
+    
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
+    CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
+    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
+}
 - (void)didLoadFromCCB {
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     NSInteger currentScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
     NSInteger greatestPath = [[NSUserDefaults standardUserDefaults] integerForKey:@"greatestpath"];
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"instructions"];
+
 
     _levelLabel.string = [NSString stringWithFormat:@"%d", (int)currentLevel];
     _timeLabel.string = [NSString stringWithFormat:@"%d", (int)currentTime];

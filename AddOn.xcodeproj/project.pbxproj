@@ -23,12 +23,11 @@
 		8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5A11331C1124690030F9C0 /* SpriteKit.framework */; };
 		8B6900E11C113EB7004A2FCE /* tick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B6900E01C113EB7004A2FCE /* tick.caf */; };
 		8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B69BDBD1BEE8844008FD183 /* GameOver.m */; };
+		8B8C1BB61C1275570098D501 /* Instruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C1BB51C1275570098D501 /* Instruction.m */; };
 		8BB34CB91C11EBDD00C443B7 /* instruction 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB51C11EBDD00C443B7 /* instruction 1.png */; };
 		8BB34CBA1C11EBDD00C443B7 /* instruction 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB61C11EBDD00C443B7 /* instruction 2.png */; };
 		8BB34CBB1C11EBDD00C443B7 /* instruction 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB71C11EBDD00C443B7 /* instruction 3.png */; };
 		8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB81C11EBDD00C443B7 /* instruction 4.png */; };
-		8BB34CC71C11EEDF00C443B7 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB34CC51C11EEDF00C443B7 /* InstructionViewController.m */; };
-		8BB34CC81C11EEDF00C443B7 /* InstructionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CC61C11EEDF00C443B7 /* InstructionViewController.xib */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
 		B71F5913188484E7003F4D28 /* iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5909188484E7003F4D28 /* iPad.png */; };
@@ -128,13 +127,12 @@
 		8B6900E01C113EB7004A2FCE /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tick.caf; path = ../tick.caf; sourceTree = "<group>"; };
 		8B69BDBC1BEE8844008FD183 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOver.h; path = Source/GameOver.h; sourceTree = "<group>"; };
 		8B69BDBD1BEE8844008FD183 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOver.m; path = Source/GameOver.m; sourceTree = "<group>"; };
+		8B8C1BB41C1275570098D501 /* Instruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instruction.h; path = Source/Instruction.h; sourceTree = "<group>"; };
+		8B8C1BB51C1275570098D501 /* Instruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Instruction.m; path = Source/Instruction.m; sourceTree = "<group>"; };
 		8BB34CB51C11EBDD00C443B7 /* instruction 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 1.png"; sourceTree = "<group>"; };
 		8BB34CB61C11EBDD00C443B7 /* instruction 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 2.png"; sourceTree = "<group>"; };
 		8BB34CB71C11EBDD00C443B7 /* instruction 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 3.png"; sourceTree = "<group>"; };
 		8BB34CB81C11EBDD00C443B7 /* instruction 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 4.png"; sourceTree = "<group>"; };
-		8BB34CC41C11EEDF00C443B7 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionViewController.h; path = Source/InstructionViewController.h; sourceTree = "<group>"; };
-		8BB34CC51C11EEDF00C443B7 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstructionViewController.m; path = Source/InstructionViewController.m; sourceTree = "<group>"; };
-		8BB34CC61C11EEDF00C443B7 /* InstructionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InstructionViewController.xib; path = Source/InstructionViewController.xib; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
 		B71F5909188484E7003F4D28 /* iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad.png; path = Icons/iPad.png; sourceTree = "<group>"; };
@@ -361,9 +359,8 @@
 				8B199F6B1BD2110C00F77164 /* Tile.m */,
 				8B69BDBC1BEE8844008FD183 /* GameOver.h */,
 				8B69BDBD1BEE8844008FD183 /* GameOver.m */,
-				8BB34CC41C11EEDF00C443B7 /* InstructionViewController.h */,
-				8BB34CC51C11EEDF00C443B7 /* InstructionViewController.m */,
-				8BB34CC61C11EEDF00C443B7 /* InstructionViewController.xib */,
+				8B8C1BB41C1275570098D501 /* Instruction.h */,
+				8B8C1BB51C1275570098D501 /* Instruction.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
@@ -597,7 +594,6 @@
 				B7378977180762440076A88C /* Default.png in Resources */,
 				8BB34CBA1C11EBDD00C443B7 /* instruction 2.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
-				8BB34CC81C11EEDF00C443B7 /* InstructionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,8 +635,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB34CC71C11EEDF00C443B7 /* InstructionViewController.m in Sources */,
 				8B58F2AE1BD338A500E409D9 /* Grid.m in Sources */,
+				8B8C1BB61C1275570098D501 /* Instruction.m in Sources */,
 				8B199F6C1BD2110C00F77164 /* Tile.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */,

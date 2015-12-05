@@ -23,4 +23,6 @@
 
 @property int remainingSeconds;
 
+-(void)stopTimer;
+
 @end
