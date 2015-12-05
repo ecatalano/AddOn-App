@@ -25,6 +25,10 @@
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionLeft duration:.2];
     [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
 }
+- (void)prev {
+    CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionRight duration:.2];
+    [[CCDirector sharedDirector] popSceneWithTransition:slide];
+}
 - (void)done {
     [[CCDirector sharedDirector] popToRootSceneWithTransition:CCTransitionDirectionUp];
 

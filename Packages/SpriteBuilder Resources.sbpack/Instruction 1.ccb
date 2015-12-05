@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>5</integer>
+	<integer>9</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -156,7 +156,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>3</integer>
+				<integer>5</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
 				<key>children</key>
@@ -211,8 +211,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.971216082572937</real>
-							<real>1.9714236259460449</real>
+							<real>2.0115289688110352</real>
+							<real>1.9998105764389038</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -264,7 +264,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>4</integer>
+				<integer>6</integer>
 				<key>baseClass</key>
 				<string>CCButton</string>
 				<key>children</key>
@@ -294,8 +294,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>160</real>
-							<real>65.877716064453125</real>
+							<real>278.01910400390625</real>
+							<real>81.883071899414062</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -319,8 +319,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>1.4230812788009644</real>
+							<real>1.3470000028610229</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -391,6 +391,14 @@
 							<string></string>
 							<string>ccbResources/ccbParticleFire.png</string>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundOpacity|Normal</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.5</real>
 					</dict>
 					<dict>
 						<key>name</key>

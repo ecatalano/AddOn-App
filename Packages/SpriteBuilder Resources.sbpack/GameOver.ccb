@@ -1416,7 +1416,7 @@
 						<key>value</key>
 						<array>
 							<real>160</real>
-							<real>129.53260803222656</real>
+							<real>86.900001525878906</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1729,6 +1729,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2800,8 +2802,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>304.09039306640625</real>
-							<real>570.0701904296875</real>
+							<real>301.47515869140625</real>
+							<real>566.0701904296875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2825,8 +2827,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.79548007249832153</real>
-							<real>0.8464924693107605</real>
+							<real>0.92624175548553467</real>
+							<real>0.95954132080078125</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2897,6 +2899,14 @@
 							<string></string>
 							<string>ccbResources/ccbParticleFire.png</string>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundOpacity|Normal</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.5</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3093,8 +3103,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

@@ -60,6 +60,7 @@
 }
 
 - (void)didLoadFromCCB {
+    
     [iAdHelper sharedHelper];
     [iAdHelper setBannerPosition:BOTTOM];
 }
