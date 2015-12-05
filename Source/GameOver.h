@@ -7,8 +7,10 @@
 //
 
 #import "CCNode.h"
+#import <iAd/iAd.h>
 
-@interface GameOver : CCNode
+
+@interface GameOver : CCNode <ADBannerViewDelegate>
 
 - (void)setLevel:(NSInteger)level
              score:(NSInteger)score bestscore:(NSInteger)score

@@ -7,6 +7,7 @@
 //
 
 #import "GameOver.h"
+#import "iAdHelper.h"
 
 @implementation GameOver {
     CCLabelTTF *_scoreLabel;
@@ -16,6 +17,7 @@
     //display "New Highscore!" if there is a highscore.
     CCLabelTTF *_highscoreLabel;
     CCButton *_infoButton;
+    ADBannerView *_bannerView;
 }
 
 - (void)newGame {
@@ -55,6 +57,11 @@
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
     [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
+}
+
+- (void)didLoadFromCCB {
+    [iAdHelper sharedHelper];
+    [iAdHelper setBannerPosition:BOTTOM];
 }
 
 

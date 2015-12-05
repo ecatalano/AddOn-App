@@ -9,6 +9,7 @@
 #import "Grid.h"
 #import "Tile.h"
 #import "GameOver.h"
+#import "iAdHelper.h"
 
 @implementation Grid{
     CGFloat _columnWidth;

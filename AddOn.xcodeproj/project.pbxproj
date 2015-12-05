@@ -12,6 +12,8 @@
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		8B199F6C1BD2110C00F77164 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F6B1BD2110C00F77164 /* Tile.m */; };
+		8B1E775A1C13868C002F22A7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1E77591C13868C002F22A7 /* iAd.framework */; };
+		8B1E77641C139371002F22A7 /* iAdHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1E77631C139371002F22A7 /* iAdHelper.m */; };
 		8B58F2AE1BD338A500E409D9 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F681BD210F000F77164 /* Grid.m */; };
 		8B5A112B1C111B520030F9C0 /* five.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11241C111B520030F9C0 /* five.caf */; };
 		8B5A112C1C111B520030F9C0 /* four.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11251C111B520030F9C0 /* four.caf */; };
@@ -116,6 +118,9 @@
 		8B199F681BD210F000F77164 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grid.m; path = Source/Grid.m; sourceTree = "<group>"; };
 		8B199F6A1BD2110C00F77164 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = Source/Tile.h; sourceTree = "<group>"; };
 		8B199F6B1BD2110C00F77164 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = Source/Tile.m; sourceTree = "<group>"; };
+		8B1E77591C13868C002F22A7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		8B1E77621C139371002F22A7 /* iAdHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iAdHelper.h; path = Source/iAdHelper.h; sourceTree = "<group>"; };
+		8B1E77631C139371002F22A7 /* iAdHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iAdHelper.m; path = Source/iAdHelper.m; sourceTree = "<group>"; };
 		8B5A11241C111B520030F9C0 /* five.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = five.caf; path = Source/five.caf; sourceTree = SOURCE_ROOT; };
 		8B5A11251C111B520030F9C0 /* four.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = four.caf; path = Source/four.caf; sourceTree = SOURCE_ROOT; };
 		8B5A11261C111B520030F9C0 /* loss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = loss.caf; path = Source/loss.caf; sourceTree = SOURCE_ROOT; };
@@ -180,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B1E775A1C13868C002F22A7 /* iAd.framework in Frameworks */,
 				8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
@@ -359,6 +365,8 @@
 				8B199F6B1BD2110C00F77164 /* Tile.m */,
 				8B69BDBC1BEE8844008FD183 /* GameOver.h */,
 				8B69BDBD1BEE8844008FD183 /* GameOver.m */,
+				8B1E77621C139371002F22A7 /* iAdHelper.h */,
+				8B1E77631C139371002F22A7 /* iAdHelper.m */,
 				8B8C1BB41C1275570098D501 /* Instruction.h */,
 				8B8C1BB51C1275570098D501 /* Instruction.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
@@ -413,6 +421,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B1E77591C13868C002F22A7 /* iAd.framework */,
 				8B5A11331C1124690030F9C0 /* SpriteKit.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
@@ -639,6 +648,7 @@
 				8B8C1BB61C1275570098D501 /* Instruction.m in Sources */,
 				8B199F6C1BD2110C00F77164 /* Tile.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				8B1E77641C139371002F22A7 /* iAdHelper.m in Sources */,
 				8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
