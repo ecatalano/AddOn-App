@@ -30,8 +30,9 @@
     [[CCDirector sharedDirector] popSceneWithTransition:slide];
 }
 - (void)done {
-    [[CCDirector sharedDirector] popToRootSceneWithTransition:CCTransitionDirectionUp];
-
+    for(int i = 0; i < 4; i++){
+        [[CCDirector sharedDirector] popScene];
+    }
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"instructions"];
 }
 

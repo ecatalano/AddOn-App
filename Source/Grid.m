@@ -34,6 +34,7 @@ int lastY = -1;
 
 -(void)playSound{
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+
     if(selectedTileSize == 1 && !_endGame){
         [audio playEffect:@"one.caf"];
     }
@@ -327,20 +328,27 @@ int lastY = -1;
 }
 
 - (void)timerTicked:(NSTimer *)timer {
-    
     if(self.time > 1){
         self.time--;
         [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
-        if(self.time <=3){
+        NSInteger firstTimeLoading = [[NSUserDefaults standardUserDefaults] integerForKey:@"firsttimeloading"];
+        if(self.time <=3 && firstTimeLoading !=0){
             OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
             [audio playEffect:@"tick.caf"];
         }
     }
     else{
+        NSInteger firstTimeLoading = [[NSUserDefaults standardUserDefaults] integerForKey:@"firsttimeloading"];
         if(self.endGame!=true){
             OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
             [self gameOver];
-            [audio playEffect:@"loss.caf"];
+            if(firstTimeLoading !=0){
+                [self gameOver];
+                [audio playEffect:@"loss.caf"];
+            }
+            else{
+                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"firsttimeloading"];
+            }
             
         }
     }
@@ -373,6 +381,7 @@ int lastY = -1;
 
 - (void)gameOver{
     [self stopTimer];
+    
     self.endGame = true;
     self.doneLoading = false;
     self.reachableTilesFilled = false;

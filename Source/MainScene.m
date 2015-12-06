@@ -2,6 +2,7 @@
 #import "AppDelegate.h"
 #import "Grid.h"
 #import "Instruction.h"
+#import "iAdHelper.h"
 
 @implementation MainScene{
     Grid *_grid;
@@ -17,6 +18,9 @@
 }
 
 - (void)didLoadFromCCB {
+    [iAdHelper sharedHelper];
+    [iAdHelper setBannerPosition:BOTTOM];
+    
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     NSInteger currentScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentscore"];
@@ -72,6 +76,14 @@
     [_grid removeObserver:self forKeyPath:@"endGame"];
     [_grid removeObserver:self forKeyPath:@"currentValue"];
 
+}
+
+- (void)infoButtonPressed{
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
+    
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
+    CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
+    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
 }
 
 @end

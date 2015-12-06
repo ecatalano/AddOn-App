@@ -51,19 +51,6 @@
     _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
 }
 
-- (void)infoButtonPressed{    
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
-    
-    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
-    CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
-    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
-}
-
-- (void)didLoadFromCCB {
-    
-    [iAdHelper sharedHelper];
-    [iAdHelper setBannerPosition:BOTTOM];
-}
 
 
 @end
