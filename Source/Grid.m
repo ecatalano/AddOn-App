@@ -32,6 +32,10 @@ int totalValue = 0;
 int lastX = -1;
 int lastY = -1;
 
+-(void)isSixorFive{
+    
+}
+
 -(void)playSound{
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
 
@@ -54,6 +58,7 @@ int lastY = -1;
 
 
 - (void)onPan:(UIPanGestureRecognizer *) pan {
+    [self isSixorFive];
     CGPoint location = [pan locationInView:[pan view]];
     CGPoint fixedLocation = location;
     location.x = location.x - 10;
