@@ -32,8 +32,30 @@ int totalValue = 0;
 int lastX = -1;
 int lastY = -1;
 
--(void)isSixorFive{
-    
+-(NSString *)getDevice{
+    NSString *retVal = @"";
+    NSString *deviceType = [UIDevice currentDevice].model;
+    if([deviceType isEqualToString:@"iPad"])
+    {
+        retVal = @"iPad";
+    }
+    else if ([deviceType isEqualToString:@"iPhone"]){
+        int screenHeight = [[UIScreen mainScreen] bounds].size.height;
+        if( screenHeight > 480 && screenHeight < 667 )
+        {
+            retVal = @"iPhone 5+";
+
+        }
+        else if ( screenHeight > 480 && screenHeight < 736 )
+        {
+            retVal = @"Other iPhones Resizable";
+        }
+        else
+        {
+            retVal = @"iPhone 4s-";
+        }
+    }
+    return retVal;
 }
 
 -(void)playSound{
@@ -58,13 +80,18 @@ int lastY = -1;
 
 
 - (void)onPan:(UIPanGestureRecognizer *) pan {
-    [self isSixorFive];
+    
     CGPoint location = [pan locationInView:[pan view]];
-    CGPoint fixedLocation = location;
     location.x = location.x - 10;
     location.y = location.y - 140;
-    fixedLocation.x = fixedLocation.x - 10;
-    fixedLocation.y = [self mirrorY:fixedLocation.y];
+
+    if([_device isEqualToString:@"iPhone 4s-"]){
+        location.y = location.y + 55;
+    }
+    else if([_device isEqualToString:@"iPad"]){
+        NSLog(@"Location x:%f y:%f",location.x,location.y);
+        location.y = location.y + 55;
+    }
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
@@ -206,7 +233,7 @@ int lastY = -1;
 }
 
 - (void)didLoadFromCCB {
-
+    _device = [self getDevice];
     // access audio object
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     // play background sound
