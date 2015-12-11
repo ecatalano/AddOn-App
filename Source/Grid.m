@@ -213,8 +213,8 @@ int lastY = -1;
 
 - (void)addTileAtColumn:(NSInteger)column row:(NSInteger)row{
     Tile *tile = (Tile*) [CCBReader load:@"Tile"];
-    int x = row;
-    int y = column;
+    int x = (int)row;
+    int y = (int)column;
     
     //[4][3]  x = 3, y = 4
     tile.x = x;
@@ -550,7 +550,7 @@ int lastY = -1;
     [arr addObject:[NSNumber numberWithInt:p6]];
     
     for(int i = 0; i < [arr count];i++){
-        int temp = [[arr objectAtIndex:i] integerValue];
+        int temp = (int)[[arr objectAtIndex:i] integerValue];
         if(temp > ret){
             ret = temp;
         }
