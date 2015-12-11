@@ -10,6 +10,8 @@
 #import "Tile.h"
 #import "GameOver.h"
 #import "iAdHelper.h"
+#import <sys/utsname.h>
+
 
 @implementation Grid{
     CGFloat _columnWidth;
@@ -32,6 +34,14 @@ int totalValue = 0;
 int lastX = -1;
 int lastY = -1;
 
+-(NSString *) deviceName
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+}
+
 -(NSString *)getDevice{
     NSString *retVal = @"";
     NSString *deviceType = [UIDevice currentDevice].model;
@@ -50,9 +60,12 @@ int lastY = -1;
         {
             retVal = @"Other iPhones Resizable";
         }
-        else
-        {
+        else if(screenHeight < 480){
+        
             retVal = @"iPhone 4s-";
+        }
+        else{
+            retVal= @"iPhone 6+";
         }
     }
     return retVal;
@@ -92,6 +105,11 @@ int lastY = -1;
         location.x = (location.x -62) / 2.05;
         location.y = (location.y - 80) / 2.0;
     }
+    else if([_device isEqualToString:@"iPhone 6+"]){
+        location.x = (location.x -62);
+        location.y = (location.y - 80);
+    }
+    NSLog(@"hi %@",[self getDevice]);
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
