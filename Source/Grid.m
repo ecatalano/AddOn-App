@@ -89,8 +89,8 @@ int lastY = -1;
         location.y = location.y + 55;
     }
     else if([_device isEqualToString:@"iPad"]){
-        NSLog(@"Location x:%f y:%f",location.x,location.y);
-        location.y = location.y + 55;
+        location.x = (location.x -62) / 2.05;
+        location.y = (location.y - 80) / 2.0;
     }
 
     for(int i = 0; i < GRID_SIZE; i++){
