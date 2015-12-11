@@ -39,7 +39,7 @@
 
 -(void) selectTile{
     self.isSelected = true;
-    NSLog(@"Selected Tile: %d, %d",self.x, self.y);
+    //NSLog(@"Selected Tile: %d, %d",self.x, self.y);
     _backgroundNode.color = [CCColor magentaColor];
     _backgroundNode.opacity = .3;
 }
