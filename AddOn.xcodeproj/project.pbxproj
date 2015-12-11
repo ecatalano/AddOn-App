@@ -31,16 +31,6 @@
 		8BB34CBB1C11EBDD00C443B7 /* instruction 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB71C11EBDD00C443B7 /* instruction 3.png */; };
 		8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB81C11EBDD00C443B7 /* instruction 4.png */; };
 		8BD34DFA1C1B193C00B2C0D2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34DF91C1B193C00B2C0D2 /* Images.xcassets */; };
-		8BD34E061C1B263500B2C0D2 /* 6s3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34DFC1C1B263500B2C0D2 /* 6s3x.png */; };
-		8BD34E071C1B263500B2C0D2 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34DFD1C1B263500B2C0D2 /* iPad-old.png */; };
-		8BD34E081C1B263500B2C0D2 /* ipad1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34DFE1C1B263500B2C0D2 /* ipad1x.png */; };
-		8BD34E091C1B263500B2C0D2 /* ipad21x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34DFF1C1B263500B2C0D2 /* ipad21x.png */; };
-		8BD34E0A1C1B263500B2C0D2 /* ipad2settings1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34E001C1B263500B2C0D2 /* ipad2settings1x.png */; };
-		8BD34E0B1C1B263500B2C0D2 /* iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34E011C1B263500B2C0D2 /* iPad@2x.png */; };
-		8BD34E0C1C1B263500B2C0D2 /* iPhone-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34E021C1B263500B2C0D2 /* iPhone-old.png */; };
-		8BD34E0D1C1B263500B2C0D2 /* iPhone-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34E031C1B263500B2C0D2 /* iPhone-old@2x.png */; };
-		8BD34E0E1C1B263500B2C0D2 /* iphone2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34E041C1B263500B2C0D2 /* iphone2x.png */; };
-		8BD34E0F1C1B263500B2C0D2 /* iphonesetting2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34E051C1B263500B2C0D2 /* iphonesetting2x.png */; };
 		B737893B180761570076A88C /* Published-iOS in Resources */ = {isa = PBXBuildFile; fileRef = B737893A180761570076A88C /* Published-iOS */; };
 		B73789871807631A0076A88C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B73789851807631A0076A88C /* main.m */; };
 		B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
@@ -136,16 +126,6 @@
 		8BB34CB71C11EBDD00C443B7 /* instruction 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 3.png"; sourceTree = "<group>"; };
 		8BB34CB81C11EBDD00C443B7 /* instruction 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 4.png"; sourceTree = "<group>"; };
 		8BD34DF91C1B193C00B2C0D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8BD34DFC1C1B263500B2C0D2 /* 6s3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6s3x.png; sourceTree = "<group>"; };
-		8BD34DFD1C1B263500B2C0D2 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad-old.png"; sourceTree = "<group>"; };
-		8BD34DFE1C1B263500B2C0D2 /* ipad1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad1x.png; sourceTree = "<group>"; };
-		8BD34DFF1C1B263500B2C0D2 /* ipad21x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad21x.png; sourceTree = "<group>"; };
-		8BD34E001C1B263500B2C0D2 /* ipad2settings1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad2settings1x.png; sourceTree = "<group>"; };
-		8BD34E011C1B263500B2C0D2 /* iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad@2x.png"; sourceTree = "<group>"; };
-		8BD34E021C1B263500B2C0D2 /* iPhone-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-old.png"; sourceTree = "<group>"; };
-		8BD34E031C1B263500B2C0D2 /* iPhone-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-old@2x.png"; sourceTree = "<group>"; };
-		8BD34E041C1B263500B2C0D2 /* iphone2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone2x.png; sourceTree = "<group>"; };
-		8BD34E051C1B263500B2C0D2 /* iphonesetting2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphonesetting2x.png; sourceTree = "<group>"; };
 		B737893A180761570076A88C /* Published-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Published-iOS"; path = "Source/Resources/Published-iOS"; sourceTree = SOURCE_ROOT; };
 		B737893D1807617C0076A88C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/iOS/AppDelegate.h; sourceTree = "<group>"; };
 		B737893E1807617C0076A88C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/Platforms/iOS/AppDelegate.m; sourceTree = "<group>"; };
@@ -340,23 +320,6 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		8BD34DFB1C1B263500B2C0D2 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				8BD34DFC1C1B263500B2C0D2 /* 6s3x.png */,
-				8BD34DFD1C1B263500B2C0D2 /* iPad-old.png */,
-				8BD34DFE1C1B263500B2C0D2 /* ipad1x.png */,
-				8BD34DFF1C1B263500B2C0D2 /* ipad21x.png */,
-				8BD34E001C1B263500B2C0D2 /* ipad2settings1x.png */,
-				8BD34E011C1B263500B2C0D2 /* iPad@2x.png */,
-				8BD34E021C1B263500B2C0D2 /* iPhone-old.png */,
-				8BD34E031C1B263500B2C0D2 /* iPhone-old@2x.png */,
-				8BD34E041C1B263500B2C0D2 /* iphone2x.png */,
-				8BD34E051C1B263500B2C0D2 /* iphonesetting2x.png */,
-			);
-			path = Icons;
-			sourceTree = "<group>";
-		};
 		9222E2B918734FF800A246C7 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,7 +404,6 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8BD34DFB1C1B263500B2C0D2 /* Icons */,
 				8BD34DF91C1B193C00B2C0D2 /* Images.xcassets */,
 				8BB34CB41C11EBDD00C443B7 /* Images */,
 				8B5A11321C111B620030F9C0 /* Sounds */,
@@ -568,28 +530,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5A112C1C111B520030F9C0 /* four.caf in Resources */,
-				8BD34E0F1C1B263500B2C0D2 /* iphonesetting2x.png in Resources */,
 				8BB34CBB1C11EBDD00C443B7 /* instruction 3.png in Resources */,
 				8B5A112E1C111B520030F9C0 /* one.caf in Resources */,
-				8BD34E091C1B263500B2C0D2 /* ipad21x.png in Resources */,
 				8B5A112B1C111B520030F9C0 /* five.caf in Resources */,
 				8B5A11301C111B520030F9C0 /* two.caf in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				8B5A112D1C111B520030F9C0 /* loss.caf in Resources */,
 				8B5A112F1C111B520030F9C0 /* three.caf in Resources */,
 				8B6900E11C113EB7004A2FCE /* tick.caf in Resources */,
-				8BD34E0B1C1B263500B2C0D2 /* iPad@2x.png in Resources */,
-				8BD34E071C1B263500B2C0D2 /* iPad-old.png in Resources */,
-				8BD34E081C1B263500B2C0D2 /* ipad1x.png in Resources */,
 				8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */,
 				8BB34CB91C11EBDD00C443B7 /* instruction 1.png in Resources */,
-				8BD34E0D1C1B263500B2C0D2 /* iPhone-old@2x.png in Resources */,
-				8BD34E0E1C1B263500B2C0D2 /* iphone2x.png in Resources */,
 				8B5A11311C111B520030F9C0 /* win.caf in Resources */,
-				8BD34E061C1B263500B2C0D2 /* 6s3x.png in Resources */,
-				8BD34E0C1C1B263500B2C0D2 /* iPhone-old.png in Resources */,
 				8BD34DFA1C1B193C00B2C0D2 /* Images.xcassets in Resources */,
-				8BD34E0A1C1B263500B2C0D2 /* ipad2settings1x.png in Resources */,
 				8BB34CBA1C11EBDD00C443B7 /* instruction 2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -751,7 +703,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.catalanoelliot.AddOn;
 				PRODUCT_NAME = AddOn;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c2513702-54e1-4e0c-b1f8-781d51ab639f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -788,7 +740,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.catalanoelliot.AddOn;
 				PRODUCT_NAME = AddOn;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c2513702-54e1-4e0c-b1f8-781d51ab639f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
