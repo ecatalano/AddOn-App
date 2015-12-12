@@ -109,8 +109,6 @@ int lastY = -1;
         location.x = (location.x -62);
         location.y = (location.y - 80);
     }
-    NSLog(@"hi %@",[self getDevice]);
-
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
             int fixedJ = [self mirrorTile:j];
