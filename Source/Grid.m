@@ -58,7 +58,7 @@ int lastY = -1;
         }
         else if ( screenHeight > 480 && screenHeight < 736 )
         {
-            retVal = @"Other iPhones Resizable";
+            retVal = @"iPhone 6";
         }
         else if(screenHeight < 480){
         
@@ -99,13 +99,21 @@ int lastY = -1;
     location.y = location.y - 140;
 
     if([_device isEqualToString:@"iPhone 4s-"]){
+        //NSLog(@"iPhone 4s-");
         location.y = location.y + 55;
     }
+    else if([_device isEqualToString:@"iPhone 6"]){
+        //NSLog(@"iPhone 6");
+        location.x = (location.x - 23);
+        location.y = (location.y - 48);
+    }
     else if([_device isEqualToString:@"iPad"]){
+        //NSLog(@"iPad");
         location.x = (location.x -62) / 2.05;
         location.y = (location.y - 80) / 2.0;
     }
     else if([_device isEqualToString:@"iPhone 6+"]){
+        //NSLog(@"iPhone 6+");
         location.x = (location.x -62);
         location.y = (location.y - 80);
     }
