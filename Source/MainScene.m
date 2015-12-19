@@ -6,6 +6,7 @@
 
 @implementation MainScene{
     Grid *_grid;
+    CCNodeGradient *_backgroundGradient;
     CCLabelTTF *_scoreLabel;
     CCLabelTTF *_scoretLabel;
     CCLabelTTF *_levelLabel;
@@ -20,6 +21,11 @@
 - (void)didLoadFromCCB {
     [iAdHelper sharedHelper];
     [iAdHelper setBannerPosition:BOTTOM];
+    
+    //Midnight Theme
+    _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
+    _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
+    
     
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
@@ -83,7 +89,7 @@
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
     [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
-    NSLog(@"Instructions should launch");
+    //NSLog(@"Instructions should launch");
 
 }
 

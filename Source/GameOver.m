@@ -14,10 +14,14 @@
     CCLabelTTF *_levelLabel;
     CCLabelTTF *_bestscoreLabel;
     CCLabelTTF *_bestlevelLabel;
-    //display "New Highscore!" if there is a highscore.
     CCLabelTTF *_highscoreLabel;
-    CCButton *_infoButton;
+    CCNodeColor *_backgroundColor;
     ADBannerView *_bannerView;
+}
+
+- (void)didLoadFromCCB {
+    //midnight theme
+    _backgroundColor.color = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
 }
 
 - (void)newGame {
