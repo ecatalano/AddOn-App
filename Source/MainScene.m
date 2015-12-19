@@ -21,11 +21,18 @@
 - (void)didLoadFromCCB {
     [iAdHelper sharedHelper];
     [iAdHelper setBannerPosition:BOTTOM];
-    
-    //Midnight Theme
-    _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
-    _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
-    
+    NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+    if(theme == 0){
+        //Do nothing, classic theme
+    }
+    else if(theme == 1){
+        //Midnight Theme
+        _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
+        _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
+        
+        //Set theme back to classic.
+        //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"theme"];
+    }
     
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];

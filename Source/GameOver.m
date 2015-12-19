@@ -21,7 +21,16 @@
 
 - (void)didLoadFromCCB {
     //midnight theme
-    _backgroundColor.color = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
+    NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+
+    if(theme == 0){
+        //Classic theme, do nothing
+    }
+    else if(theme == 1){
+        //Midnight theme
+        _backgroundColor.color = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
+    }
+    
 }
 
 - (void)newGame {
@@ -33,13 +42,14 @@
              score:(NSInteger)score bestscore:(NSInteger)bestscore
          bestlevel:(NSInteger)bestlevel{
     
+    //NSLog(@"Ran once");
     NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
     NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
     
     if(score <= bestscore){
         _highscoreLabel.opacity = 0.0;
     }
-    if(score > bestscore){
+    else if(score > bestscore){
         bestScore = score;
         bestLevel = level;
         

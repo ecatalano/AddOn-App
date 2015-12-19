@@ -397,12 +397,12 @@ int lastY = -1;
         NSInteger firstTimeLoading = [[NSUserDefaults standardUserDefaults] integerForKey:@"firsttimeloading"];
         if(self.endGame!=true){
             OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-            [self gameOver];
             if(firstTimeLoading !=0){
                 [self gameOver];
                 [audio playEffect:@"loss.caf"];
             }
             else{
+                [self gameOver];
                 [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"firsttimeloading"];
             }
             
