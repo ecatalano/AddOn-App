@@ -60,12 +60,12 @@ int lastY = -1;
         {
             retVal = @"iPhone 6";
         }
-        else if(screenHeight < 480){
+        else if(screenHeight >= 736){
         
-            retVal = @"iPhone 4s-";
+            retVal = @"iPhone 6s+";
         }
         else{
-            retVal= @"iPhone 6+";
+            retVal= @"iPhone 4s-";
         }
     }
     return retVal;
@@ -99,22 +99,22 @@ int lastY = -1;
     location.y = location.y - 140;
 
     if([_device isEqualToString:@"iPhone 4s-"]){
-        //NSLog(@"iPhone 4s-");
+        NSLog(@"iPhone 4s-");
         location.y = location.y + 55;
     }
     else if([_device isEqualToString:@"iPhone 6"]){
-        //NSLog(@"iPhone 6");
+        NSLog(@"iPhone 6");
         location.x = (location.x - 23);
         location.y = (location.y - 48);
     }
     else if([_device isEqualToString:@"iPad"]){
-        //NSLog(@"iPad");
+        NSLog(@"iPad");
         location.x = (location.x -62) / 2.05;
         location.y = (location.y - 80) / 2.0;
     }
     else if([_device isEqualToString:@"iPhone 6+"]){
-        //NSLog(@"iPhone 6+");
-        location.x = (location.x -62);
+        NSLog(@"iPhone 6+");
+        location.x = (location.x - 62);
         location.y = (location.y - 80);
     }
     for(int i = 0; i < GRID_SIZE; i++){
