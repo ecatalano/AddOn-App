@@ -258,6 +258,8 @@ int lastY = -1;
 
 - (void)didLoadFromCCB {
     _device = [self getDevice];
+    NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+    self.theme = theme;
     // access audio object
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     // play background sound
@@ -384,6 +386,8 @@ int lastY = -1;
 }
 
 - (void)timerTicked:(NSTimer *)timer {
+    NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+    self.theme = theme;
     if(self.time > 1){
         self.time--;
         [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];

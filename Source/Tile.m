@@ -12,10 +12,7 @@
     CCLabelTTF *_valueLabel;
     CCNodeColor *_backgroundNode;
     BOOL _isSelected;
-    
 }
-
-
 - (id)init {
     NSInteger maxVal = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"] + 1;
     self = [super init];
@@ -39,9 +36,19 @@
 
 -(void) selectTile{
     self.isSelected = true;
-    //NSLog(@"Selected Tile: %d, %d",self.x, self.y);
-    _backgroundNode.color = [CCColor magentaColor];
-    _backgroundNode.opacity = .3;
+    NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+    if(theme == 0){
+        _backgroundNode.color = [CCColor magentaColor];
+        _backgroundNode.opacity = .3;
+    }
+    else if(theme == 1){
+        _backgroundNode.color = [CCColor magentaColor];
+        _backgroundNode.opacity = .3;
+    }
+    else if(theme == 2){
+        _backgroundNode.color = [CCColor yellowColor];
+        _backgroundNode.opacity = .55;
+    }
 }
 -(void) deselectTile{
     self.isSelected = false;

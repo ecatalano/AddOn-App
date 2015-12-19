@@ -30,6 +30,10 @@
         //Midnight theme
         _backgroundColor.color = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
     }
+    else if(theme == 2){
+        _backgroundColor.color = [CCColor colorWithRed:0.100 green:0.370 blue:0.780 alpha:1.0];
+
+    }
     
 }
 

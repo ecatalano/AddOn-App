@@ -1,6 +1,7 @@
 #import "MainScene.h"
 #import "AppDelegate.h"
 #import "Grid.h"
+#import "Menu.h"
 #import "Instruction.h"
 #import "iAdHelper.h"
 
@@ -23,15 +24,18 @@
     [iAdHelper setBannerPosition:BOTTOM];
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     if(theme == 0){
-        //Do nothing, classic theme
+        _backgroundGradient.startColor = [CCColor colorWithRed:0.220 green:0.770 blue:0.780 alpha:0.0];
+        _backgroundGradient.endColor = [CCColor colorWithRed:0.498 green:0.408 blue:0.571 alpha:0.0];
     }
     else if(theme == 1){
         //Midnight Theme
         _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
         _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
-        
-        //Set theme back to classic.
-        //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"theme"];
+    }
+    else if(theme == 2){
+        //Day Theme
+        _backgroundGradient.startColor = [CCColor grayColor];
+        _backgroundGradient.endColor = [CCColor colorWithRed:0.100 green:0.370 blue:0.780 alpha:1.0];
     }
     
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
@@ -47,6 +51,7 @@
     _greatestValueLabel.string = [NSString stringWithFormat:@"%d", (int)greatestPath];
 
     [_grid addObserver:self forKeyPath:@"time" options:0 context:NULL];
+    [_grid addObserver:self forKeyPath:@"theme" options:0 context:NULL];
     [_grid addObserver:self forKeyPath:@"endGame" options:0 context:NULL];
     [_grid addObserver:self forKeyPath:@"currentValue" options:0 context:NULL];
 }
@@ -82,10 +87,27 @@
         _currentValueLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.currentValue];
 
     }
+    if ([keyPath isEqualToString:@"theme"]) {
+        if(_grid.theme == 0){
+            _backgroundGradient.startColor = [CCColor colorWithRed:0.220 green:0.770 blue:0.780 alpha:0.0];
+            _backgroundGradient.endColor = [CCColor colorWithRed:0.498 green:0.408 blue:0.571 alpha:0.0];
+        }
+        else if(_grid.theme == 1){
+            //Midnight Theme
+            _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
+            _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
+        }
+        else if(_grid.theme == 2){
+            //Day Theme
+            _backgroundGradient.startColor = [CCColor grayColor];
+            _backgroundGradient.endColor = [CCColor colorWithRed:0.100 green:0.370 blue:0.780 alpha:1.0];
+        }
+    }
 
 }
 - (void)dealloc {
     [_grid removeObserver:self forKeyPath:@"time"];
+    [_grid removeObserver:self forKeyPath:@"theme"];
     [_grid removeObserver:self forKeyPath:@"endGame"];
     [_grid removeObserver:self forKeyPath:@"currentValue"];
 
@@ -97,7 +119,11 @@
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
     [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
     //NSLog(@"Instructions should launch");
-
+}
+- (void)menuButtonPressed{
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Menu"];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
 }
 
 @end

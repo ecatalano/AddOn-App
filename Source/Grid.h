@@ -13,6 +13,7 @@
 @property (nonatomic,assign) NSInteger score;
 @property (nonatomic,assign) NSInteger time;
 @property (nonatomic,assign) NSInteger level;
+@property (nonatomic,assign) NSInteger theme;
 @property (nonatomic,assign) NSInteger currentValue;
 @property (nonatomic,assign) NSString* device;
 
