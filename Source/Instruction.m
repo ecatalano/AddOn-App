@@ -13,21 +13,21 @@
 - (void)next1 {
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 2"];
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionLeft duration:.2];
-    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
 }
 - (void)next2 {
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 3"];
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionLeft duration:.2];
-    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
 }
 - (void)next3 {
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 4"];
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionLeft duration:.2];
-    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
 }
 - (void)prev {
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionRight duration:.2];
-    [[CCDirector sharedDirector] popSceneWithTransition:slide];
+    [[CCDirector sharedDirector] popScene];
 }
 - (void)done {
     for(int i = 0; i < 4; i++){

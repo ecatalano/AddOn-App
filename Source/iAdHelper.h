@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #endif
 #ifndef IADHELPER_LOGGING
-    #define IADHELPER_LOGGING 0
+#define IADHELPER_LOGGING 0
 #endif
 
 typedef enum bannerPositionTypes

@@ -7,6 +7,7 @@
 
 @implementation MainScene{
     Grid *_grid;
+    CCNodeGradient *_baseGradient;
     CCNodeGradient *_backgroundGradient;
     CCLabelTTF *_scoreLabel;
     CCLabelTTF *_scoretLabel;
@@ -117,7 +118,7 @@
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
     CCTransition *slide = [CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:.2];
-    [[CCDirector sharedDirector] pushScene:instructionScene withTransition:slide];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
     //NSLog(@"Instructions should launch");
 }
 - (void)menuButtonPressed{
