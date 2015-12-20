@@ -710,6 +710,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.catalanoelliot.AddOn;
 				PRODUCT_NAME = AddOn;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -747,6 +748,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.catalanoelliot.AddOn;
 				PRODUCT_NAME = AddOn;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

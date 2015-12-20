@@ -18,12 +18,16 @@
     CCLabelTTF *_currentValueLabel;
     CCLabelTTF *_greatesttValueLabel;
     CCLabelTTF *_greatestValueLabel;
+    CCLabelTTF *_modeLabel;
+
 }
 
 - (void)didLoadFromCCB {
     [iAdHelper sharedHelper];
     [iAdHelper setBannerPosition:BOTTOM];
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+
     if(theme == 0){
         _backgroundGradient.startColor = [CCColor colorWithRed:0.220 green:0.770 blue:0.780 alpha:0.0];
         _backgroundGradient.endColor = [CCColor colorWithRed:0.498 green:0.408 blue:0.571 alpha:0.0];
@@ -38,6 +42,32 @@
         _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
         _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
     }
+    if(mode == 0){
+        //Classic
+        _modeLabel.string = @"Mode: Classic";
+    }
+    else if(mode == 1){
+        //Blitz
+        _modeLabel.string = @"Mode: Blitz";
+
+    }
+    else if(mode == 2){
+        //Sudden Death
+        _modeLabel.string = @"Mode: Sudden Death";
+        _timeLabel.string = @"-";
+        _greatesttValueLabel.opacity = 0.0;
+        _greatestValueLabel.opacity = 0.0;
+        _currentValueLabel.opacity = 0.0;
+    }
+    else if(mode == 3){
+        //Nightmare
+        _modeLabel.string = @"Mode: Nightmare";
+        _timeLabel.string = @"?";
+        _greatesttValueLabel.opacity = 0.0;
+        _greatestValueLabel.opacity = 0.0;
+        _currentValueLabel.opacity = 0.0;
+    }
+
     
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
@@ -47,7 +77,9 @@
 
 
     _levelLabel.string = [NSString stringWithFormat:@"%d", (int)currentLevel];
-    _timeLabel.string = [NSString stringWithFormat:@"%d", (int)currentTime];
+    if(mode!=2 && mode!=3){
+        _timeLabel.string = [NSString stringWithFormat:@"%d", (int)currentTime];
+    }
     _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)currentScore];
     _greatestValueLabel.string = [NSString stringWithFormat:@"%d", (int)greatestPath];
 
@@ -62,13 +94,16 @@
                        context:(void *)context
 {
     if ([keyPath isEqualToString:@"time"]) {
-        _timeLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.time];
-        if(_grid.time <= 3){
-            _timeLabel.color = [CCColor yellowColor];
-            if (_grid.time <= 2){
-                _timeLabel.color = [CCColor orangeColor];
-                if(_grid.time <= 1) {
-                    _timeLabel.color = [CCColor redColor];
+        NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+        if(mode != 3){
+            _timeLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.time];
+            if(_grid.time <= 3){
+                _timeLabel.color = [CCColor yellowColor];
+                if (_grid.time <= 2){
+                    _timeLabel.color = [CCColor orangeColor];
+                    if(_grid.time <= 1) {
+                        _timeLabel.color = [CCColor redColor];
+                    }
                 }
             }
         }
@@ -83,6 +118,7 @@
         _greatesttValueLabel.opacity = 0;
         _greatestValueLabel.opacity = 0;
         _currentValueLabel.opacity = 0;
+        _modeLabel.opacity = 0;
     }
     if ([keyPath isEqualToString:@"currentValue"]) {
         _currentValueLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.currentValue];

@@ -41,6 +41,7 @@
 - (void)newGame {
     CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainScene];
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"modechanged"];
 }
 
 - (void)setLevel:(NSInteger)level
@@ -50,11 +51,13 @@
     //NSLog(@"Ran once");
     NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
     NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
+    NSInteger modeChanged = [[NSUserDefaults standardUserDefaults] integerForKey:@"modechanged"];
+
     
     if(score <= bestscore){
         _highscoreLabel.opacity = 0.0;
     }
-    else if(score > bestscore){
+    else if(score > bestscore && modeChanged != 1){
         bestScore = score;
         bestLevel = level;
         

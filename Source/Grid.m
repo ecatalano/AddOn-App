@@ -24,10 +24,11 @@
     int _greatestPath;
 }
 
-static const NSInteger GRID_SIZE = 5;
 static const NSInteger START_TILES = 25;
 static const NSInteger LINE_SIZE = 5;
-static const NSInteger TIME_LIMIT = 15;
+static NSInteger TIME_LIMIT = 15;
+static NSInteger GRID_SIZE = 5;
+
 
 int selectedTileSize = 0;
 int totalValue = 0;
@@ -168,11 +169,20 @@ int lastY = -1;
                     self.score += totalValue;
                     [self nextLevel];
                 }
+                else{
+                    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+                    if(mode == 2 || mode == 3){
+                        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+                        [self gameOver];
+                        [audio playEffect:@"loss.caf"];
+                    }
+                }
             }
         }
         totalValue = 0;
         lastX = -1;
         lastY = -1;
+        
     }
 }
 -(BOOL)isAdjacentx:(NSInteger)x1  y:(NSInteger)y1 x2:(NSInteger)x2 y2:(NSInteger)y2  {
@@ -260,6 +270,22 @@ int lastY = -1;
     _device = [self getDevice];
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     self.theme = theme;
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    if(mode == 0 || mode == 2 || mode == 3){
+        TIME_LIMIT = 15;
+        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+    }
+    else if(mode == 2 || mode == 3){
+        TIME_LIMIT = 15;
+        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+    }
+    else if(mode == 1){
+        //Blitz mode
+        TIME_LIMIT = 5;
+        [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
+
+    }
+
     // access audio object
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
     // play background sound
@@ -307,7 +333,6 @@ int lastY = -1;
     }
     
     _myTimer = [self createTimer];
-
     
     [self setPointers];
 
@@ -386,9 +411,14 @@ int lastY = -1;
 }
 
 - (void)timerTicked:(NSTimer *)timer {
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     self.theme = theme;
-    if(self.time > 1){
+    NSInteger modechanged = [[NSUserDefaults standardUserDefaults] integerForKey:@"modechanged"];
+    if(modechanged == 1){
+        [self gameOver];
+    }
+    if(self.time > 1 && mode != 2){
         self.time--;
         [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
         NSInteger firstTimeLoading = [[NSUserDefaults standardUserDefaults] integerForKey:@"firsttimeloading"];
@@ -398,18 +428,19 @@ int lastY = -1;
         }
     }
     else{
-        NSInteger firstTimeLoading = [[NSUserDefaults standardUserDefaults] integerForKey:@"firsttimeloading"];
-        if(self.endGame!=true){
-            OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-            if(firstTimeLoading !=0){
-                [self gameOver];
-                [audio playEffect:@"loss.caf"];
+        if(mode != 2){
+            NSInteger firstTimeLoading = [[NSUserDefaults standardUserDefaults] integerForKey:@"firsttimeloading"];
+            if(self.endGame!=true){
+                OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+                if(firstTimeLoading !=0){
+                    [self gameOver];
+                    [audio playEffect:@"loss.caf"];
+                }
+                else{
+                    [self gameOver];
+                    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"firsttimeloading"];
+                }
             }
-            else{
-                [self gameOver];
-                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"firsttimeloading"];
-            }
-            
         }
     }
 }
