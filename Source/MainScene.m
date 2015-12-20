@@ -29,14 +29,14 @@
         _backgroundGradient.endColor = [CCColor colorWithRed:0.498 green:0.408 blue:0.571 alpha:0.0];
     }
     else if(theme == 1){
-        //Midnight Theme
-        _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
-        _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
-    }
-    else if(theme == 2){
         //Day Theme
         _backgroundGradient.startColor = [CCColor grayColor];
         _backgroundGradient.endColor = [CCColor colorWithRed:0.100 green:0.370 blue:0.780 alpha:1.0];
+    }
+    else if(theme == 2){
+        //Midnight Theme
+        _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
+        _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
     }
     
     NSInteger currentTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"currenttime"];
@@ -94,14 +94,14 @@
             _backgroundGradient.endColor = [CCColor colorWithRed:0.498 green:0.408 blue:0.571 alpha:0.0];
         }
         else if(_grid.theme == 1){
-            //Midnight Theme
-            _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
-            _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
-        }
-        else if(_grid.theme == 2){
             //Day Theme
             _backgroundGradient.startColor = [CCColor grayColor];
             _backgroundGradient.endColor = [CCColor colorWithRed:0.100 green:0.370 blue:0.780 alpha:1.0];
+        }
+        else if(_grid.theme == 2){
+            //Midnight Theme
+            _backgroundGradient.startColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.0];
+            _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
         }
     }
 

@@ -42,12 +42,12 @@
         _backgroundNode.opacity = .3;
     }
     else if(theme == 1){
-        _backgroundNode.color = [CCColor magentaColor];
-        _backgroundNode.opacity = .3;
+        _backgroundNode.color = [CCColor yellowColor];
+        _backgroundNode.opacity = 1.0;
     }
     else if(theme == 2){
-        _backgroundNode.color = [CCColor yellowColor];
-        _backgroundNode.opacity = .55;
+        _backgroundNode.color = [CCColor magentaColor];
+        _backgroundNode.opacity = .3;
     }
 }
 -(void) deselectTile{

@@ -27,12 +27,13 @@
         //Classic theme, do nothing
     }
     else if(theme == 1){
-        //Midnight theme
-        _backgroundColor.color = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
-    }
-    else if(theme == 2){
+        //Daylight theme
         _backgroundColor.color = [CCColor colorWithRed:0.100 green:0.370 blue:0.780 alpha:1.0];
 
+    }
+    else if(theme == 2){
+        //Midnight theme
+        _backgroundColor.color = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
     }
     
 }
