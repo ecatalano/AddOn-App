@@ -118,6 +118,29 @@ int lastY = -1;
         location.x = (location.x - 62);
         location.y = (location.y - 80);
     }
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    
+    if(size == 1){
+        if([_device isEqualToString:@"iPhone 4s-"]){
+            location.x = location.x + 6;
+            location.y = location.y + 5;
+        }
+        else{
+            location.x = location.x + 6;
+            location.y = location.y + 15;
+        }
+    }
+    else if(size == 2){
+        if([_device isEqualToString:@"iPhone 4s-"]){
+            location.x = location.x + 14;
+            location.y = location.y + 22;
+        }
+        else{
+            location.x = location.x + 14;
+            location.y = location.y + 32;
+        }
+    }
+    
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
             int fixedJ = [self mirrorTile:j];
