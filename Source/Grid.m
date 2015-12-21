@@ -24,8 +24,8 @@
     int _greatestPath;
 }
 
-static const NSInteger START_TILES = 25;
-static const NSInteger LINE_SIZE = 5;
+static NSInteger START_TILES = 25;
+static NSInteger LINE_SIZE = 5;
 static NSInteger TIME_LIMIT = 15;
 static NSInteger GRID_SIZE = 5;
 
@@ -202,7 +202,7 @@ int lastY = -1;
     }
 }
 -(int)mirrorTile:(int)val{
-    return GRID_SIZE - (val + 1);
+    return (int)GRID_SIZE - (val + 1);
 }
 -(int)mirrorY:(int)val{
     int newVal;
@@ -246,7 +246,17 @@ int lastY = -1;
 }
 
 - (void)addTileAtColumn:(NSInteger)column row:(NSInteger)row{
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     Tile *tile = (Tile*) [CCBReader load:@"Tile"];
+    if(size == 0){
+        tile = (Tile*) [CCBReader load:@"Tile"];
+    }
+    else if(size == 1){
+        tile = (Tile*) [CCBReader load:@"Tile1"];
+    }
+    else if(size == 2){
+        tile = (Tile*) [CCBReader load:@"Tile2"];
+    }
     int x = (int)row;
     int y = (int)column;
     
@@ -284,6 +294,24 @@ int lastY = -1;
         TIME_LIMIT = 5;
         [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
 
+    }
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    if(size == 0){
+        GRID_SIZE = 5;
+        LINE_SIZE = 5;
+        START_TILES = 25;
+
+    }
+    else if(size == 1){
+        GRID_SIZE = 4;
+        LINE_SIZE = 4;
+        START_TILES = 16;
+
+    }
+    else if(size == 2){
+        GRID_SIZE = 3;
+        LINE_SIZE = 3;
+        START_TILES = 9;
     }
 
     // access audio object
@@ -336,16 +364,17 @@ int lastY = -1;
     
     [self setPointers];
 
-    for(int i = 0; i < GRID_SIZE; i++){
-        for(int j = 0; j < GRID_SIZE; j++){
+    if(size == 0){
+        for(int i = 0; i < GRID_SIZE; i++){
+            for(int j = 0; j < GRID_SIZE; j++){
+                Tile *tile = _gridArray[i][j];
+                //printf("%d ", tile.value);
             
-            Tile *tile = _gridArray[i][j];
-            //printf("%d ", tile.value);
-            
-            if(tile!=nil){
-                int temp = [self findGreatestPathAtTile:tile];
-                if(temp > _greatestPath){
-                    _greatestPath = temp;
+                if(tile!=nil){
+                    int temp = [self findGreatestPathAtTile:tile];
+                    if(temp > _greatestPath){
+                        _greatestPath = temp;
+                    }
                 }
             }
             
@@ -473,6 +502,9 @@ int lastY = -1;
 - (void)gameOver{
     [self stopTimer];
     
+    [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"gamescore"];
+    [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"gamelevel"];
+    
     self.endGame = true;
     self.doneLoading = false;
     self.reachableTilesFilled = false;
@@ -480,18 +512,6 @@ int lastY = -1;
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"currentscore"];
     [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
-    
-    
-    NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
-    NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
-
-    
-    GameOver *gameOverPopover = (GameOver *)[CCBReader load:@"GameOver"];
-    gameOverPopover.positionType = CCPositionTypeNormalized;
-    gameOverPopover.position = ccp(0.5, 0.5);
-    gameOverPopover.zOrder = INT_MAX;
-    [gameOverPopover setLevel:self.level score:self.score bestscore:bestScore bestlevel:bestLevel];
-    [self addChild:gameOverPopover];
 }
 
 /////////////////////
@@ -499,17 +519,20 @@ int lastY = -1;
 /////////////////////
 
 -(void) fillReachableTiles{
-    for(int i = 0; i < GRID_SIZE; i++){
-        for(int j = 0; j < GRID_SIZE; j++){
-            Tile *tile = _gridArray[i][j];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    if(size == 0){
+        for(int i = 0; i < GRID_SIZE; i++){
+            for(int j = 0; j < GRID_SIZE; j++){
+                Tile *tile = _gridArray[i][j];
             
-            [tile addReachableTilesAtX:tile.x Y:tile.y Value:tile.value];
-            //shift right-up
-            [tile addReachableTilesAtX:tile.x+1 Y:tile.y-1 Value:tile.value];
-            [tile addReachableTilesAtX:tile.x+2 Y:tile.y-2 Value:tile.value];
-            //shift down-left
-            [tile addReachableTilesAtX:tile.x-1 Y:tile.y+1 Value:tile.value];
-            [tile addReachableTilesAtX:tile.x-2 Y:tile.y+2 Value:tile.value];
+                [tile addReachableTilesAtX:tile.x Y:tile.y Value:tile.value];
+                //shift right-up
+                [tile addReachableTilesAtX:tile.x+1 Y:tile.y-1 Value:tile.value];
+                [tile addReachableTilesAtX:tile.x+2 Y:tile.y-2 Value:tile.value];
+                //shift down-left
+                [tile addReachableTilesAtX:tile.x-1 Y:tile.y+1 Value:tile.value];
+                [tile addReachableTilesAtX:tile.x-2 Y:tile.y+2 Value:tile.value];
+            }
         }
     }
 }
@@ -1136,139 +1159,142 @@ int lastY = -1;
 }
 
 -(void)setPointers{
-    Tile *zerozero = _gridArray[0][0];
-    zerozero.right = _gridArray[0][1];
-    zerozero.bottom = _gridArray[1][0];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    if(size == 0){
+        Tile *zerozero = _gridArray[0][0];
+        zerozero.right = _gridArray[0][1];
+        zerozero.bottom = _gridArray[1][0];
     
-    Tile *zeroone = _gridArray[0][1];
-    zeroone.right = _gridArray[0][2];
-    zeroone.bottom = _gridArray[1][1];
-    zeroone.left = _gridArray[0][0];
+        Tile *zeroone = _gridArray[0][1];
+        zeroone.right = _gridArray[0][2];
+        zeroone.bottom = _gridArray[1][1];
+        zeroone.left = _gridArray[0][0];
 	
-    Tile *zerotwo = _gridArray[0][2];
-    zerotwo.right = _gridArray[0][3];
-    zerotwo.bottom = _gridArray[1][2];
-    zerotwo.left = _gridArray[0][1];
+        Tile *zerotwo = _gridArray[0][2];
+        zerotwo.right = _gridArray[0][3];
+        zerotwo.bottom = _gridArray[1][2];
+        zerotwo.left = _gridArray[0][1];
 	
-    Tile *zerothree = _gridArray[0][3];
-    zerothree.right = _gridArray[0][4];
-    zerothree.bottom = _gridArray[1][3];
-    zerothree.left = _gridArray[0][2];
+        Tile *zerothree = _gridArray[0][3];
+        zerothree.right = _gridArray[0][4];
+        zerothree.bottom = _gridArray[1][3];
+        zerothree.left = _gridArray[0][2];
     
-    Tile *zerofour = _gridArray[0][4];
-    zerofour.bottom = _gridArray[1][4];
-    zerofour.left = _gridArray[0][3];
+        Tile *zerofour = _gridArray[0][4];
+        zerofour.bottom = _gridArray[1][4];
+        zerofour.left = _gridArray[0][3];
 				
-    //row 2
-    Tile *onezero = _gridArray[1][0];
-    onezero.right = _gridArray[1][1];
-    onezero.bottom = _gridArray[2][0];
-    onezero.top = _gridArray[0][0];
+        //row 2
+        Tile *onezero = _gridArray[1][0];
+        onezero.right = _gridArray[1][1];
+        onezero.bottom = _gridArray[2][0];
+        onezero.top = _gridArray[0][0];
+        
+        Tile *oneone = _gridArray[1][1];
+        oneone.right = _gridArray[1][2];
+        oneone.left = _gridArray[1][0];
+        oneone.bottom = _gridArray[2][1];
+        oneone.top = _gridArray[0][1];
     
-    Tile *oneone = _gridArray[1][1];
-    oneone.right = _gridArray[1][2];
-    oneone.left = _gridArray[1][0];
-    oneone.bottom = _gridArray[2][1];
-    oneone.top = _gridArray[0][1];
+        Tile *onetwo = _gridArray[1][2];
+        onetwo.right = _gridArray[1][3];
+        onetwo.left = _gridArray[1][1];
+        onetwo.bottom = _gridArray[2][2];
+        onetwo.top = _gridArray[0][2];
     
-    Tile *onetwo = _gridArray[1][2];
-    onetwo.right = _gridArray[1][3];
-    onetwo.left = _gridArray[1][1];
-    onetwo.bottom = _gridArray[2][2];
-    onetwo.top = _gridArray[0][2];
+        Tile *onethree = _gridArray[1][3];
+        onethree.right = _gridArray[1][4];
+        onethree.left = _gridArray[1][2];
+        onethree.bottom = _gridArray[2][3];
+        onethree.top = _gridArray[0][3];
     
-    Tile *onethree = _gridArray[1][3];
-    onethree.right = _gridArray[1][4];
-    onethree.left = _gridArray[1][2];
-    onethree.bottom = _gridArray[2][3];
-    onethree.top = _gridArray[0][3];
-    
-    Tile *onefour = _gridArray[1][4];
-    onefour.left = _gridArray[1][3];
-    onefour.bottom = _gridArray[2][4];
-    onefour.top = _gridArray[0][4];
+        Tile *onefour = _gridArray[1][4];
+        onefour.left = _gridArray[1][3];
+        onefour.bottom = _gridArray[2][4];
+        onefour.top = _gridArray[0][4];
 				
-    //row 3
-    Tile *twozero = _gridArray[2][0];
-    twozero.right = _gridArray[2][1];
-    twozero.bottom = _gridArray[3][0];
-    twozero.top = _gridArray[1][0];
+        //row 3
+        Tile *twozero = _gridArray[2][0];
+        twozero.right = _gridArray[2][1];
+        twozero.bottom = _gridArray[3][0];
+        twozero.top = _gridArray[1][0];
     
-    Tile *twoone = _gridArray[2][1];
-    twoone.right = _gridArray[2][2];
-    twoone.left = _gridArray[2][0];
-    twoone.bottom = _gridArray[3][1];
-    twoone.top = _gridArray[1][1];
+        Tile *twoone = _gridArray[2][1];
+        twoone.right = _gridArray[2][2];
+        twoone.left = _gridArray[2][0];
+        twoone.bottom = _gridArray[3][1];
+        twoone.top = _gridArray[1][1];
 			
-    Tile *twotwo = _gridArray[2][2];
-    twotwo.right = _gridArray[2][3];
-    twotwo.left = _gridArray[2][1];
-    twotwo.bottom = _gridArray[3][2];
-    twotwo.top = _gridArray[1][2];
+        Tile *twotwo = _gridArray[2][2];
+        twotwo.right = _gridArray[2][3];
+        twotwo.left = _gridArray[2][1];
+        twotwo.bottom = _gridArray[3][2];
+        twotwo.top = _gridArray[1][2];
 	
-    Tile *twothree = _gridArray[2][3];
-    twothree.right = _gridArray[2][4];
-    twothree.left = _gridArray[2][2];
-    twothree.bottom = _gridArray[3][3];
-    twothree.top = _gridArray[1][3];
+        Tile *twothree = _gridArray[2][3];
+        twothree.right = _gridArray[2][4];
+        twothree.left = _gridArray[2][2];
+        twothree.bottom = _gridArray[3][3];
+        twothree.top = _gridArray[1][3];
 	
-    Tile *twofour = _gridArray[2][4];
-    twofour.left = _gridArray[2][3];
-    twofour.bottom = _gridArray[3][4];
-    twofour.top = _gridArray[1][4];
+        Tile *twofour = _gridArray[2][4];
+        twofour.left = _gridArray[2][3];
+        twofour.bottom = _gridArray[3][4];
+        twofour.top = _gridArray[1][4];
 				
-    //row 4
-    Tile *threezero = _gridArray[3][0];
-    threezero.right = _gridArray[3][1];
-    threezero.bottom = _gridArray[4][0];
-    threezero.top = _gridArray[2][0];
+        //row 4
+        Tile *threezero = _gridArray[3][0];
+        threezero.right = _gridArray[3][1];
+        threezero.bottom = _gridArray[4][0];
+        threezero.top = _gridArray[2][0];
     
-    Tile *threeone = _gridArray[3][1];
-    threeone.right = _gridArray[3][2];
-    threeone.left = _gridArray[3][0];
-    threeone.bottom = _gridArray[4][1];
-    threeone.top = _gridArray[2][1];
+        Tile *threeone = _gridArray[3][1];
+        threeone.right = _gridArray[3][2];
+        threeone.left = _gridArray[3][0];
+        threeone.bottom = _gridArray[4][1];
+        threeone.top = _gridArray[2][1];
     
-    Tile *threetwo = _gridArray[3][2];
-    threetwo.right = _gridArray[3][3];
-    threetwo.left = _gridArray[3][1];
-    threetwo.bottom = _gridArray[4][2];
-    threetwo.top = _gridArray[2][2];
+        Tile *threetwo = _gridArray[3][2];
+        threetwo.right = _gridArray[3][3];
+        threetwo.left = _gridArray[3][1];
+        threetwo.bottom = _gridArray[4][2];
+        threetwo.top = _gridArray[2][2];
+        
+        Tile *threethree = _gridArray[3][3];
+        threethree.right = _gridArray[3][4];
+        threethree.left = _gridArray[3][2];
+        threethree.bottom = _gridArray[4][3];
+        threethree.top = _gridArray[2][3];
     
-    Tile *threethree = _gridArray[3][3];
-    threethree.right = _gridArray[3][4];
-    threethree.left = _gridArray[3][2];
-    threethree.bottom = _gridArray[4][3];
-    threethree.top = _gridArray[2][3];
-    
-    Tile *threefour = _gridArray[3][4];
-    threefour.left = _gridArray[3][3];
-    threefour.bottom = _gridArray[4][4];
-    threefour.top = _gridArray[2][4];
+        Tile *threefour = _gridArray[3][4];
+        threefour.left = _gridArray[3][3];
+        threefour.bottom = _gridArray[4][4];
+        threefour.top = _gridArray[2][4];
 				
-    //row 5
-    Tile *fourzero = _gridArray[4][0];
-    fourzero.right = _gridArray[4][1];
-    fourzero.top = _gridArray[3][0];
+        //row 5
+        Tile *fourzero = _gridArray[4][0];
+        fourzero.right = _gridArray[4][1];
+        fourzero.top = _gridArray[3][0];
     
-    Tile *fourone = _gridArray[4][1];
-    fourone.right = _gridArray[4][2];
-    fourone.top = _gridArray[3][1];
-    fourone.left = _gridArray[4][0];
+        Tile *fourone = _gridArray[4][1];
+        fourone.right = _gridArray[4][2];
+        fourone.top = _gridArray[3][1];
+        fourone.left = _gridArray[4][0];
     
-    Tile *fourtwo = _gridArray[4][2];
-    fourtwo.right = _gridArray[4][3];
-    fourtwo.top = _gridArray[3][2];
-    fourtwo.left = _gridArray[4][1];
+        Tile *fourtwo = _gridArray[4][2];
+        fourtwo.right = _gridArray[4][3];
+        fourtwo.top = _gridArray[3][2];
+        fourtwo.left = _gridArray[4][1];
     
-    Tile *fourthree = _gridArray[4][3];
-    fourthree.right = _gridArray[4][4];
-    fourthree.top = _gridArray[3][3];
-    fourthree.left = _gridArray[4][2];
+        Tile *fourthree = _gridArray[4][3];
+        fourthree.right = _gridArray[4][4];
+        fourthree.top = _gridArray[3][3];
+        fourthree.left = _gridArray[4][2];
     
-    Tile *fourfour = _gridArray[4][4];
-    fourfour.top = _gridArray[3][4];
-    fourfour.left = _gridArray[4][3];
+        Tile *fourfour = _gridArray[4][4];
+        fourfour.top = _gridArray[3][4];
+        fourfour.left = _gridArray[4][3];
+    }
 }
 
 

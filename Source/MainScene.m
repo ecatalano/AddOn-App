@@ -4,6 +4,7 @@
 #import "Menu.h"
 #import "Instruction.h"
 #import "iAdHelper.h"
+#import "GameOver.h"
 
 @implementation MainScene{
     Grid *_grid;
@@ -19,7 +20,6 @@
     CCLabelTTF *_greatesttValueLabel;
     CCLabelTTF *_greatestValueLabel;
     CCLabelTTF *_modeLabel;
-
 }
 
 - (void)didLoadFromCCB {
@@ -27,6 +27,7 @@
     [iAdHelper setBannerPosition:BOTTOM];
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
 
     if(theme == 0){
         _backgroundGradient.startColor = [CCColor colorWithRed:0.220 green:0.770 blue:0.780 alpha:0.0];
@@ -66,6 +67,20 @@
         _greatesttValueLabel.opacity = 0.0;
         _greatestValueLabel.opacity = 0.0;
         _currentValueLabel.opacity = 0.0;
+    }
+    if(size == 0){
+        CGPoint pos = _grid.position;
+        _grid.position = pos;
+    }
+    else if(size == 1){
+        CGPoint pos = _grid.position;
+        pos.x = pos.x * .97;
+        _grid.position = pos;
+    }
+    else if(size == 2){
+        CGPoint pos = _grid.position;
+        pos.x = pos.x * .91;
+        _grid.position = pos;
     }
 
     
@@ -119,6 +134,18 @@
         _greatestValueLabel.opacity = 0;
         _currentValueLabel.opacity = 0;
         _modeLabel.opacity = 0;
+        
+        GameOver *gameOverPopover = (GameOver *)[CCBReader load:@"GameOver"];
+        gameOverPopover.positionType = CCPositionTypeNormalized;
+        gameOverPopover.position = ccp(0.5, 0.5);
+        gameOverPopover.zOrder = INT_MAX;
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
+        NSInteger gameScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"gamescore"];
+        NSInteger gameLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"gamelevel"];
+    
+        [gameOverPopover setLevel:gameLevel score:gameScore bestscore:bestScore bestlevel:bestLevel];
+        [self addChild:gameOverPopover];
     }
     if ([keyPath isEqualToString:@"currentValue"]) {
         _currentValueLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.currentValue];
@@ -140,7 +167,6 @@
             _backgroundGradient.endColor = [CCColor colorWithRed:0.0 green:0.0 blue:0.3];
         }
     }
-
 }
 - (void)dealloc {
     [_grid removeObserver:self forKeyPath:@"time"];
