@@ -70,16 +70,27 @@
 }
 -(void) addReachableTilesAtX:(int) x Y:(int) y Value:(int) value{
     int flag = 0;
+    int gridsize = 0;
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    if(size == 0){
+        gridsize = 5;
+    }
+    else if(size == 1){
+        gridsize = 4;
+    }
+    else if(size == 2){
+        gridsize = 3;
+    }
     for(int i = y-2; i <= y+2; i++){
         for(int j = x-2+flag; j <= x+2; j+=2){
-            if(j >=0 && i >= 0 && i < 5 && j < 5){
+            if(j >=0 && i >= 0 && i < gridsize && j < gridsize){
                 Tile *tile = (Tile*) [CCBReader load:@"Tile"];
                 tile.x = j;
                 tile.y = i;
                 tile.value = value;
                 if([self inArrayListAtTile:tile] == false){
                     //ensure tile isn't too far away
-                    if(abs(self.x - j) + abs(self.y - i) <= 4){
+                    if(abs(self.x - j) + abs(self.y - i) < gridsize){
                         [self.reachableTiles addObject:tile];
                     }
                 }

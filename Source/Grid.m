@@ -387,12 +387,10 @@ int lastY = -1;
     
     [self setPointers];
 
-    if(size == 0){
+    if(size == 0 || size == 2){
         for(int i = 0; i < GRID_SIZE; i++){
             for(int j = 0; j < GRID_SIZE; j++){
                 Tile *tile = _gridArray[i][j];
-                //printf("%d ", tile.value);
-            
                 if(tile!=nil){
                     int temp = [self findGreatestPathAtTile:tile];
                     if(temp > _greatestPath){
@@ -543,7 +541,7 @@ int lastY = -1;
 
 -(void) fillReachableTiles{
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    if(size == 0){
+    if(size == 0 || size == 2){
         for(int i = 0; i < GRID_SIZE; i++){
             for(int j = 0; j < GRID_SIZE; j++){
                 Tile *tile = _gridArray[i][j];
@@ -561,6 +559,7 @@ int lastY = -1;
 }
 -(int) findGreatestPathAtTile:(Tile *)tile{
     int greatest = 0;
+    
     //get coordinates that this tile can reach
     NSMutableArray *coordinates = [tile reachableTiles];
     
@@ -588,79 +587,94 @@ int lastY = -1;
 
 //find greatest path between 2 coordinates
 -(int) greatestPathBetweenTileOne: (Tile *)t1 TileTwo:(Tile *) t2{
-    
-    //c2 can't reference any pointers
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     int ret = 0;
-    int p1 = 0;
-    int p2 = 0;
-    int p3 = 0;
-    int p4 = 0;
-    int p5 = 0;
-    int p6 = 0;
+    if(size == 0){
+        //c2 can't reference any pointers
+        int p1 = 0;
+        int p2 = 0;
+        int p3 = 0;
+        int p4 = 0;
+        int p5 = 0;
+        int p6 = 0;
     
-    //test different starting conditions to determine patterns
-    if((abs(t2.x-t1.x) == 2) && (abs(t2.y-t1.y) == 2) ){
-        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
-        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
-        p3 = [self pattern2YAtTile:t1 TileTwo:t2];
-        p4 = [self pattern2XAtTile:t1 TileTwo:t2];
-        p5 = [self patternExceptionOneAtTile:t1 TileTwo:t2];
-        p6 = [self patternExceptionTwoAtTile:t1 TileTwo:t2];
-    }else if((abs(t2.x-t1.x) > 1) && (abs(t2.y-t1.y) == 1)){
-        //changed >= to >
-        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
-        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
-        p3 = [self pattern2YAtTile:t1 TileTwo:t2];
-        p4 = [self pattern2YAtTile:t2 TileTwo:t1];
-    }else if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) > 1)){
-        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
-        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
-        p3 = [self pattern2XAtTile:t1 TileTwo:t2];
-        p4 = [self pattern2XAtTile:t2 TileTwo:t1];
-    }else if((abs(t2.x-t1.x) == 0) && (abs(t2.y-t1.y) == 2)){
-        p1 = [self pattern3XLeftAtTile:t1 TileTwo:t2];
-        p2 = [self pattern3XRightAtTile:t1 TileTwo:t2];
-        p3 = [self pattern4XLeftAtTile:t1 TileTwo:t2];
-        p4 = [self pattern4XRightAtTile:t1 TileTwo:t2];
-        p5 = [self pattern4XLeftAtTile:t2 TileTwo:t1];
-        p6 = [self pattern4XRightAtTile:t2 TileTwo:t1];
-    }else if((abs(t2.y-t1.y) == 0) && (abs(t2.x-t1.x) == 2)){
-        p1 = [self pattern3YTopAtTile:t1 TileTwo:t2];
-        p2 = [self pattern3YBottomAtTile:t1 TileTwo:t2];
-        p3 = [self pattern4XTopAtTile:t1 TileTwo:t2];
-        p4 = [self pattern4XBottomAtTile:t1 TileTwo:t2];
-        p5 = [self pattern4XTopAtTile:t2 TileTwo:t1];
-        p6 = [self pattern4XBottomAtTile:t2 TileTwo:t1];
-    }else if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) == 1)){
-        p1 = [self pattern5AAtTile:t1 TileTwo:t2];
-        self.p5A = false;
-        p2 = [self pattern5BAtTile:t1 TileTwo:t2];
-        self.p5B = false;
-        p3 = [self pattern5AAtTile:t2 TileTwo:t1];
-        self.p5A = false;
-        p4 = [self pattern5BAtTile:t2 TileTwo:t1];
-        self.p5B = false;
-    }else{
-        p1 = [self pattern1XAtTile:t1 TileTwo:t2];
-        p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+        //test different starting conditions to determine patterns
+        if((abs(t2.x-t1.x) == 2) && (abs(t2.y-t1.y) == 2) ){
+            p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+            p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+            p3 = [self pattern2YAtTile:t1 TileTwo:t2];
+            p4 = [self pattern2XAtTile:t1 TileTwo:t2];
+            p5 = [self patternExceptionOneAtTile:t1 TileTwo:t2];
+            p6 = [self patternExceptionTwoAtTile:t1 TileTwo:t2];
+        }else if((abs(t2.x-t1.x) > 1) && (abs(t2.y-t1.y) == 1)){
+            //changed >= to >
+            p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+            p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+            p3 = [self pattern2YAtTile:t1 TileTwo:t2];
+            p4 = [self pattern2YAtTile:t2 TileTwo:t1];
+        }else if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) > 1)){
+            p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+            p2 = [self pattern1YAtTile:t1 TileTwo:t2];
+            p3 = [self pattern2XAtTile:t1 TileTwo:t2];
+            p4 = [self pattern2XAtTile:t2 TileTwo:t1];
+        }else if((abs(t2.x-t1.x) == 0) && (abs(t2.y-t1.y) == 2)){
+            p1 = [self pattern3XLeftAtTile:t1 TileTwo:t2];
+            p2 = [self pattern3XRightAtTile:t1 TileTwo:t2];
+            p3 = [self pattern4XLeftAtTile:t1 TileTwo:t2];
+            p4 = [self pattern4XRightAtTile:t1 TileTwo:t2];
+            p5 = [self pattern4XLeftAtTile:t2 TileTwo:t1];
+            p6 = [self pattern4XRightAtTile:t2 TileTwo:t1];
+        }else if((abs(t2.y-t1.y) == 0) && (abs(t2.x-t1.x) == 2)){
+            p1 = [self pattern3YTopAtTile:t1 TileTwo:t2];
+            p2 = [self pattern3YBottomAtTile:t1 TileTwo:t2];
+            p3 = [self pattern4XTopAtTile:t1 TileTwo:t2];
+            p4 = [self pattern4XBottomAtTile:t1 TileTwo:t2];
+            p5 = [self pattern4XTopAtTile:t2 TileTwo:t1];
+            p6 = [self pattern4XBottomAtTile:t2 TileTwo:t1];
+        }else if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) == 1)){
+            p1 = [self pattern5AAtTile:t1 TileTwo:t2];
+            self.p5A = false;
+            p2 = [self pattern5BAtTile:t1 TileTwo:t2];
+            self.p5B = false;
+            p3 = [self pattern5AAtTile:t2 TileTwo:t1];
+            self.p5A = false;
+            p4 = [self pattern5BAtTile:t2 TileTwo:t1];
+            self.p5B = false;
+        }else{
+            p1 = [self pattern1XAtTile:t1 TileTwo:t2];
+            p2 = [self pattern1YAtTile:t1 TileTwo:t2];
 
-    }
-    
-    NSMutableArray *arr = [[NSMutableArray alloc]init];
-    [arr addObject:[NSNumber numberWithInt:p1]];
-    [arr addObject:[NSNumber numberWithInt:p2]];
-    [arr addObject:[NSNumber numberWithInt:p3]];
-    [arr addObject:[NSNumber numberWithInt:p4]];
-    [arr addObject:[NSNumber numberWithInt:p5]];
-    [arr addObject:[NSNumber numberWithInt:p6]];
-    
-    for(int i = 0; i < [arr count];i++){
-        int temp = (int)[[arr objectAtIndex:i] integerValue];
-        if(temp > ret){
-            ret = temp;
         }
+    
+        NSMutableArray *arr = [[NSMutableArray alloc]init];
+        [arr addObject:[NSNumber numberWithInt:p1]];
+        [arr addObject:[NSNumber numberWithInt:p2]];
+        [arr addObject:[NSNumber numberWithInt:p3]];
+        [arr addObject:[NSNumber numberWithInt:p4]];
+        [arr addObject:[NSNumber numberWithInt:p5]];
+        [arr addObject:[NSNumber numberWithInt:p6]];
+    
+        for(int i = 0; i < [arr count];i++){
+            int temp = (int)[[arr objectAtIndex:i] integerValue];
+            if(temp > ret){
+                ret = temp;
+            }
+        }
+        //NSLog(@"Paths between %d,%d and %d,%d are %d %d %d %d %d %d",t1.x,t1.y,t2.x,t2.y,p1,p2,p3,p4,p5,p6);
+        return ret;
     }
-    //NSLog(@"Paths between %d,%d and %d,%d are %d %d %d %d %d %d",t1.x,t1.y,t2.x,t2.y,p1,p2,p3,p4,p5,p6);
+    if(size == 2){
+        //c2 can't reference any pointers
+        //test different starting conditions to determine patterns
+        if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) == 1)){
+            ret =[self patternCornerAtTile:t1 TileTwo:t2];
+        }else if((abs(t2.x-t1.x) == 2) && (abs(t2.y-t1.y) == 0)){
+            ret = [self patternXAtTile:t1 TileTwo:t2];
+        }else if((abs(t2.y-t1.y) == 2) && (abs(t2.x-t1.x) == 0)){
+            ret =[self patternYAtTile:t1 TileTwo:t2];
+        }
+        return ret;
+    }
     
     return ret;
 }
@@ -1181,6 +1195,64 @@ int lastY = -1;
     return 0;
 }
 
+-(int)patternXAtTile:(Tile *)t1 TileTwo:(Tile *) t2{
+    
+    //base case
+    if(t1.x == t2.x && t1.y == t2.y){
+        return t2.value;
+    }
+    
+    //align x
+    if(t1.x > t2.x){
+        return t1.value + [self patternXAtTile:t1.left TileTwo:t2];
+    }
+    if(t1.x < t2.x){
+        return t1.value + [self patternXAtTile:t1.right TileTwo:t2];
+    }
+    
+    return 0;
+}
+-(int)patternYAtTile:(Tile *)t1 TileTwo:(Tile *) t2{
+    
+    //base case
+    if(t1.x == t2.x && t1.y == t2.y){
+        return t2.value;
+    }
+    
+    //align y
+    if(t1.y > t2.y){
+        return t1.value + [self patternYAtTile:t1.top TileTwo:t2];
+    }
+    if(t1.y < t2.y){
+        return t1.value + [self patternYAtTile:t1.bottom TileTwo:t2];
+    }
+    return 0;
+}
+-(int)patternCornerAtTile:(Tile *)t1 TileTwo:(Tile *) t2{
+    
+    //base case
+    if(t1.x == t2.x && t1.y == t2.y){
+        return t2.value;
+    }
+    //align x
+    if(t1.x > t2.x){
+        return t1.value + [self patternCornerAtTile:t1.left TileTwo:t2];
+    }
+    if(t1.x < t2.x){
+        return t1.value + [self patternCornerAtTile:t1.right TileTwo:t2];
+    }
+    
+    //align y
+    if(t1.y > t2.y){
+        return t1.value + [self patternCornerAtTile:t1.top TileTwo:t2];
+    }
+    if(t1.y < t2.y){
+        return t1.value + [self patternCornerAtTile:t1.bottom TileTwo:t2];
+    }
+    
+    return 0;
+}
+
 -(void)setPointers{
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if(size == 0){
@@ -1317,6 +1389,49 @@ int lastY = -1;
         Tile *fourfour = _gridArray[4][4];
         fourfour.top = _gridArray[3][4];
         fourfour.left = _gridArray[4][3];
+    }
+    if(size == 2){
+        Tile *zerozero = _gridArray[0][0];
+        zerozero.right = _gridArray[0][1];
+        zerozero.bottom = _gridArray[1][0];
+        
+        Tile *zeroone = _gridArray[0][1];
+        zeroone.right = _gridArray[0][2];
+        zeroone.bottom = _gridArray[1][1];
+        zeroone.left = _gridArray[0][0];
+        
+        Tile *zerotwo = _gridArray[0][2];
+        zerotwo.left = _gridArray[0][1];
+        zerotwo.bottom = _gridArray[1][2];
+        
+        Tile *onezero = _gridArray[1][0];
+        onezero.right = _gridArray[1][1];
+        onezero.bottom = _gridArray[2][0];
+        onezero.top = _gridArray[0][0];
+        
+        Tile *oneone = _gridArray[1][1];
+        oneone.right = _gridArray[1][2];
+        oneone.bottom = _gridArray[2][1];
+        oneone.left = _gridArray[1][0];
+        oneone.top = _gridArray[0][1];
+
+        Tile *onetwo = _gridArray[1][2];
+        onetwo.left = _gridArray[1][1];
+        onetwo.bottom = _gridArray[2][2];
+        onetwo.top = _gridArray[0][2];
+
+        Tile *twozero = _gridArray[2][0];
+        twozero.right = _gridArray[2][1];
+        twozero.top = _gridArray[1][0];
+        
+        Tile *twoone = _gridArray[2][1];
+        twoone.right = _gridArray[2][2];
+        twoone.top = _gridArray[1][1];
+        twoone.left = _gridArray[2][0];
+
+        Tile *twotwo = _gridArray[2][2];
+        twotwo.left = _gridArray[2][1];
+        twotwo.top = _gridArray[1][2];
     }
 }
 
