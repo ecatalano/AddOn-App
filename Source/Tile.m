@@ -71,6 +71,7 @@
 -(void) addReachableTilesAtX:(int) x Y:(int) y Value:(int) value{
     int flag = 0;
     int gridsize = 0;
+    int evenfactor = 0;
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if(size == 0){
         gridsize = 5;
@@ -81,8 +82,12 @@
     else if(size == 2){
         gridsize = 3;
     }
+    //even sized grids (offset by 1)
+    if(gridsize%2 == 0){
+        evenfactor = -1;
+    }
     for(int i = y-2; i <= y+2; i++){
-        for(int j = x-2+flag; j <= x+2; j+=2){
+        for(int j = x-2+flag+evenfactor; j <= x+2; j+=2){
             if(j >=0 && i >= 0 && i < gridsize && j < gridsize){
                 Tile *tile = (Tile*) [CCBReader load:@"Tile"];
                 tile.x = j;
