@@ -1,3 +1,10 @@
+//
+//  MainScene.m
+//  AddOn
+//
+//  Created by Elliot Catalano on 10/17/15.
+//  Copyright © 2015 Elliot Catalano. All rights reserved.
+//
 #import "MainScene.h"
 #import "AppDelegate.h"
 #import "Grid.h"
@@ -108,8 +115,9 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if ([keyPath isEqualToString:@"time"]) {
-        NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
         if(mode != 3){
             _timeLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.time];
             if(_grid.time <= 3){
@@ -139,8 +147,80 @@
         gameOverPopover.positionType = CCPositionTypeNormalized;
         gameOverPopover.position = ccp(0.5, 0.5);
         gameOverPopover.zOrder = INT_MAX;
-        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore"];
-        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel"];
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3classic"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3classic"];
+        NSInteger modeChanged = [[NSUserDefaults standardUserDefaults] integerForKey:@"modechanged"];
+
+        if(modeChanged == 1){
+            size = [[NSUserDefaults standardUserDefaults] integerForKey:@"previoussize"];
+            mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousmode"];
+        }
+        if(size == 0){
+            if(mode == 0){
+                //classic
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3classic"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3classic"];
+            }
+            else if(mode == 1){
+                //blitz
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3blitz"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3blitz"];
+            }
+            else if(mode == 2){
+                //sudden
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3sudden"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3sudden"];
+            }
+            else if(mode == 3){
+                //nightmare
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3nightmare"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3nightmare"];
+            }
+        }
+        else if(size==1){
+            if(mode == 0){
+                //classic
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4classic"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4classic"];
+            }
+            else if(mode == 1){
+                //blitz
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4blitz"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4blitz"];
+            }
+            else if(mode == 2){
+                //sudden
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4sudden"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4sudden"];
+            }
+            else if(mode == 3){
+                //nightmare
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4nightmare"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4nightmare"];
+            }
+        }
+        else if(size == 2){
+            if(mode == 0){
+                //classic
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5classic"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5classic"];
+            }
+            else if(mode == 1){
+                //blitz
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5blitz"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5blitz"];
+            }
+            else if(mode == 2){
+                //sudden
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5sudden"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5sudden"];
+            }
+            else if(mode == 3){
+                //nightmare
+                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5nightmare"];
+                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5nightmare"];
+            }
+        }
         NSInteger gameScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"gamescore"];
         NSInteger gameLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"gamelevel"];
     

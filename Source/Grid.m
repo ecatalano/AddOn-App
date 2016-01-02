@@ -24,10 +24,10 @@
     int _greatestPath;
 }
 
-static NSInteger START_TILES = 25;
-static NSInteger LINE_SIZE = 5;
-static NSInteger TIME_LIMIT = 15;
-static NSInteger GRID_SIZE = 5;
+static NSInteger START_TILES = 9;
+static NSInteger LINE_SIZE = 3;
+static NSInteger TIME_LIMIT = 10;
+static NSInteger GRID_SIZE = 3;
 
 
 int selectedTileSize = 0;
