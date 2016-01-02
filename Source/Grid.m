@@ -74,22 +74,51 @@ int lastY = -1;
 
 -(void)playSound{
     OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
 
-    if(selectedTileSize == 1 && !_endGame){
-        [audio playEffect:@"one.caf"];
+    if(size == 0){
+        if(selectedTileSize == 1 && !_endGame){
+            [audio playEffect:@"one.caf"];
+        }
+        if(selectedTileSize == 2 && !_endGame){
+            [audio playEffect:@"three.caf"];
+        }
+        if(selectedTileSize == 3 && !_endGame){
+            [audio playEffect:@"five.caf"];
+        }
     }
-    if(selectedTileSize == 2 && !_endGame){
-        [audio playEffect:@"two.caf"];
+    else if(size == 1){
+        if(selectedTileSize == 1 && !_endGame){
+            [audio playEffect:@"one.caf"];
+        }
+        if(selectedTileSize == 2 && !_endGame){
+            [audio playEffect:@"two.caf"];
+        }
+        if(selectedTileSize == 3 && !_endGame){
+            [audio playEffect:@"three.caf"];
+        }
+        if(selectedTileSize == 4 && !_endGame){
+            [audio playEffect:@"five.caf"];
+        }
     }
-    if(selectedTileSize == 3 && !_endGame){
-        [audio playEffect:@"three.caf"];
+    else if(size == 2){
+        if(selectedTileSize == 1 && !_endGame){
+            [audio playEffect:@"one.caf"];
+        }
+        if(selectedTileSize == 2 && !_endGame){
+            [audio playEffect:@"two.caf"];
+        }
+        if(selectedTileSize == 3 && !_endGame){
+            [audio playEffect:@"three.caf"];
+        }
+        if(selectedTileSize == 4 && !_endGame){
+            [audio playEffect:@"four.caf"];
+        }
+        if(selectedTileSize == 5 && !_endGame){
+            [audio playEffect:@"five.caf"];
+        }
     }
-    if(selectedTileSize == 4 && !_endGame){
-        [audio playEffect:@"four.caf"];
-    }
-    if(selectedTileSize == 5 && !_endGame){
-        [audio playEffect:@"five.caf"];
-    }
+
 }
 
 
@@ -120,17 +149,7 @@ int lastY = -1;
     }
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     
-    if(size == 1){
-        if([_device isEqualToString:@"iPhone 4s-"]){
-            location.x = location.x + 6;
-            location.y = location.y + 5;
-        }
-        else{
-            location.x = location.x + 6;
-            location.y = location.y + 15;
-        }
-    }
-    else if(size == 2){
+    if(size == 0){
         if([_device isEqualToString:@"iPhone 4s-"]){
             location.x = location.x + 14;
             location.y = location.y + 22;
@@ -138,6 +157,17 @@ int lastY = -1;
         else{
             location.x = location.x + 14;
             location.y = location.y + 32;
+        }
+    }
+    
+    else if(size == 1){
+        if([_device isEqualToString:@"iPhone 4s-"]){
+            location.x = location.x + 6;
+            location.y = location.y + 5;
+        }
+        else{
+            location.x = location.x + 6;
+            location.y = location.y + 15;
         }
     }
     
@@ -272,13 +302,13 @@ int lastY = -1;
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     Tile *tile = (Tile*) [CCBReader load:@"Tile"];
     if(size == 0){
-        tile = (Tile*) [CCBReader load:@"Tile"];
+        tile = (Tile*) [CCBReader load:@"Tile2"];
     }
     else if(size == 1){
         tile = (Tile*) [CCBReader load:@"Tile1"];
     }
     else if(size == 2){
-        tile = (Tile*) [CCBReader load:@"Tile2"];
+        tile = (Tile*) [CCBReader load:@"Tile"];
     }
     int x = (int)row;
     int y = (int)column;
@@ -304,13 +334,30 @@ int lastY = -1;
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     self.theme = theme;
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
+    
     if(mode == 0 || mode == 2 || mode == 3){
-        TIME_LIMIT = 15;
-        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
-    }
-    else if(mode == 2 || mode == 3){
-        TIME_LIMIT = 15;
-        [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+        if(size == 0){
+            TIME_LIMIT = 10;
+            [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"currenttime"];
+        }
+        else if(size == 1){
+            TIME_LIMIT = 12;
+            [[NSUserDefaults standardUserDefaults] setInteger:12 forKey:@"currenttime"];
+            if(self.level > 9){
+                TIME_LIMIT = 15;
+                [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+            }
+        }
+        else if(size == 2){
+            TIME_LIMIT = 15;
+            [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+            if(self.level > 9){
+                TIME_LIMIT = 20;
+                [[NSUserDefaults standardUserDefaults] setInteger:20 forKey:@"currenttime"];
+            }
+        }
     }
     else if(mode == 1){
         //Blitz mode
@@ -318,11 +365,10 @@ int lastY = -1;
         [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
 
     }
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if(size == 0){
-        GRID_SIZE = 5;
-        LINE_SIZE = 5;
-        START_TILES = 25;
+        GRID_SIZE = 3;
+        LINE_SIZE = 3;
+        START_TILES = 9;
 
     }
     else if(size == 1){
@@ -332,9 +378,9 @@ int lastY = -1;
 
     }
     else if(size == 2){
-        GRID_SIZE = 3;
-        LINE_SIZE = 3;
-        START_TILES = 9;
+        GRID_SIZE = 5;
+        LINE_SIZE = 5;
+        START_TILES = 25;
     }
 
     // access audio object
@@ -502,13 +548,6 @@ int lastY = -1;
     [self stopTimer];
     self.level++;
     
-    if(self.level > 8){
-        self.time = TIME_LIMIT + 5;
-    }
-    else{
-        self.time = TIME_LIMIT;
-    }
-    [[NSUserDefaults standardUserDefaults] setInteger:self.time forKey:@"currenttime"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"currentscore"];
     
@@ -584,7 +623,7 @@ int lastY = -1;
 -(int) greatestPathBetweenTileOne: (Tile *)t1 TileTwo:(Tile *) t2{
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     int ret = 0;
-    if(size == 0){
+    if(size == 2){
         //c2 can't reference any pointers
         int p1 = 0;
         int p2 = 0;
@@ -695,7 +734,7 @@ int lastY = -1;
         }
         return ret;
     }
-    else if(size == 2){
+    else if(size == 0){
         //c2 can't reference any pointers
         //test different starting conditions to determine patterns
         if((abs(t2.x-t1.x) == 1) && (abs(t2.y-t1.y) == 1)){
@@ -1460,7 +1499,7 @@ int lastY = -1;
 
 -(void)setPointers{
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    if(size == 0){
+    if(size == 2){
         Tile *zerozero = _gridArray[0][0];
         zerozero.right = _gridArray[0][1];
         zerozero.bottom = _gridArray[1][0];
@@ -1680,7 +1719,7 @@ int lastY = -1;
         threethree.left = _gridArray[3][2];
         threethree.top = _gridArray[2][3];
     }
-    else if(size == 2){
+    else if(size == 0){
         Tile *zerozero = _gridArray[0][0];
         zerozero.right = _gridArray[0][1];
         zerozero.bottom = _gridArray[1][0];

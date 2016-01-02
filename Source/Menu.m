@@ -60,16 +60,16 @@
         _modeButton.title = @"Nightmare";
     }
     if(size == 0){
-        _sizeLabel.string = @"5x5";
-        _sizeButton.title = @"5x5";
+        _sizeLabel.string = @"3x3";
+        _sizeButton.title = @"3x3";
     }
     else if(size == 1){
         _sizeLabel.string = @"4x4";
         _sizeButton.title = @"4x4";
     }
     else if(size == 2){
-        _sizeLabel.string = @"3x3";
-        _sizeButton.title = @"3x3";
+        _sizeLabel.string = @"5x5";
+        _sizeButton.title = @"5x5";
     }
 }
 
@@ -111,6 +111,7 @@
 - (void)classicMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     if(mode != 0){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Classic";
@@ -120,6 +121,7 @@
 - (void)blitzMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     if(mode != 1){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Blitz";
@@ -129,6 +131,7 @@
 - (void)suddenDeathMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     if(mode != 2){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Sudden Death";
@@ -138,6 +141,7 @@
 - (void)nightmareMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     if(mode != 3){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Nightmare";
@@ -146,8 +150,9 @@
 }
 - (void)fiveSize {
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    if(size != 0){
-        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"size"];
+    if(size != 2){
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
+        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"size"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _sizeLabel.string = @"5x5";
         _sizeButton.title = @"5x5";
@@ -156,6 +161,7 @@
 - (void)fourSize {
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if(size != 1){
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"size"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _sizeLabel.string = @"4x4";
@@ -164,8 +170,9 @@
 }
 - (void)threeSize {
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    if(size != 2){
-        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"size"];
+    if(size != 0){
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"size"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _sizeLabel.string = @"3x3";
         _sizeButton.title = @"3x3";

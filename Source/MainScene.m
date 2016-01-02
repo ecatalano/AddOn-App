@@ -70,6 +70,7 @@
     }
     if(size == 0){
         CGPoint pos = _grid.position;
+        pos.x = pos.x * .91;
         _grid.position = pos;
     }
     else if(size == 1){
@@ -79,7 +80,6 @@
     }
     else if(size == 2){
         CGPoint pos = _grid.position;
-        pos.x = pos.x * .91;
         _grid.position = pos;
     }
 

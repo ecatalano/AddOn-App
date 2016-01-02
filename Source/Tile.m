@@ -74,13 +74,13 @@
     int evenfactor = 0;
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if(size == 0){
-        gridsize = 5;
+        gridsize = 3;
     }
     else if(size == 1){
         gridsize = 4;
     }
     else if(size == 2){
-        gridsize = 3;
+        gridsize = 5;
     }
     //even sized grids (offset by 1)
     if(gridsize%2 == 0){
