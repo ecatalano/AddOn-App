@@ -31,6 +31,7 @@
 		8BB34CBA1C11EBDD00C443B7 /* instruction 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB61C11EBDD00C443B7 /* instruction 2.png */; };
 		8BB34CBB1C11EBDD00C443B7 /* instruction 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB71C11EBDD00C443B7 /* instruction 3.png */; };
 		8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB34CB81C11EBDD00C443B7 /* instruction 4.png */; };
+		8BCC8A3F1C38CCD1004ADCCC /* HighScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC8A3E1C38CCD1004ADCCC /* HighScore.m */; };
 		8BD34DFA1C1B193C00B2C0D2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BD34DF91C1B193C00B2C0D2 /* Images.xcassets */; };
 		B737893B180761570076A88C /* Published-iOS in Resources */ = {isa = PBXBuildFile; fileRef = B737893A180761570076A88C /* Published-iOS */; };
 		B73789871807631A0076A88C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B73789851807631A0076A88C /* main.m */; };
@@ -128,6 +129,8 @@
 		8BB34CB61C11EBDD00C443B7 /* instruction 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 2.png"; sourceTree = "<group>"; };
 		8BB34CB71C11EBDD00C443B7 /* instruction 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 3.png"; sourceTree = "<group>"; };
 		8BB34CB81C11EBDD00C443B7 /* instruction 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instruction 4.png"; sourceTree = "<group>"; };
+		8BCC8A3D1C38CCD1004ADCCC /* HighScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScore.h; path = Source/HighScore.h; sourceTree = "<group>"; };
+		8BCC8A3E1C38CCD1004ADCCC /* HighScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScore.m; path = Source/HighScore.m; sourceTree = "<group>"; };
 		8BD34DF91C1B193C00B2C0D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B737893A180761570076A88C /* Published-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Published-iOS"; path = "Source/Resources/Published-iOS"; sourceTree = SOURCE_ROOT; };
 		B737893D1807617C0076A88C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/iOS/AppDelegate.h; sourceTree = "<group>"; };
@@ -348,6 +351,8 @@
 				8B8C1BB51C1275570098D501 /* Instruction.m */,
 				8B84E6FE1C25D4720094E0F6 /* Menu.h */,
 				8B84E6FF1C25D4720094E0F6 /* Menu.m */,
+				8BCC8A3D1C38CCD1004ADCCC /* HighScore.h */,
+				8BCC8A3E1C38CCD1004ADCCC /* HighScore.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
@@ -591,6 +596,7 @@
 			files = (
 				8B58F2AE1BD338A500E409D9 /* Grid.m in Sources */,
 				8B8C1BB61C1275570098D501 /* Instruction.m in Sources */,
+				8BCC8A3F1C38CCD1004ADCCC /* HighScore.m in Sources */,
 				8B199F6C1BD2110C00F77164 /* Tile.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				8B1E77641C139371002F22A7 /* iAdHelper.m in Sources */,

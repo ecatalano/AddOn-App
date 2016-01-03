@@ -216,5 +216,9 @@
     [[CCDirector sharedDirector] popScene];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"instructions"];
 }
+-(void)displayHighscores{
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Highscores"];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
+}
 
 @end
