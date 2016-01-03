@@ -220,5 +220,11 @@
     CCScene *instructionScene = [CCBReader loadAsScene:@"Highscores"];
     [[CCDirector sharedDirector] pushScene:instructionScene];
 }
+- (void)infoButtonPressed{
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
+    //NSLog(@"Instructions should launch");
+}
 
 @end

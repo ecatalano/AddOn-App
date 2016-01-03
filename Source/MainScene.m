@@ -255,13 +255,6 @@
     [_grid removeObserver:self forKeyPath:@"currentValue"];
 
 }
-
-- (void)infoButtonPressed{
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
-    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 1"];
-    [[CCDirector sharedDirector] pushScene:instructionScene];
-    //NSLog(@"Instructions should launch");
-}
 - (void)menuButtonPressed{
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
     CCScene *instructionScene = [CCBReader loadAsScene:@"Menu"];
