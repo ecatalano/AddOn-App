@@ -110,8 +110,11 @@
 }
 - (void)classicMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+
     if(mode != 0){
         [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Classic";
@@ -120,8 +123,11 @@
 }
 - (void)blitzMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+
     if(mode != 1){
         [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Blitz";
@@ -130,8 +136,11 @@
 }
 - (void)suddenDeathMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+
     if(mode != 2){
         [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Sudden Death";
@@ -140,8 +149,11 @@
 }
 - (void)nightmareMode {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+
     if(mode != 3){
         [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
+        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"mode"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
         _modeLabel.string = @"Nightmare";
@@ -149,8 +161,10 @@
     }
 }
 - (void)fiveSize {
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if(size != 2){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"size"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
@@ -160,7 +174,9 @@
 }
 - (void)fourSize {
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     if(size != 1){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"size"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
@@ -170,7 +186,9 @@
 }
 - (void)threeSize {
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     if(size != 0){
+        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
         [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"size"];
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];

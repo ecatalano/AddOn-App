@@ -17,6 +17,8 @@
     CCLabelTTF *_highscoreLabel;
     CCNodeColor *_backgroundColor;
     ADBannerView *_bannerView;
+    CCLabelTTF *_sizeLabel;
+    CCLabelTTF *_modeLabel;
 }
 
 - (void)didLoadFromCCB {
@@ -58,6 +60,8 @@
     }
     if(mode == 0){
         if(size == 0){
+            _sizeLabel.string = @"3x3";
+            _modeLabel.string = @"Classic";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3classic"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3classic"];
     
@@ -79,6 +83,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 1){
+            _sizeLabel.string = @"4x4";
+            _modeLabel.string = @"Classic";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4classic"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4classic"];
                 
@@ -101,6 +107,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 2){
+            _sizeLabel.string = @"5x5";
+            _modeLabel.string = @"Classic";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5classic"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5classic"];
                 
@@ -125,6 +133,8 @@
     }
     else if(mode == 1){
         if(size == 0){
+            _sizeLabel.string = @"3x3";
+            _modeLabel.string = @"Blitz";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3blitz"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3blitz"];
                 
@@ -147,6 +157,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 1){
+            _sizeLabel.string = @"4x4";
+            _modeLabel.string = @"Blitz";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4blitz"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4blitz"];
             
@@ -169,6 +181,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 2){
+            _sizeLabel.string = @"5x5";
+            _modeLabel.string = @"Blitz";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5blitz"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5blitz"];
             
@@ -193,6 +207,8 @@
     }
     else if(mode == 2){
         if(size == 0){
+            _sizeLabel.string = @"3x3";
+            _modeLabel.string = @"Sudden Death";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3sudden"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3sudden"];
                 
@@ -215,6 +231,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 1){
+            _sizeLabel.string = @"4x4";
+            _modeLabel.string = @"Sudden Death";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4sudden"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4sudden"];
                 
@@ -237,6 +255,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 2){
+            _sizeLabel.string = @"5x5";
+            _modeLabel.string = @"Sudden Death";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5sudden"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5sudden"];
                 
@@ -261,6 +281,8 @@
     }
     else if(mode == 3){
         if(size == 0){
+            _sizeLabel.string = @"3x3";
+            _modeLabel.string = @"Nightmare";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3nightmare"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3nightmare"];
                 
@@ -283,6 +305,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 1){
+            _sizeLabel.string = @"4x4";
+            _modeLabel.string = @"Nightmare";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4nightmare"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4nightmare"];
                 
@@ -305,6 +329,8 @@
             _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
         }
         else if(size == 2){
+            _sizeLabel.string = @"5x5";
+            _modeLabel.string = @"Nightmare";
             NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5nightmare"];
             NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5nightmare"];
                 
