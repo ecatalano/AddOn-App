@@ -7,7 +7,6 @@
 //
 
 #import "GameOver.h"
-#import "iAdHelper.h"
 
 @implementation GameOver {
     CCLabelTTF *_scoreLabel;

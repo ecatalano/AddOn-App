@@ -12,8 +12,10 @@
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		8B199F6C1BD2110C00F77164 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F6B1BD2110C00F77164 /* Tile.m */; };
-		8B1E775A1C13868C002F22A7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1E77591C13868C002F22A7 /* iAd.framework */; };
-		8B1E77641C139371002F22A7 /* iAdHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1E77631C139371002F22A7 /* iAdHelper.m */; };
+		8B452B701C3B123A00B44455 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1E77591C13868C002F22A7 /* iAd.framework */; };
+		8B452B731C3B12AC00B44455 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B452B711C3B12AC00B44455 /* StartApp.bundle */; };
+		8B452B741C3B12AC00B44455 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B452B721C3B12AC00B44455 /* StartApp.framework */; };
+		8B452B761C3B134E00B44455 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B452B751C3B134E00B44455 /* libz.tbd */; };
 		8B58F2AE1BD338A500E409D9 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F681BD210F000F77164 /* Grid.m */; };
 		8B5A112B1C111B520030F9C0 /* five.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11241C111B520030F9C0 /* five.caf */; };
 		8B5A112C1C111B520030F9C0 /* four.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A11251C111B520030F9C0 /* four.caf */; };
@@ -37,7 +39,6 @@
 		8BEBBC8E1C38EC9A00014BD5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBBC8D1C38EC9A00014BD5 /* CoreMedia.framework */; };
 		8BEBBC901C38ECA500014BD5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBBC8F1C38ECA500014BD5 /* CoreTelephony.framework */; };
 		8BEBBC921C38ECBC00014BD5 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBBC911C38ECBC00014BD5 /* EventKit.framework */; };
-		8BEBBC931C38ECD300014BD5 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBBC891C38EC4400014BD5 /* GoogleMobileAds.framework */; };
 		8BEBBC941C38ECF000014BD5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		8BEBBC961C38ECFF00014BD5 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBBC951C38ECFF00014BD5 /* EventKitUI.framework */; };
 		8BEBBC981C38ED0800014BD5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBBC971C38ED0800014BD5 /* MessageUI.framework */; };
@@ -117,8 +118,9 @@
 		8B199F6A1BD2110C00F77164 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = Source/Tile.h; sourceTree = "<group>"; };
 		8B199F6B1BD2110C00F77164 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = Source/Tile.m; sourceTree = "<group>"; };
 		8B1E77591C13868C002F22A7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		8B1E77621C139371002F22A7 /* iAdHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iAdHelper.h; path = Source/iAdHelper.h; sourceTree = "<group>"; };
-		8B1E77631C139371002F22A7 /* iAdHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iAdHelper.m; path = Source/iAdHelper.m; sourceTree = "<group>"; };
+		8B452B711C3B12AC00B44455 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
+		8B452B721C3B12AC00B44455 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
+		8B452B751C3B134E00B44455 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		8B5A11241C111B520030F9C0 /* five.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = five.caf; path = Source/five.caf; sourceTree = SOURCE_ROOT; };
 		8B5A11251C111B520030F9C0 /* four.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = four.caf; path = Source/four.caf; sourceTree = SOURCE_ROOT; };
 		8B5A11261C111B520030F9C0 /* loss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = loss.caf; path = Source/loss.caf; sourceTree = SOURCE_ROOT; };
@@ -183,25 +185,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BEBBC9C1C38ED2000014BD5 /* SystemConfiguration.framework in Frameworks */,
+				8B452B761C3B134E00B44455 /* libz.tbd in Frameworks */,
+				B77F1B3A17B978D7009739AE /* AVFoundation.framework in Frameworks */,
+				8BEBBC8E1C38EC9A00014BD5 /* CoreMedia.framework in Frameworks */,
+				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
+				8BEBBC8C1C38EC7800014BD5 /* AdSupport.framework in Frameworks */,
 				8BEBBC9A1C38ED1200014BD5 /* StoreKit.framework in Frameworks */,
+				8BEBBC941C38ECF000014BD5 /* CoreGraphics.framework in Frameworks */,
+				8BEBBC9C1C38ED2000014BD5 /* SystemConfiguration.framework in Frameworks */,
+				8BEBBC901C38ECA500014BD5 /* CoreTelephony.framework in Frameworks */,
+				8B452B701C3B123A00B44455 /* iAd.framework in Frameworks */,
+				8B452B741C3B12AC00B44455 /* StartApp.framework in Frameworks */,
 				8BEBBC981C38ED0800014BD5 /* MessageUI.framework in Frameworks */,
 				8BEBBC961C38ECFF00014BD5 /* EventKitUI.framework in Frameworks */,
-				8BEBBC941C38ECF000014BD5 /* CoreGraphics.framework in Frameworks */,
-				8BEBBC931C38ECD300014BD5 /* GoogleMobileAds.framework in Frameworks */,
 				8BEBBC921C38ECBC00014BD5 /* EventKit.framework in Frameworks */,
-				8BEBBC901C38ECA500014BD5 /* CoreTelephony.framework in Frameworks */,
-				8BEBBC8E1C38EC9A00014BD5 /* CoreMedia.framework in Frameworks */,
-				8BEBBC8C1C38EC7800014BD5 /* AdSupport.framework in Frameworks */,
-				8B1E775A1C13868C002F22A7 /* iAd.framework in Frameworks */,
 				8B5A11341C1124690030F9C0 /* SpriteKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
-				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
 				B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */,
 				B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */,
 				B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */,
-				B77F1B3A17B978D7009739AE /* AVFoundation.framework in Frameworks */,
 				B77F1B3C17B978D7009739AE /* UIKit.framework in Frameworks */,
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
 				B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */,
@@ -372,8 +375,6 @@
 				8B199F6B1BD2110C00F77164 /* Tile.m */,
 				8B69BDBC1BEE8844008FD183 /* GameOver.h */,
 				8B69BDBD1BEE8844008FD183 /* GameOver.m */,
-				8B1E77621C139371002F22A7 /* iAdHelper.h */,
-				8B1E77631C139371002F22A7 /* iAdHelper.m */,
 				8B8C1BB41C1275570098D501 /* Instruction.h */,
 				8B8C1BB51C1275570098D501 /* Instruction.m */,
 				8B84E6FE1C25D4720094E0F6 /* Menu.h */,
@@ -411,6 +412,9 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B452B751C3B134E00B44455 /* libz.tbd */,
+				8B452B711C3B12AC00B44455 /* StartApp.bundle */,
+				8B452B721C3B12AC00B44455 /* StartApp.framework */,
 				8BEBBC9B1C38ED2000014BD5 /* SystemConfiguration.framework */,
 				8BEBBC991C38ED1200014BD5 /* StoreKit.framework */,
 				8BEBBC971C38ED0800014BD5 /* MessageUI.framework */,
@@ -583,6 +587,7 @@
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				8B5A112D1C111B520030F9C0 /* loss.caf in Resources */,
 				8B5A112F1C111B520030F9C0 /* three.caf in Resources */,
+				8B452B731C3B12AC00B44455 /* StartApp.bundle in Resources */,
 				8B6900E11C113EB7004A2FCE /* tick.caf in Resources */,
 				8BB34CBC1C11EBDD00C443B7 /* instruction 4.png in Resources */,
 				8BB34CB91C11EBDD00C443B7 /* instruction 1.png in Resources */,
@@ -635,7 +640,6 @@
 				8BCC8A3F1C38CCD1004ADCCC /* HighScore.m in Sources */,
 				8B199F6C1BD2110C00F77164 /* Tile.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
-				8B1E77641C139371002F22A7 /* iAdHelper.m in Sources */,
 				8B69BDBE1BEE8844008FD183 /* GameOver.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
@@ -665,6 +669,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -700,6 +705,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -731,6 +737,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -775,6 +782,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

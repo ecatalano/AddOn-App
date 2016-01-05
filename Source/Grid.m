@@ -9,7 +9,6 @@
 #import "Grid.h"
 #import "Tile.h"
 #import "GameOver.h"
-#import "iAdHelper.h"
 #import <sys/utsname.h>
 
 
@@ -339,15 +338,15 @@ int lastY = -1;
     
     if(mode == 0 || mode == 2 || mode == 3){
         if(size == 0){
-            TIME_LIMIT = 10;
-            [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"currenttime"];
+            TIME_LIMIT = 5;
+            [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
         }
         else if(size == 1){
-            TIME_LIMIT = 12;
-            [[NSUserDefaults standardUserDefaults] setInteger:12 forKey:@"currenttime"];
+            TIME_LIMIT = 10;
+            [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"currenttime"];
             if(self.level > 9){
-                TIME_LIMIT = 15;
-                [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"currenttime"];
+                TIME_LIMIT = 12;
+                [[NSUserDefaults standardUserDefaults] setInteger:12 forKey:@"currenttime"];
             }
         }
         else if(size == 2){
@@ -361,9 +360,14 @@ int lastY = -1;
     }
     else if(mode == 1){
         //Blitz mode
-        TIME_LIMIT = 5;
-        [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
-
+        if(size == 0){
+            TIME_LIMIT = 3;
+            [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"currenttime"];
+        }
+        else{
+            TIME_LIMIT = 5;
+            [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
+        }
     }
     if(size == 0){
         GRID_SIZE = 3;

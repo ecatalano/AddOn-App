@@ -10,8 +10,11 @@
 #import "Grid.h"
 #import "Menu.h"
 #import "Instruction.h"
-#import "iAdHelper.h"
 #import "GameOver.h"
+#import <UIKit/UIKit.h>
+#import <StartApp/StartApp.h>
+
+
 
 @implementation MainScene{
     Grid *_grid;
@@ -27,11 +30,16 @@
     CCLabelTTF *_greatesttValueLabel;
     CCLabelTTF *_greatestValueLabel;
     CCLabelTTF *_modeLabel;
+    STABannerView* bannerView;
 }
 
 - (void)didLoadFromCCB {
-    [iAdHelper sharedHelper];
-    [iAdHelper setBannerPosition:BOTTOM];
+    if (bannerView == nil) {
+        bannerView = [[STABannerView alloc] initWithSize:STA_AutoAdSize autoOrigin:STAAdOrigin_Bottom
+                                                withView:[CCDirector sharedDirector].view withDelegate:nil];
+        [[CCDirector sharedDirector].view addSubview:bannerView];
+    }
+    
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
@@ -226,6 +234,21 @@
     
         [gameOverPopover setLevel:gameLevel score:gameScore bestscore:bestScore bestlevel:bestLevel];
         [self addChild:gameOverPopover];
+        
+        NSInteger timesPlayed = [[NSUserDefaults standardUserDefaults] integerForKey:@"timesplayed"];
+        if(timesPlayed == 2){
+            [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"timesplayed"];
+            [STAStartAppAdBasic showAd];
+        }
+        else{
+            if(timesPlayed == 0){
+                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"timesplayed"];
+            }
+            else if(timesPlayed == 1){
+                [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"timesplayed"];
+            }
+        }
+
     }
     if ([keyPath isEqualToString:@"currentValue"]) {
         _currentValueLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.currentValue];

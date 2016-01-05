@@ -29,6 +29,7 @@
 #import "CCBuilderReader.h"
 #import "Grid.h"
 #import "MainScene.h"
+#import <StartApp/StartApp.h>
 
 
 
@@ -57,6 +58,12 @@
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
     
     [self setupCocos2dWithOptions:cocos2dSetup];
+    
+    // initialize the SDK with your appID
+    STAStartAppSDK* sdk = [STAStartAppSDK sharedInstance];
+    sdk.appID = @"200886005";
+    
+    //[sdk showSplashAd];
 
     return YES;
 }
