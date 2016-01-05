@@ -117,6 +117,8 @@
     [_grid addObserver:self forKeyPath:@"theme" options:0 context:NULL];
     [_grid addObserver:self forKeyPath:@"endGame" options:0 context:NULL];
     [_grid addObserver:self forKeyPath:@"currentValue" options:0 context:NULL];
+    [_grid addObserver:self forKeyPath:@"gridSize" options:0 context:NULL];
+
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -124,7 +126,6 @@
                        context:(void *)context
 {
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     if ([keyPath isEqualToString:@"time"]) {
         if(mode != 3){
             _timeLabel.string = [NSString stringWithFormat:@"%d", (int)_grid.time];
@@ -155,80 +156,49 @@
         gameOverPopover.positionType = CCPositionTypeNormalized;
         gameOverPopover.position = ccp(0.5, 0.5);
         gameOverPopover.zOrder = INT_MAX;
-        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3classic"];
-        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3classic"];
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoreclassic"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelclassic"];
         NSInteger modeChanged = [[NSUserDefaults standardUserDefaults] integerForKey:@"modechanged"];
 
+        if ([keyPath isEqualToString:@"gridSize"]) {
+            NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+            if(size == 0){
+                CGPoint pos = _grid.position;
+                pos.x = pos.x * .91;
+                _grid.position = pos;
+            }
+            else if(size == 1){
+                CGPoint pos = _grid.position;
+                pos.x = pos.x * .97;
+                _grid.position = pos;
+            }
+            else if(size == 2){
+                CGPoint pos = _grid.position;
+                _grid.position = pos;
+            }
+        }
+        
         if(modeChanged == 1){
-            size = [[NSUserDefaults standardUserDefaults] integerForKey:@"previoussize"];
             mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousmode"];
         }
-        if(size == 0){
-            if(mode == 0){
-                //classic
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3classic"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3classic"];
-            }
-            else if(mode == 1){
-                //blitz
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3blitz"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3blitz"];
-            }
-            else if(mode == 2){
-                //sudden
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3sudden"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3sudden"];
-            }
-            else if(mode == 3){
-                //nightmare
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3nightmare"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3nightmare"];
-            }
+        if(mode == 0){
+            bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoreclassic"];
+            bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelclassic"];
         }
-        else if(size==1){
-            if(mode == 0){
-                //classic
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4classic"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4classic"];
-            }
-            else if(mode == 1){
-                //blitz
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4blitz"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4blitz"];
-            }
-            else if(mode == 2){
-                //sudden
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4sudden"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4sudden"];
-            }
-            else if(mode == 3){
-                //nightmare
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4nightmare"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4nightmare"];
-            }
+        else if(mode == 1){
+            bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoreblitz"];
+            bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelblitz"];
         }
-        else if(size == 2){
-            if(mode == 0){
-                //classic
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5classic"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5classic"];
-            }
-            else if(mode == 1){
-                //blitz
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5blitz"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5blitz"];
-            }
-            else if(mode == 2){
-                //sudden
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5sudden"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5sudden"];
-            }
-            else if(mode == 3){
-                //nightmare
-                bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5nightmare"];
-                bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5nightmare"];
-            }
+        else if(mode == 2){
+            bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoresudden"];
+            bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelsudden"];
         }
+        else if(mode == 3){
+            bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscorenightmare"];
+            bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelnightmare"];
+        }
+        
+        
         NSInteger gameScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"gamescore"];
         NSInteger gameLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"gamelevel"];
     
@@ -276,6 +246,8 @@
     [_grid removeObserver:self forKeyPath:@"theme"];
     [_grid removeObserver:self forKeyPath:@"endGame"];
     [_grid removeObserver:self forKeyPath:@"currentValue"];
+    [_grid removeObserver:self forKeyPath:@"gridSize"];
+
 }
 - (void)menuButtonPressed{
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];

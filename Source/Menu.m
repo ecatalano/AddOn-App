@@ -21,7 +21,6 @@
 -(void)didLoadFromCCB{
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     
     if(theme == 0){
         _themeLabel.string = @"Classic";
@@ -58,18 +57,6 @@
     else if(mode == 3){
         _modeLabel.string = @"Nightmare";
         _modeButton.title = @"Nightmare";
-    }
-    if(size == 0){
-        _sizeLabel.string = @"3x3";
-        _sizeButton.title = @"3x3";
-    }
-    else if(size == 1){
-        _sizeLabel.string = @"4x4";
-        _sizeButton.title = @"4x4";
-    }
-    else if(size == 2){
-        _sizeLabel.string = @"5x5";
-        _sizeButton.title = @"5x5";
     }
 }
 
@@ -160,50 +147,8 @@
         _modeButton.title = @"Nightmare";
     }
 }
-- (void)fiveSize {
-    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    if(size != 2){
-        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
-        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
-        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"size"];
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
-        _sizeLabel.string = @"5x5";
-        _sizeButton.title = @"5x5";
-    }
-}
-- (void)fourSize {
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
-    if(size != 1){
-        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
-        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"size"];
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
-        _sizeLabel.string = @"4x4";
-        _sizeButton.title = @"4x4";
-    }
-}
-- (void)threeSize {
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
-    NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
-    if(size != 0){
-        [[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"previousmode"];
-        [[NSUserDefaults standardUserDefaults] setInteger:size forKey:@"previoussize"];
-        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"size"];
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"modechanged"];
-        _sizeLabel.string = @"3x3";
-        _sizeButton.title = @"3x3";
-    }
-}
-
 - (void)selectMode {
     CCScene *instructionScene = [CCBReader loadAsScene:@"Modes"];
-    [[CCDirector sharedDirector] popScene];
-    [[CCDirector sharedDirector] pushScene:instructionScene];
-}
-- (void)selectSize {
-    CCScene *instructionScene = [CCBReader loadAsScene:@"Sizes"];
     [[CCDirector sharedDirector] popScene];
     [[CCDirector sharedDirector] pushScene:instructionScene];
 }

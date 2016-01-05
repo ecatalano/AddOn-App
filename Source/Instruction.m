@@ -22,6 +22,10 @@
     CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 4"];
     [[CCDirector sharedDirector] pushScene:instructionScene];
 }
+- (void)next4 {
+    CCScene *instructionScene = [CCBReader loadAsScene:@"Instruction 5"];
+    [[CCDirector sharedDirector] pushScene:instructionScene];
+}
 - (void)prev {
     [[CCDirector sharedDirector] popScene];
 }

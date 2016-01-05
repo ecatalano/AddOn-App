@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>17</integer>
+	<integer>14</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -225,7 +225,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>images/instruction 4.png</string>
+							<string>images/instruction 5.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -266,7 +266,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>9</integer>
+				<integer>4</integer>
 				<key>baseClass</key>
 				<string>CCButton</string>
 				<key>children</key>
@@ -296,7 +296,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.13119029998779297</real>
+							<real>0.5</real>
 							<real>0.14416034519672394</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -334,7 +334,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>prev</string>
+							<string>done</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -379,7 +379,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Prev</string>
+							<string>Done</string>
 							<false/>
 						</array>
 					</dict>
@@ -600,7 +600,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>14</integer>
+				<integer>9</integer>
 				<key>baseClass</key>
 				<string>CCButton</string>
 				<key>children</key>
@@ -630,7 +630,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.86880970001220703</real>
+							<real>0.13119029998779297</real>
 							<real>0.14416034519672394</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -656,7 +656,7 @@
 						<key>value</key>
 						<array>
 							<real>1.4230812788009644</real>
-							<real>1.3470000028610229</real>
+							<real>1.3467319011688232</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -668,7 +668,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>next4</string>
+							<string>prev</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -713,7 +713,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Next</string>
+							<string>Prev</string>
 							<false/>
 						</array>
 					</dict>

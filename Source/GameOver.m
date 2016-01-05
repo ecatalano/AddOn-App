@@ -50,308 +50,100 @@
          bestlevel:(NSInteger)bestlevel{
     
     //NSLog(@"Ran once");
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
     NSInteger modeChanged = [[NSUserDefaults standardUserDefaults] integerForKey:@"modechanged"];
     if(modeChanged == 1){
-        size = [[NSUserDefaults standardUserDefaults] integerForKey:@"previoussize"];
         mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousmode"];
     }
     if(mode == 0){
-        if(size == 0){
-            _sizeLabel.string = @"3x3";
-            _modeLabel.string = @"Classic";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3classic"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3classic"];
+        _modeLabel.string = @"Classic";
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoreclassic"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelclassic"];
     
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
+        if(score <= bestscore){
+            _highscoreLabel.opacity = 0.0;
+        }
+        else if(score > bestscore){
+            bestScore = score;
+            bestLevel = level;
             
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore3classic"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel3classic"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
+            [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscoreclassic"];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevelclassic"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
     
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
-        else if(size == 1){
-            _sizeLabel.string = @"4x4";
-            _modeLabel.string = @"Classic";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4classic"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4classic"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore4classic"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel4classic"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-            
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-            
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
-        else if(size == 2){
-            _sizeLabel.string = @"5x5";
-            _modeLabel.string = @"Classic";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5classic"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5classic"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                    
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore5classic"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel5classic"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-                
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
+        _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
+        _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+        _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
+        _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
     }
     else if(mode == 1){
-        if(size == 0){
-            _sizeLabel.string = @"3x3";
-            _modeLabel.string = @"Blitz";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3blitz"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3blitz"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore3blitz"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel3blitz"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-                
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
-        else if(size == 1){
-            _sizeLabel.string = @"4x4";
-            _modeLabel.string = @"Blitz";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4blitz"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4blitz"];
-            
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore4blitz"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel4blitz"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
+        _modeLabel.string = @"Blitz";
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoreblitz"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelblitz"];
         
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-            
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
+        if(score <= bestscore){
+            _highscoreLabel.opacity = 0.0;
         }
-        else if(size == 2){
-            _sizeLabel.string = @"5x5";
-            _modeLabel.string = @"Blitz";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5blitz"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5blitz"];
+        else if(score > bestscore){
+            bestScore = score;
+            bestLevel = level;
             
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore5blitz"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel5blitz"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-            
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-            
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscoreblitz"];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevelblitz"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
+        
+        _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
+        _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+        _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
+        _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
     }
     else if(mode == 2){
-        if(size == 0){
-            _sizeLabel.string = @"3x3";
-            _modeLabel.string = @"Sudden Death";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3sudden"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3sudden"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore3sudden"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel3sudden"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+        _modeLabel.string = @"Sudden Death";
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscoresudden"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelsudden"];
+        
+        if(score <= bestscore){
+            _highscoreLabel.opacity = 0.0;
+        }
+        else if(score > bestscore){
+            bestScore = score;
+            bestLevel = level;
             
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscoresudden"];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevelsudden"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
-        else if(size == 1){
-            _sizeLabel.string = @"4x4";
-            _modeLabel.string = @"Sudden Death";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4sudden"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4sudden"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore4sudden"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel4sudden"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-            
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
-        else if(size == 2){
-            _sizeLabel.string = @"5x5";
-            _modeLabel.string = @"Sudden Death";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5sudden"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5sudden"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                    
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore5sudden"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel5sudden"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-                
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
+        
+        _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
+        _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+        _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
+        _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
     }
     else if(mode == 3){
-        if(size == 0){
-            _sizeLabel.string = @"3x3";
-            _modeLabel.string = @"Nightmare";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore3nightmare"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel3nightmare"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore3nightmare"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel3nightmare"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+        _modeLabel.string = @"Nightmare";
+        NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscorenightmare"];
+        NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevelnightmare"];
+        
+        if(score <= bestscore){
+            _highscoreLabel.opacity = 0.0;
+        }
+        else if(score > bestscore){
+            bestScore = score;
+            bestLevel = level;
             
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscorenightmare"];
+            [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevelnightmare"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
-        else if(size == 1){
-            _sizeLabel.string = @"4x4";
-            _modeLabel.string = @"Nightmare";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore4nightmare"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel4nightmare"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                    
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore4nightmare"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel4nightmare"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-                
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
-        else if(size == 2){
-            _sizeLabel.string = @"5x5";
-            _modeLabel.string = @"Nightmare";
-            NSInteger bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestscore5nightmare"];
-            NSInteger bestLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestlevel5nightmare"];
-                
-            if(score <= bestscore){
-                _highscoreLabel.opacity = 0.0;
-            }
-            else if(score > bestscore){
-                bestScore = score;
-                bestLevel = level;
-                    
-                [[NSUserDefaults standardUserDefaults] setInteger:bestScore forKey:@"bestscore5nightmare"];
-                [[NSUserDefaults standardUserDefaults] setInteger:bestLevel forKey:@"bestlevel5nightmare"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-                
-            _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
-            _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
-                
-            _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
-            _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
-        }
+        
+        _scoreLabel.string = [NSString stringWithFormat:@"%d", (int)score];
+        _levelLabel.string = [NSString stringWithFormat:@"%d", (int)level];
+        _bestscoreLabel.string = [NSString stringWithFormat:@"%d", (int)bestScore];
+        _bestlevelLabel.string = [NSString stringWithFormat:@"%d", (int)bestLevel];
     }
+    
 }
 
 

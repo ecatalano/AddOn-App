@@ -333,21 +333,41 @@ int lastY = -1;
     NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
     self.theme = theme;
     NSInteger mode = [[NSUserDefaults standardUserDefaults] integerForKey:@"mode"];
-    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
     self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     
+    if(self.level <= 3){
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"size"];
+        self.gridSize = 0;
+        GRID_SIZE = 3;
+        LINE_SIZE = 3;
+        START_TILES = 9;
+        
+    }
+    else if(self.level > 3 && self.level <=7){
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"size"];
+        self.gridSize = 1;
+        GRID_SIZE = 4;
+        LINE_SIZE = 4;
+        START_TILES = 16;
+    }
+    else if(self.level > 7){
+        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"size"];
+        self.gridSize = 2;
+        GRID_SIZE = 5;
+        LINE_SIZE = 5;
+        START_TILES = 25;
+    }
+    
+    NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:@"size"];
+
     if(mode == 0 || mode == 2 || mode == 3){
         if(size == 0){
-            TIME_LIMIT = 5;
-            [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
+            TIME_LIMIT = 7;
+            [[NSUserDefaults standardUserDefaults] setInteger: 7 forKey:@"currenttime"];
         }
         else if(size == 1){
             TIME_LIMIT = 10;
             [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"currenttime"];
-            if(self.level > 9){
-                TIME_LIMIT = 12;
-                [[NSUserDefaults standardUserDefaults] setInteger:12 forKey:@"currenttime"];
-            }
         }
         else if(size == 2){
             TIME_LIMIT = 15;
@@ -364,27 +384,14 @@ int lastY = -1;
             TIME_LIMIT = 3;
             [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"currenttime"];
         }
-        else{
+        else if(size == 1){
             TIME_LIMIT = 5;
             [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"currenttime"];
         }
-    }
-    if(size == 0){
-        GRID_SIZE = 3;
-        LINE_SIZE = 3;
-        START_TILES = 9;
-
-    }
-    else if(size == 1){
-        GRID_SIZE = 4;
-        LINE_SIZE = 4;
-        START_TILES = 16;
-
-    }
-    else if(size == 2){
-        GRID_SIZE = 5;
-        LINE_SIZE = 5;
-        START_TILES = 25;
+        else if(size == 2){
+            TIME_LIMIT = 7;
+            [[NSUserDefaults standardUserDefaults] setInteger:7 forKey:@"currenttime"];
+        }
     }
 
     // access audio object

@@ -15,6 +15,7 @@
 @property (nonatomic,assign) NSInteger level;
 @property (nonatomic,assign) NSInteger theme;
 @property (nonatomic,assign) NSInteger currentValue;
+@property (nonatomic,assign) NSInteger gridSize;
 @property (nonatomic,assign) NSString* device;
 
 @property (nonatomic,assign) BOOL endGame;
