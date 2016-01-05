@@ -217,7 +217,7 @@ int lastY = -1;
         self.currentValue = 0;
         if(totalValue > 0){
             if(self.endGame!=true){
-                if(self.doneLoading == true && totalValue == _greatestPath){
+                if(self.doneLoading == true && totalValue >= _greatestPath){
                     self.score += totalValue;
                     [self nextLevel];
                 }

@@ -12,7 +12,6 @@
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		8B199F6C1BD2110C00F77164 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B199F6B1BD2110C00F77164 /* Tile.m */; };
-		8B452B701C3B123A00B44455 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1E77591C13868C002F22A7 /* iAd.framework */; };
 		8B452B731C3B12AC00B44455 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B452B711C3B12AC00B44455 /* StartApp.bundle */; };
 		8B452B741C3B12AC00B44455 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B452B721C3B12AC00B44455 /* StartApp.framework */; };
 		8B452B761C3B134E00B44455 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B452B751C3B134E00B44455 /* libz.tbd */; };
@@ -198,7 +197,6 @@
 				8BEBBC941C38ECF000014BD5 /* CoreGraphics.framework in Frameworks */,
 				8BEBBC9C1C38ED2000014BD5 /* SystemConfiguration.framework in Frameworks */,
 				8BEBBC901C38ECA500014BD5 /* CoreTelephony.framework in Frameworks */,
-				8B452B701C3B123A00B44455 /* iAd.framework in Frameworks */,
 				8B452B741C3B12AC00B44455 /* StartApp.framework in Frameworks */,
 				8BEBBC981C38ED0800014BD5 /* MessageUI.framework in Frameworks */,
 				8BEBBC961C38ECFF00014BD5 /* EventKitUI.framework in Frameworks */,
