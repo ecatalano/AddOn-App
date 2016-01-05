@@ -398,6 +398,8 @@ int lastY = -1;
     [audio preloadEffect:@"win.caf"];
     [audio preloadEffect:@"loss.caf"];
     [audio preloadEffect:@"tick.caf"];
+    [audio preloadEffect:@"hoot.caf"];
+    [audio preloadEffect:@"cluck.caf"];
 
     NSInteger currentLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentlevel"];
     
@@ -554,8 +556,18 @@ int lastY = -1;
     
     [[NSUserDefaults standardUserDefaults] setInteger:self.level forKey:@"currentlevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:self.score forKey:@"currentscore"];
-    
-    [audio playEffect:@"win.caf"];
+    NSInteger theme = [[NSUserDefaults standardUserDefaults] integerForKey:@"theme"];
+
+    if(theme == 1){
+        [audio playEffect:@"cluck.caf"];
+    }
+    else if(theme == 2){
+        [audio playEffect:@"hoot.caf"];
+
+    }
+    else{
+        [audio playEffect:@"win.caf"];
+    }
 
     CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainScene];

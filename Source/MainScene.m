@@ -276,7 +276,6 @@
     [_grid removeObserver:self forKeyPath:@"theme"];
     [_grid removeObserver:self forKeyPath:@"endGame"];
     [_grid removeObserver:self forKeyPath:@"currentValue"];
-
 }
 - (void)menuButtonPressed{
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"instructions"];
