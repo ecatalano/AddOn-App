@@ -30,7 +30,7 @@
     [[CCDirector sharedDirector] popScene];
 }
 - (void)done {
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         [[CCDirector sharedDirector] popScene];
     }
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"instructions"];

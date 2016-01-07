@@ -206,17 +206,12 @@
         [self addChild:gameOverPopover];
         
         NSInteger timesPlayed = [[NSUserDefaults standardUserDefaults] integerForKey:@"timesplayed"];
-        if(timesPlayed == 2){
+        if(timesPlayed == 1){
             [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"timesplayed"];
             [STAStartAppAdBasic showAd];
         }
-        else{
-            if(timesPlayed == 0){
-                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"timesplayed"];
-            }
-            else if(timesPlayed == 1){
-                [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"timesplayed"];
-            }
+        else if(timesPlayed == 0){
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"timesplayed"];
         }
 
     }
